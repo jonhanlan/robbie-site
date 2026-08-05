@@ -1,0 +1,40 @@
+/* Shared visual shell for scroll toolkit pages (tools home, pitch; guide already has its own dense CSS) */
+:root{
+  --bg:#0c0a08;--bg2:#100c09;--fg:#ece3d1;--muted:#a89a83;--faint:#7c6f5c;
+  --accent:#ef7f36;--ink:#f7efdd;--line2:#38302a;--card:#151009;--card2:#1b140c;
+  --disp:'Bricolage Grotesque','Arial Black',sans-serif;
+  --mono:'Space Mono',monospace;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --spring:cubic-bezier(.22,1,.32,1);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body.tk-shell{
+  margin:0;
+  background:
+    radial-gradient(ellipse 700px 460px at 84% -6%, rgba(239,127,54,.11), transparent 68%),
+    linear-gradient(180deg,#0f0b08,#0c0a08 45%,#080605);
+  background-attachment:fixed;
+  color:var(--fg);
+  font-family:var(--sans);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+  min-height:100dvh;
+  padding-bottom:3rem;
+}
+body.tk-shell::before{
+  content:'';position:fixed;inset:-60%;width:220%;height:220%;pointer-events:none;z-index:0;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:tk-grain 5s steps(5) infinite;
+}
+@keyframes tk-grain{
+  0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}
+  60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,1%)}100%{transform:translate(0,0)}
+}
+body.tk-shell ::selection{background:var(--accent);color:#1a0f06}
+body.tk-shell main{position:relative;z-index:1}
+@media (prefers-reduced-motion:reduce){
+  body.tk-shell::before{animation:none}
+}

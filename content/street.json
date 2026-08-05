@@ -1,0 +1,31 @@
+{
+  "intro": "When there's no stage booked, Robbie plays for the city itself. If you hear a country song echoing off the tiles, follow it. The rough schedule lives below, weather permitting.",
+  "spots": [
+    {
+      "id": "washington-square",
+      "place": "Washington Square Park",
+      "when": "Saturday afternoons",
+      "note": "Near the arch, where the fountain crowd thins out."
+    },
+    {
+      "id": "central-park-mall",
+      "place": "Central Park, Literary Walk",
+      "when": "Sunday mornings",
+      "note": "Under the elms on the Mall."
+    },
+    {
+      "id": "bedford-av",
+      "place": "Bedford Av station",
+      "when": "Weekday evenings",
+      "note": "Mezzanine level. Rush hour serenades."
+    }
+  ],
+  "tipJar": {
+    "note": "If a song stopped you on the sidewalk for a minute, the tip jar lives online too.",
+    "links": [
+      { "label": "Venmo", "url": "https://venmo.com/u/robbiedonaldson" },
+      { "label": "Cash App", "url": "https://cash.app/$robbiedonaldson" }
+    ],
+    "footnote": "Or just say hi and ask for a song. That works too."
+  }
+}

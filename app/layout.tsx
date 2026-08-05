@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Anton, DM_Sans, Fraunces } from 'next/font/google'
+import { Bricolage_Grotesque, DM_Sans, Fraunces, Space_Mono } from 'next/font/google'
 import { getArtistContent } from '@/lib/content'
 import { buildMusicGroupJsonLd, buildWebsiteJsonLd } from '@/lib/seo'
 import './globals.css'
@@ -16,10 +16,17 @@ const serif = Fraunces({
   display: 'swap',
 })
 
-const display = Anton({
+const display = Bricolage_Grotesque({
   subsets: ['latin'],
-  weight: '400',
+  weight: ['600', '700', '800'],
   variable: '--font-display',
+  display: 'swap',
+})
+
+const mono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-mono',
   display: 'swap',
 })
 
@@ -28,7 +35,7 @@ const artist = getArtistContent()
 export const metadata: Metadata = {
   metadataBase: new URL(artist.canonicalUrl),
   title: {
-    default: `${artist.name} | Folk Pop Artist`,
+    default: `${artist.name} | Country Folk, New York City`,
     template: `%s | ${artist.name}`,
   },
   description: artist.tagline,
@@ -41,13 +48,13 @@ export const metadata: Metadata = {
     description: artist.tagline,
     siteName: artist.name,
     url: artist.canonicalUrl,
-    images: ['/video/hero-poster.jpg'],
+    images: ['/images/single-nyc-polaroid.png'],
   },
   twitter: {
     card: 'summary_large_image',
     title: artist.name,
     description: artist.tagline,
-    images: ['/video/hero-poster.jpg'],
+    images: ['/images/single-nyc-polaroid.png'],
   },
   robots: {
     index: true,
@@ -60,7 +67,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   const musicGroupJsonLd = buildMusicGroupJsonLd(artist)
 
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable} ${display.variable}`}>
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${display.variable} ${mono.variable}`}>
       <body className="antialiased">
         <a href="#main-content" className="skip-link">
           Skip to main content

@@ -1,10 +1,10 @@
 [
   {
-    "id": "paper-lantern",
-    "title": "Paper Lantern",
-    "note": "Written after a winter tour across the prairies.",
+    "id": "kitchen-table-waltz",
+    "title": "Kitchen Table Waltz",
+    "note": "Cut live in one take in an empty Bushwick kitchen.",
     "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-    "coverImage": "/images/cover-paper-lantern.svg",
+    "coverImage": "/images/single-nyc-polaroid.png",
     "duration": 214,
     "links": {
       "spotify": "https://open.spotify.com",
@@ -14,11 +14,11 @@
     }
   },
   {
-    "id": "cedar-room",
-    "title": "Cedar Room",
-    "note": "Recorded live in one take with upright piano.",
+    "id": "last-train-out-of-babylon",
+    "title": "Last Train Out of Babylon",
+    "note": "For everyone who has ever slept through their stop.",
     "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-    "coverImage": "/images/cover-cedar-room.svg",
+    "coverImage": "/images/cover-last-train.svg",
     "duration": 198,
     "links": {
       "spotify": "https://open.spotify.com",
@@ -27,11 +27,11 @@
     }
   },
   {
-    "id": "night-bus-home",
-    "title": "Night Bus Home",
-    "note": "From the upcoming EP.",
+    "id": "dust-on-the-skyline",
+    "title": "Dust on the Skyline",
+    "note": "Written the first week in the city, boxes still packed.",
     "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-    "coverImage": "/images/cover-night-bus-home.svg",
+    "coverImage": "/images/cover-dust-skyline.svg",
     "duration": 232,
     "links": {
       "spotify": "https://open.spotify.com",

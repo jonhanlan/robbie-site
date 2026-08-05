@@ -16,12 +16,15 @@ export interface ArtistContent {
   name: string
   wordmarkText: string
   tagline: string
+  location: string
   canonicalUrl: string
   bookingEmail: string
   newsletterUrl?: string
   socials: ArtistSocials
   bio: string[]
   pressQuotes: PressQuote[]
+  bookingFacts: string[]
+  pressPhotos: string[]
 }
 
 export interface TrackLinks {
@@ -69,4 +72,26 @@ export interface MediaPhoto {
 export interface MediaContent {
   videos: MediaVideo[]
   photos: MediaPhoto[]
+}
+
+export interface StreetSpot {
+  id: string
+  place: string
+  when: string
+  note?: string
+}
+
+export interface TipJarLink {
+  label: string
+  url: string
+}
+
+export interface StreetContent {
+  intro: string
+  spots: StreetSpot[]
+  tipJar: {
+    note: string
+    links: TipJarLink[]
+    footnote?: string
+  }
 }

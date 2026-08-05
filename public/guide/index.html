@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Field guide · Robbie tools</title>
+<meta name="description" content="A skimmable, mobile-first field guide to making a living as a country-folk musician in NYC. One line per point, tap for the detail, every place linked to the map.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,500..600;1,9..144,500..600&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0a08;--bg2:#100c09;--fg:#ece3d1;--muted:#a89a83;--faint:#7c6f5c;
+    --accent:#ef7f36;--good:#8fa78f;--ink:#f7efdd;
+    --line:#241d16;--line2:#38302a;--card:#151009;--card2:#1b140c;
+    --disp:'Bricolage Grotesque','Arial Black',sans-serif;
+    --mono:'Space Mono',monospace;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'DM Sans',system-ui,sans-serif;
+    --maxw:720px;--spring:cubic-bezier(.22,1,.32,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{
+    background:
+      radial-gradient(ellipse 700px 460px at 84% -6%, rgba(239,127,54,.11), transparent 68%),
+      linear-gradient(180deg,#0f0b08,#0c0a08 45%,#080605);
+    background-attachment:fixed;color:var(--fg);font-family:var(--sans);line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;padding-bottom:3rem;
+  }
+  body::before{content:'';position:fixed;inset:-60%;width:220%;height:220%;pointer-events:none;z-index:0;opacity:.07;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation:grain 5s steps(5) infinite}
+  @keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-2%)}80%{transform:translate(3%,1%)}100%{transform:translate(0,0)}}
+  ::selection{background:var(--accent);color:#1a0f06}
+  a{color:inherit}
+  h1,h2,h3,h4{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.92;text-wrap:balance}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .serif{font-family:var(--serif);font-style:italic;font-weight:500}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:8990;background:var(--accent);transition:width .1s linear}
+
+  /* top bar */
+  header.bar{position:sticky;top:0;z-index:50;background:rgba(12,10,8,.82);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border-bottom:2px solid var(--line2)}
+  .bar-in{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:.65rem 1.15rem}
+  .brand{font-family:var(--disp);font-weight:800;text-transform:uppercase;letter-spacing:-.02em;font-size:1rem}
+  .brand b{color:var(--accent)}
+  .menu-btn{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    border:2px solid var(--fg);background:transparent;color:var(--fg);padding:.45rem .75rem;cursor:pointer;transition:background .15s,border-color .15s}
+  .menu-btn:hover{background:rgba(239,127,54,.1);border-color:var(--accent)}
+  .menu-btn svg{width:14px;height:14px}
+
+  /* drawer */
+  .scrim{position:fixed;inset:0;z-index:9010;background:rgba(0,0,0,.65);opacity:0;pointer-events:none;transition:opacity .25s}
+  .scrim.open{opacity:1;pointer-events:auto}
+  nav.drawer{position:fixed;top:0;right:0;z-index:9020;height:100dvh;width:min(86vw,330px);background:var(--bg2);border-left:2px solid var(--accent);
+    box-shadow:-20px 0 50px rgba(0,0,0,.5);transform:translateX(100%);transition:transform .3s var(--spring);display:flex;flex-direction:column;padding:1rem}
+  nav.drawer.open{transform:translateX(0)}
+  .dhead{display:flex;align-items:center;justify-content:space-between;padding:.3rem .4rem .9rem;border-bottom:2px solid var(--line2)}
+  .dhead b{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .dclose{background:none;border:0;color:var(--muted);cursor:pointer;display:inline-flex}
+  .dclose:hover{color:var(--fg)}
+  .dlinks{list-style:none;margin-top:.5rem;overflow-y:auto;display:flex;flex-direction:column}
+  .dlinks a{display:flex;gap:.7rem;align-items:baseline;padding:.7rem .5rem;color:var(--muted);text-decoration:none;font-family:var(--disp);font-weight:700;font-size:1.05rem;text-transform:uppercase;border-bottom:1px solid var(--line2);transition:color .18s,background .18s}
+  .dlinks a .n{font-family:var(--mono);font-weight:400;font-size:.72rem;color:var(--accent);flex:none;width:1.5rem}
+  .dlinks a:hover,.dlinks a.active{color:var(--fg);background:rgba(247,239,221,.04)}
+  .dtools{margin-top:auto;padding:.75rem .35rem .2rem;display:grid;gap:.5rem;border-top:2px solid var(--line2)}
+  .dtools a{display:flex;align-items:center;justify-content:space-between;min-height:44px;padding:.65rem .7rem;border:1px solid var(--line2);color:var(--fg);font-family:var(--mono);font-size:.68rem;text-decoration:none;text-transform:uppercase;letter-spacing:.05em;transition:background .2s,border-color .2s}
+  .dtools a:hover{background:rgba(239,127,54,.1);border-color:var(--accent)}
+
+  main{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 1.15rem}
+
+  /* cover */
+  .cover{padding:3rem 0 2rem}
+  .kick{font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.55rem;margin-bottom:1.1rem}
+  .kick .dot{width:.5rem;height:.5rem;border-radius:999px;background:var(--accent)}
+  .cover h1{font-size:clamp(2.7rem,12vw,4.6rem);text-transform:uppercase;line-height:.86}
+  .cover h1 em{font-family:var(--serif);font-style:italic;font-weight:600;text-transform:none;color:var(--accent);letter-spacing:-.01em}
+  .cover .lede{margin-top:1.1rem;font-size:1.05rem;color:var(--muted);max-width:34ch}
+  .cover .how{margin-top:1.3rem;display:inline-flex;gap:.5rem;align-items:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--faint);border:1px dashed var(--line2);padding:.5rem .7rem}
+  .cover .how b{color:var(--accent)}
+
+  /* TL;DR */
+  .tldr{margin:2rem 0 1rem;border:2px solid var(--accent);padding:1.1rem;box-shadow:6px 6px 0 var(--accent);background:rgba(239,127,54,.05)}
+  .tldr .t{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem}
+  .tldr p{font-family:var(--serif);font-style:italic;font-size:1.2rem;color:var(--fg);line-height:1.35}
+
+  /* shortest useful path */
+  .start{margin:1.4rem 0 1rem}
+  .start-h{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.65rem}
+  .start-h h2{font-size:1.15rem;text-transform:uppercase;line-height:1}
+  .start-h span{font-family:var(--mono);font-size:.64rem;color:var(--faint);text-transform:uppercase;letter-spacing:.08em}
+  .start-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+  .start-card{display:flex;min-height:104px;flex-direction:column;justify-content:space-between;gap:.7rem;padding:.85rem .9rem;border:1px solid var(--line2);background:var(--card);color:var(--fg);text-decoration:none;transition:background .2s,border-color .2s}
+  .start-card:hover,.start-card:focus-visible{background:rgba(239,127,54,.1);border-color:var(--accent);outline:none}
+  .start-card .no{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+  .start-card b{font-family:var(--disp);font-size:1rem;line-height:1.1;text-transform:uppercase}
+  .start-card span:last-child{font-size:.75rem;line-height:1.35;color:var(--muted)}
+  @media(max-width:480px){.start-grid{grid-template-columns:1fr}.start-card{min-height:88px}}
+
+  /* chapter */
+  section.ch{padding:2.6rem 0 .6rem;scroll-margin-top:64px}
+  .ch-h{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:.5rem}
+  .ch-h .i{font-family:var(--mono);font-size:.8rem;color:var(--accent)}
+  .ch-h h2{font-size:clamp(2rem,7vw,3.1rem);text-transform:uppercase;line-height:.86}
+  .ch-h h2 em{font-family:var(--serif);font-style:italic;font-weight:600;text-transform:none;color:var(--accent)}
+  .ch-sub{font-family:var(--mono);font-size:.74rem;letter-spacing:.03em;color:var(--faint);margin-bottom:1.4rem}
+
+  /* point card */
+  .pt{border:2px solid var(--line2);background:linear-gradient(180deg,var(--card2),var(--card));margin-bottom:.8rem;transition:background .18s,border-color .18s}
+  .pt:hover{background:linear-gradient(180deg,rgba(239,127,54,.07),var(--card));border-color:rgba(239,127,54,.45)}
+  .pt-in{padding:1rem 1.05rem}
+  .pt-top{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-bottom:.5rem}
+  .pt-tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line2);padding:.2rem .45rem}
+  .pt-stat{font-family:var(--disp);font-weight:800;font-size:1.5rem;color:var(--accent);line-height:1;margin-left:auto;font-variant-numeric:tabular-nums}
+  .pt-sum{font-family:var(--disp);font-weight:700;font-size:1.12rem;line-height:1.2;color:var(--fg)}
+  .pt-sum .hot{color:var(--accent)}
+  details.more{margin-top:.7rem;border-top:1px dashed var(--line2);padding-top:.1rem}
+  details.more summary{list-style:none;cursor:pointer;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding:.6rem 0 .2rem;display:flex;align-items:center;gap:.4rem;user-select:none}
+  details.more summary::-webkit-details-marker{display:none}
+  details.more summary .pm{display:inline-flex;width:1rem;height:1rem;border:1px solid var(--accent);align-items:center;justify-content:center;transition:transform .2s}
+  details.more[open] summary .pm{transform:rotate(45deg)}
+  details.more summary .lbl-open{display:none}
+  details.more[open] summary .lbl-shut{display:none}
+  details.more[open] summary .lbl-open{display:inline}
+  .more-body{padding:.3rem 0 .4rem;color:#d9cfbe;font-size:.92rem;line-height:1.6}
+  .more-body p{margin:.5rem 0}
+  .more-body strong{color:var(--fg)}
+  .src{font-family:var(--mono);font-size:.66rem;color:var(--faint);letter-spacing:.02em;margin-top:.5rem;line-height:1.7}
+  .src a{color:var(--muted);text-decoration:underline;text-decoration-color:var(--line2)}
+  .src a:hover{color:var(--accent)}
+
+  /* map link + go link */
+  a.map{display:inline-flex;align-items:center;gap:.15em;color:var(--accent);text-decoration:none;border:1px solid rgba(239,127,54,.35);border-radius:5px;background:rgba(239,127,54,.07);padding:.08rem .28rem;white-space:nowrap;transition:color .18s,background .18s,border-color .18s,box-shadow .18s}
+  a.map svg{width:.7em;height:.7em;display:inline;vertical-align:baseline;margin-left:.15em}
+  a.map:hover,a.map:focus-visible{color:#fff3e6;background:rgba(239,127,54,.2);border-color:var(--accent);box-shadow:0 0 0 2px rgba(239,127,54,.12);outline:none}
+  a.map:active{background:var(--accent);border-color:var(--accent);color:#1a0f06}
+  a.go{font-family:var(--mono);color:var(--accent);text-decoration:none;border-bottom:1px solid var(--line2)}
+  a.go:hover{border-bottom-color:var(--accent)}
+
+  /* stat grid */
+  .grid{display:grid;gap:.7rem;grid-template-columns:1fr 1fr;margin:.4rem 0 1rem}
+  .stat{border:2px solid var(--line2);padding:.85rem .9rem;background:linear-gradient(180deg,var(--card2),var(--card))}
+  .stat .n{font-family:var(--disp);font-weight:800;font-size:1.5rem;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+  .stat .l{font-family:var(--disp);font-weight:700;font-size:.92rem;margin-top:.3rem;text-transform:uppercase;letter-spacing:-.01em}
+  .stat .d{font-size:.76rem;color:var(--muted);margin-top:.2rem;line-height:1.4}
+
+  /* venue row */
+  .venue{display:flex;align-items:baseline;gap:.7rem;padding:.75rem .2rem;border-bottom:1px dashed var(--line2)}
+  .venue .when{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);flex:none;width:5.5rem}
+  .venue .v{font-family:var(--disp);font-weight:700;font-size:1.02rem}
+  .venue .vn{color:var(--muted);font-size:.82rem}
+  .fit-badge{display:inline-flex;align-items:center;justify-content:center;min-width:2.55rem;margin-left:auto;padding:.18rem .35rem;border:1px solid rgba(239,127,54,.4);background:rgba(239,127,54,.08);color:var(--accent);font-family:var(--mono);font-size:.64rem;font-variant-numeric:tabular-nums}
+  @media(max-width:480px){.venue{flex-wrap:wrap;gap:.15rem}.venue .when{width:100%}}
+
+  /* steps */
+  ol.steps{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:.7rem;margin:.4rem 0}
+  ol.steps>li{counter-increment:s;position:relative;padding:.9rem 1rem .9rem 3rem;border:2px solid var(--line2);background:linear-gradient(180deg,var(--card2),var(--card))}
+  ol.steps>li::before{content:counter(s);position:absolute;left:.85rem;top:.95rem;width:1.5rem;height:1.5rem;background:var(--accent);color:#1a0f06;font-family:var(--mono);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
+  ol.steps .when{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.15rem}
+  ol.steps b{font-family:var(--disp);font-weight:700}
+  ol.steps p{font-size:.88rem;color:var(--muted);margin-top:.15rem}
+
+  .bignote{border:2px solid var(--accent);background:rgba(239,127,54,.06);padding:1rem 1.1rem;margin:1.1rem 0;box-shadow:5px 5px 0 var(--accent)}
+  .bignote .t{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.4rem}
+  .bignote p{color:#e6dcc9;font-size:.95rem}
+
+  hr.r{border:0;height:2px;background:var(--line2);margin:1.6rem 0}
+
+  footer.end{max-width:var(--maxw);margin:1.5rem auto 0;padding:2rem 1.15rem 1rem;border-top:2px solid var(--line2);position:relative;z-index:1}
+  footer.end .sign{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--fg)}
+  footer.end p{color:var(--muted);font-size:.85rem;margin-top:.6rem}
+
+  .totop{position:fixed;right:1rem;bottom:1rem;z-index:55;width:2.8rem;height:2.8rem;border:2px solid var(--fg);background:var(--bg2);color:var(--fg);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s,background .18s,border-color .18s}
+  .totop.show{opacity:1;pointer-events:auto}
+  .totop:hover{background:rgba(239,127,54,.14);border-color:var(--accent)}
+  .totop svg{width:18px;height:18px}
+
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .6s var(--spring),transform .6s var(--spring)}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+  @media(min-width:560px){.pt-sum{font-size:1.2rem}}
+</style>
+<link rel="stylesheet" href="../tools/chrome.css">
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="bar">
+  <div class="bar-in">
+    <div class="brand"><span style="color:var(--faint);font-family:var(--mono);font-weight:400;font-size:.66rem;letter-spacing:.1em">FIELD GUIDE</span> · chapters</div>
+    <button class="menu-btn" id="openNav" aria-haspopup="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      Jump
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="Chapters">
+  <div class="dhead"><b>Jump to</b>
+    <button class="dclose" id="closeNav" aria-label="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <ul class="dlinks" id="navLinks">
+    <li><a href="#land"><span class="n">01</span> Land soft</a></li>
+    <li><a href="#street"><span class="n">02</span> Play the street</a></li>
+    <li><a href="#stack"><span class="n">03</span> The money</a></li>
+    <li><a href="#rooms"><span class="n">04</span> The rooms</a></li>
+    <li><a href="#found"><span class="n">05</span> Get found</a></li>
+    <li><a href="#record"><span class="n">06</span> The record</a></li>
+    <li><a href="#job"><span class="n">07</span> Day job &amp; discipline</a></li>
+    <li><a href="#plan"><span class="n">08</span> A gentle path</a></li>
+  </ul>
+  <div class="dtools">
+    <a href="../tools/">All tools <span>↗</span></a>
+    <a href="../scene/">Map <span>↗</span></a>
+    <a href="../pitch/">Ideas <span>↗</span></a>
+  </div>
+</nav>
+
+<main>
+  <div class="cover rv">
+    <div class="kick"><span class="dot"></span> Make a living · country folk · NYC</div>
+    <h1>Make it in <em>New York</em></h1>
+    <p class="lede">How + why. Skim one line; tap <span class="mono" style="color:var(--accent)">detail</span> when you care. <strong style="color:var(--fg)">Map</strong> is where to go tonight — separate tool, top bar.</p>
+    <div class="how"><span class="mono" style="color:var(--accent)">HOW</span><span><b>+</b> = why · top bar = Map / Ideas / Chapters</span></div>
+  </div>
+
+  <div class="tldr rv">
+    <div class="t">/ one breath</div>
+    <p>Affordable room. Play street + small rooms when you can. Sell to whoever&rsquo;s in front of you. Share songs when they&rsquo;re ready. Steady job (you&rsquo;ve got hotel shifts). Same corners until faces know you. No race.</p>
+  </div>
+
+  <section class="start rv" aria-labelledby="startTitle">
+    <div class="start-h"><h2 id="startTitle">Start here</h2><span>four doors</span></div>
+    <div class="start-grid">
+      <a class="start-card" href="#plan"><span class="no">Order</span><b>Gentle path</b><span>Calm sequence. Use what helps; skip the rest.</span></a>
+      <a class="start-card" href="#rooms"><span class="no">Browse</span><b>Rooms that fit</b><span>For your sound — not famous clubs.</span></a>
+      <a class="start-card" href="../scene/"><span class="no">Map</span><b>Scene map</b><span>Where to go. Pins + optional notes.</span></a>
+      <a class="start-card" href="../pitch/"><span class="no">Optional</span><b>Release ideas</b><span>Art + video with Jon — only if you want.</span></a>
+    </div>
+  </section>
+
+  <!-- 01 -->
+  <section class="ch rv" id="land">
+    <div class="ch-h"><span class="i">01</span><h2>Land <em>soft</em></h2></div>
+    <div class="ch-sub">// rent + transit are what buy your runway</div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Rent</span><span class="pt-stat">$1.1–1.5k</span></div>
+      <div class="pt-sum"><span class="hot">Room in a share</span>, not your own place.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Musician neighbourhoods: ~$1,100–1,500/mo + first + deposit. Under ~$900 is usually tiny, far, or a scam.</p>
+          <p class="src">Source: <a href="https://www.spareroom.com/content/information-for-roommates/average-rents-nyc" target="_blank" rel="noreferrer">SpareRoom NYC, Jul 2026</a></p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Good news</span></div>
+      <div class="pt-sum">Since June 2025, <span class="hot">landlord pays the broker</span> (not you).</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>FARE Act: whoever hires the broker pays. Usually that&rsquo;s the landlord = no-fee listings. Hire your own broker and you still pay them.</p>
+          <p class="src">Source: <a href="https://www.nyc.gov/site/dca/about/FAQ-Broker-Fees.page" target="_blank" rel="noreferrer">NYC DCWP — FARE Act</a></p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Where to look</span></div>
+      <div class="pt-sum"><a class="go" href="https://www.listingsproject.com/" target="_blank" rel="noreferrer">Listings Project ↗</a> (free, Wednesdays).</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Artist-vetted weekly email (safest). Also Ghostlight Housing, SpareRoom, Roomies. Craigslist = more scams. Never wire before seeing it; never pay to view; too-cheap = walk.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Neighbourhoods</span></div>
+      <div class="pt-sum">Live where the scene is.</div>
+      <div class="more-body" style="padding-top:.5rem">
+        <p>
+          <a class="map" href="https://www.google.com/maps/search/?api=1&query=Bushwick+Brooklyn" target="_blank" rel="noreferrer">Bushwick<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a> ·
+          <a class="map" href="https://www.google.com/maps/search/?api=1&query=Ridgewood+Queens" target="_blank" rel="noreferrer">Ridgewood<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a> ·
+          <a class="map" href="https://www.google.com/maps/search/?api=1&query=Bed-Stuy+Brooklyn" target="_blank" rel="noreferrer">Bed-Stuy<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a> ·
+          <a class="map" href="https://www.google.com/maps/search/?api=1&query=Crown+Heights+Brooklyn" target="_blank" rel="noreferrer">Crown Heights<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a> ·
+          <a class="map" href="https://www.google.com/maps/search/?api=1&query=Sunset+Park+Brooklyn" target="_blank" rel="noreferrer">Sunset Park<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a>
+        </p>
+        <p style="color:var(--faint);font-size:.82rem">Skip Williamsburg for rent — priced out its scene.</p>
+      </div>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Transit</span><span class="pt-stat">$35/wk</span></div>
+      <div class="pt-sum">OMNY <span class="hot">caps at $35/week</span> ($3 a ride). No MetroCard unlimited.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Same card/phone all week: after ~$35 you ride free the rest of that 7-day window (~$150/mo max). Guitar as luggage. Express buses are a separate higher cap — ignore unless you take them.</p>
+          <p class="src">Source: <a href="https://omny.info/fares" target="_blank" rel="noreferrer">OMNY fares</a> · <a href="https://www.mta.info/fares-tolls/subway-bus" target="_blank" rel="noreferrer">MTA</a> (Jul 2026)</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Health</span></div>
+      <div class="pt-sum">Hotel benefits first. Else check <span class="hot">Essential Plan</span> if income is low.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>You&rsquo;ve got hotel work lined up — that&rsquo;s often the real cover (confirm hours/eligibility with them). If you need a public option, NY <a class="go" href="https://nystateofhealth.ny.gov/" target="_blank" rel="noreferrer">Essential Plan ↗</a> can be $0 at lower incomes; bands change yearly — check the site, don&rsquo;t trust an old number.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Optional</span></div>
+      <div class="pt-sum">Valuable guitar on the road? <span class="hot">Check instrument cover.</span></div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>See if renters covers gigging/busking; if not, a small instrument policy. At home: acoustic daytime = neighbour-friendly default.</p>
+        </div>
+      </details>
+    </div></div>
+  </section>
+
+  <hr class="r">
+
+  <!-- 02 -->
+  <section class="ch rv" id="street">
+    <div class="ch-h"><span class="i">02</span><h2>Play the <em>street</em></h2></div>
+    <div class="ch-sub">// rent today + your fan funnel forever</div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Legal</span></div>
+      <div class="pt-sum">There's <span class="hot">no busker licence</span>. Acoustic = totally legal.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Sidewalks &amp; parks: unamplified needs no permit. Amps need a $45 NYPD permit filed 5 days ahead (impractical) — so stay acoustic outdoors. Subway: legal in stations, never on trains, no amps on platforms (mezzanines OK), 25 ft from booths. If a site claims a "2026 busking permit," it's fake.</p>
+          <p class="src">Source: <a href="https://portal.311.nyc.gov/article/?kanumber=KA-02069" target="_blank" rel="noreferrer">NYC 311</a> · <a href="https://www.mta.info/agency/arts-design/music/subway-performance-rules" target="_blank" rel="noreferrer">MTA rules</a></p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Risk</span></div>
+      <div class="pt-sum">Quiet acoustic is usually fine. <span class="hot">It stops being fine</span> if you block doors, play quiet zones, or sell discs underground.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Fines usually come from amps without a permit, playing on trains, blocking flow, park quiet zones, or selling CDs in the subway — not from a guy with a guitar who stays out of the way. <a class="map" href="https://www.google.com/maps/search/?api=1&query=Washington+Square+Park" target="_blank" rel="noreferrer">Washington Square<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a> fountain has been under crackdown — play acoustic, away from it. Carry a printed copy of MTA rule 1050.6 for the subway. If someone in uniform asks you to move, move kindly and pick another corner. Not a fight worth having.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">When</span></div>
+      <div class="pt-sum">Play lunch (11–1), commute (5–7), weekend afternoons.</div>
+      <div class="more-body" style="padding-top:.5rem"><p style="color:var(--faint);font-size:.84rem">2–4pm is dead. Aim for "moving but not rushing" crowds — they tip; sprinters don't. Winter = go underground.</p></div>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Where</span></div>
+      <div class="pt-sum">Best pitches — <span class="hot">always re-check park rules that week.</span></div>
+      <div class="more-body" style="padding-top:.5rem">
+        <p>Dwell-time crowds: <a class="map" href="https://www.google.com/maps/search/?api=1&query=Central+Park+Mall+Literary+Walk" target="_blank" rel="noreferrer">Central Park Mall<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a>, <a class="map" href="https://www.google.com/maps/search/?api=1&query=The+High+Line+NYC" target="_blank" rel="noreferrer">the High Line<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a> <span style="color:var(--faint);font-size:.82rem">(parks and the High Line change rules — if staff ask you to move, treat it as weather, not a verdict)</span>.</p>
+        <p>Commuter volume (subway mezzanines): <a class="map" href="https://www.google.com/maps/search/?api=1&query=Union+Square+subway+NYC" target="_blank" rel="noreferrer">Union Sq<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a>, <a class="map" href="https://www.google.com/maps/search/?api=1&query=Herald+Square+34th+St+subway" target="_blank" rel="noreferrer">Herald Sq<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a>, <a class="map" href="https://www.google.com/maps/search/?api=1&query=Bedford+Avenue+L+train+station" target="_blank" rel="noreferrer">Bedford Ave (L)<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a>.</p>
+      </div>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Pay</span><span class="pt-stat">$15–60/hr</span></div>
+      <div class="pt-sum">An honest range: slow hours ~$15–25, good stretches ~$30–60/hr. A full afternoon often lands ~$40–120 total.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Ignore "$2,000/week" content-farm stories. Some days are thin; some afternoons feel magic. Cash still rules; put out huge QR codes (Venmo + Cash App). <strong>The real value is the funnel, not the coins</strong> — emails and follows outlast any single tip.</p>
+          <p class="src">Source: performer guides / interviews (Orphiq, Indypendent, NBC NY) — treat as ranges, not promises</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Craft</span></div>
+      <div class="pt-sum">~5 covers : 1 original. Covers stop feet; <span class="hot">your name on the QR is the product.</span></div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>"Tennessee Whiskey" and the other chestnuts print tips — use them as bait, not as your whole identity. Once people are standing there, play an original and say the title. Seed the case with a couple of bills. Talk between songs — acknowledgement breaks the wall. Rotate off a prime pitch after ~2 hrs; keep 50 ft from other buskers and ask before taking a spot.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="bignote">
+      <div class="t">/ the career move</div>
+      <p><strong>Two QRs:</strong> tips + free song → list. Film sets. Coins help; emails book rooms.</p>
+    </div>
+  </section>
+
+  <hr class="r">
+
+  <!-- 03 -->
+  <section class="ch rv" id="stack">
+    <div class="ch-h"><span class="i">03</span><h2>The <em>money</em></h2></div>
+    <div class="ch-sub">// no single stream pays the bills — the stack does</div>
+
+    <div class="grid">
+      <div class="stat"><div class="n">$15–60</div><div class="l">Busking /hr</div><div class="d">+ your fan funnel</div></div>
+      <div class="stat"><div class="n">$40–90</div><div class="l">Teaching /hr</div><div class="d">the stable base</div></div>
+      <div class="stat"><div class="n">$384+</div><div class="l">Private events</div><div class="d">weddings $500–1,500</div></div>
+      <div class="stat"><div class="n">tips</div><div class="l">Bar gigs</div><div class="d">+ merch is the money</div></div>
+      <div class="stat"><div class="n">$100–330</div><div class="l">Restaurant set</div><div class="d">2–3 hrs + tips</div></div>
+      <div class="stat"><div class="n">~$0</div><div class="l">Streaming</div><div class="d">it's discovery, not pay</div></div>
+    </div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Reality</span></div>
+      <div class="pt-sum">Streaming pays nothing. <span class="hot">One $20 merch sale ≈ 5,000 streams.</span></div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Spotify pays ~$0.003–0.005/stream and a track earns $0 until it clears 1,000 streams in a year. Even 10k monthly listeners ≈ one utility bill. Treat it as a business card; sell to the room.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Budget</span><span class="pt-stat">$2.1–2.5k</span></div>
+      <div class="pt-sum">Stack <span class="hot">money lines</span> (not Spotify streams): hotel + street + gigs + maybe teaching.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Hotel is your floor. Busk and gigs flex with weather and bookings. Teaching only if you want it. No quota — lean on what&rsquo;s working that month.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Teaching</span></div>
+      <div class="pt-sum">Optional side line. <span class="hot">Three doors</span> if you want students.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p><strong>1.</strong> <a class="go" href="https://www.takelessons.com/" target="_blank" rel="noreferrer">TakeLessons ↗</a> / Thumbtack + one short teaching clip. <strong>2.</strong> Flyer at rooms you already hang. <strong>3.</strong> Free first lesson for open-mic friends → paid by word of mouth. Living room is fine.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Events &amp; rooms that pay</span></div>
+      <div class="pt-sum">Private + restaurant gigs come from <span class="hot">people</span>, not cold blasts.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p><strong>Restaurants:</strong> visit first, ask in person with a 60s clip + simple rate. Neighbourhood beats Midtown email. <strong>Events:</strong> clip + rate on GigSalad/The Bash; tell open-mic friends you do small weddings. One referral &gt; twenty flyers.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Case merch</span></div>
+      <div class="pt-sum">What you can sell <span class="hot">from the case this month</span> — before vinyl dreams.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Start tiny: stickers ($1–2 cost, $3–5 sale), a lyric postcard or photo card with a QR to one song, maybe a handmade pick with your name once Jon / a printer can knock them out. Cassettes come later when you have a release. One tray, cash + Venmo, no folding table required. The win is something they pocket with your name on it — not a full merch empire on day three.</p>
+        </div>
+      </details>
+    </div></div>
+  </section>
+
+  <hr class="r">
+
+  <!-- 04 -->
+  <section class="ch rv" id="rooms">
+    <div class="ch-h"><span class="i">04</span><h2>The <em>rooms</em></h2></div>
+    <div class="ch-sub">// NYC is in a country-folk boom — good timing</div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Start here</span><span class="pt-stat" style="font-size:.7rem;letter-spacing:.06em">fit · Jul '26</span></div>
+      <div class="pt-sum">A few rooms that fit your sound. Become a <span class="hot">familiar face</span> at 2–3 when it feels natural — nights change, always confirm before you go.</div>
+      <div class="more-body" style="padding-top:.6rem">
+        <p style="font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:.5rem">Scores are Jon's taste for Robbie — not a ranking of the city · last checked Jul 2026</p>
+        <div class="venue"><span class="when">Sun</span><span><span class="v"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Lucinda%27s+169+Avenue+A+New+York" target="_blank" rel="noreferrer">Lucinda's<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a></span> <span class="vn">Best genre match · songwriter round, ~1pm</span></span><span class="fit-badge" aria-label="Robbie fit 5 out of 5">5.0</span></div>
+        <div class="venue"><span class="when">Wed</span><span><span class="v"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Jalopy+Theatre+Brooklyn" target="_blank" rel="noreferrer">Jalopy Theatre<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a></span> <span class="vn">Warm first home base · sign-up ~6pm</span></span><span class="fit-badge" aria-label="Robbie fit 5 out of 5">5.0</span></div>
+        <div class="venue"><span class="when">Sun</span><span><span class="v"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Pete%27s+Candy+Store+Brooklyn" target="_blank" rel="noreferrer">Pete's Candy Store<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a></span> <span class="vn">Acoustic and booking-friendly · sign-up ~4pm</span></span><span class="fit-badge" aria-label="Robbie fit 4.9 out of 5">4.9</span></div>
+        <div class="venue"><span class="when">Sat</span><span><span class="v"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Sunny%27s+Bar+Red+Hook+Brooklyn" target="_blank" rel="noreferrer">Sunny's Bar<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a></span> <span class="vn">Roots-scene hang · bluegrass jam, ~9pm</span></span><span class="fit-badge" aria-label="Robbie fit 4.8 out of 5">4.8</span></div>
+        <div class="venue"><span class="when">Mon</span><span><span class="v"><a class="map" href="https://www.google.com/maps/search/?api=1&query=The+Bitter+End+147+Bleecker+St+New+York" target="_blank" rel="noreferrer">The Bitter End<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a></span> <span class="vn">Historic, useful, less exact genre fit · open jam</span></span><span class="fit-badge" aria-label="Robbie fit 4.3 out of 5">4.3</span></div>
+      </div>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Open-mic craft</span></div>
+      <div class="pt-sum">The boring rules that make people <span class="hot">glad you came back.</span></div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Sign up early (or whenever that room's board opens — ask the door). Two songs max unless they invite more. If originals are welcome, lead with one. Never overstay the slot. Thank the host by name. Watch one full round before you play so you match the room's volume and pace. Leave a little goodwill in the tank — better they wish you'd stayed than check their watch. Bookings almost always start as "that guy who was easy and good," not "that guy who took three encores."</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">The circuit</span></div>
+      <div class="pt-sum">Work toward the country circuit. These are <span class="hot">targets</span>, not all day-one asks.</div>
+      <div class="more-body" style="padding-top:.5rem">
+        <div class="venue"><span class="when">Target</span><span><span class="v"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Skinny+Dennis+Williamsburg+Brooklyn" target="_blank" rel="noreferrer">Skinny Dennis<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a></span> <span class="vn">Originals Only is the clean entry</span></span><span class="fit-badge">4.9</span></div>
+        <div class="venue"><span class="when">Target</span><span><span class="v"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Common+Country+Kips+Bay+NYC" target="_blank" rel="noreferrer">Common Country<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a></span> <span class="vn">New room, real stage, calendar still forming</span></span><span class="fit-badge">4.6</span></div>
+        <div class="venue"><span class="when">Attend</span><span><span class="v"><a class="map" href="https://www.google.com/maps/search/?api=1&query=Honky+Tonkin+in+Queens+Gottscheer+Hall" target="_blank" rel="noreferrer">Honky Tonkin' in Queens<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a></span> <span class="vn">Meet the country crowd before pitching</span></span><span class="fit-badge">4.4</span></div>
+        <div class="venue"><span class="when">Circuit</span><span><span class="v"><a class="map" href="https://www.google.com/maps/search/?api=1&query=The+Waylon+736+10th+Ave+New+York" target="_blank" rel="noreferrer">The Waylon<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a></span> <span class="vn">Useful paying circuit, less community-led</span></span><span class="fit-badge">4.1</span></div>
+      </div>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">New room</span></div>
+      <div class="pt-sum"><a class="map" href="https://www.google.com/maps/search/?api=1&query=163+Bleecker+St+New+York" target="_blank" rel="noreferrer">Bleecker Bell<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></a> — new Village room (announced fall 2026). <span class="hot">Verify before chasing.</span></div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body"><p>Cafe Wha? / Village Presents crew, ~200-cap folk/Americana at 163 Bleecker. New rooms need acts — opening months can be a window. Dates slip; confirm it&rsquo;s open before you invest energy.</p>
+        <p class="src">Announced Jul 2026 (Billboard / Pollstar) — re-check live</p></div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Booking</span></div>
+      <div class="pt-sum">Short email + links, never attachments. The scene beats cold email.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Befriend acts at open mics, get on <em>their</em> bills, then get your own night. Guarantees are rare — expect a door split or tips. Merch is the money. Best draw nights: Thu–Sun.</p>
+          <p><strong>Don't pay to play</strong> — if a promoter makes you buy tickets to resell, walk. And <strong>Rockwood Music Hall closed in Nov 2024</strong>; ignore any guide that sends you there.</p>
+        </div>
+      </details>
+    </div></div>
+  </section>
+
+  <hr class="r">
+
+  <!-- 05 -->
+  <section class="ch rv" id="found">
+    <div class="ch-h"><span class="i">05</span><h2>Get <em>found</em></h2></div>
+    <div class="ch-sub">// the whole job: turn strangers into your email list</div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Video</span></div>
+      <div class="pt-sum">Short video is the engine. <span class="hot">Raw beats polished</span> for folk.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Busking, kitchen, crowd. Batch-film; post when you have clips. Street footage <em>is</em> the content.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Radio</span></div>
+      <div class="pt-sum">Email <a class="go" href="mailto:nyslice@wfuv.org">WFUV "NY Slice" ↗</a> — your single best target.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>One original + short bio + links to <strong>nyslice@wfuv.org</strong>. Also The Deli NYC, Saving Country Music.</p>
+          <p class="src">Source: <a href="https://wfuv.org/nyslice" target="_blank" rel="noreferrer">wfuv.org/nyslice</a></p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Own it</span></div>
+      <div class="pt-sum">The email list is the one thing you own. Social is rented.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p><a class="go" href="https://www.mailerlite.com/" target="_blank" rel="noreferrer">MailerLite ↗</a> or Kit (free). Capture at gigs/busks. Hook: free unreleased track. Mostly value, little promo.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Spotify</span></div>
+      <div class="pt-sum">It's credibility, not income. Pitch 7+ days before release.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body"><p>Spotify for Artists: pitch ≥7 days before drop (longer for editorial). Skip Discovery Mode until a track already works (it cuts royalties). YouTube covers → point to originals.</p></div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Optional · Jon</span></div>
+      <div class="pt-sum">Song wants a world? <span class="hot">Photos, cover, video, keepable.</span> Menu only.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Not part of the hustle checklist. Yes / later / never all fine. <a class="go" href="../pitch/">Release ideas ↗</a></p>
+        </div>
+      </details>
+    </div></div>
+  </section>
+
+  <hr class="r">
+
+  <!-- 06 -->
+  <section class="ch rv" id="record">
+    <div class="ch-h"><span class="i">06</span><h2>The <em>record</em></h2></div>
+    <div class="ch-sub">// what makes you an artist, not a busker with a guitar</div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Record</span></div>
+      <div class="pt-sum">You don't need a big studio. One guitar, one mic, one quiet room.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body"><p>Your whole thing is "holds up in a quiet room" — so lean into it. Hire an engineer to track a few songs at home, or book a project-studio day for live takes. Live-in-one-take is a selling point, not a compromise.</p></div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Release</span></div>
+      <div class="pt-sum">Singles over time, then EP. <a class="go" href="https://distrokid.com/" target="_blank" rel="noreferrer">DistroKid ↗</a> is cheap; keep 100%.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body"><p>Don&rsquo;t dump 5 songs into silence. Musician plan ~$25/yr (check current). Plus (~$45) if you need scheduled Fridays / pre-saves. HyperFollow for pre-saves. Cancel = music can come down unless you pay Leave a Legacy.</p></div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Money</span></div>
+      <div class="pt-sum">Real per-fan money is <span class="hot">Bandcamp</span>, not streams.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body"><p>Bandcamp takes 15% on digital (10% after $5k), 10% on merch, and waives its cut on monthly "Bandcamp Fridays." One $20 sale beats thousands of streams. Point real fans there; use Spotify to get found.</p></div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Get paid</span></div>
+      <div class="pt-sum">Register once, free: <span class="hot">BMI + The MLC + SoundExchange</span>.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body">
+          <p>Boring paperwork that quietly collects money for years:</p>
+          <p><strong>BMI</strong> (free) — performance royalties. Or ASCAP ($50). Pick one.<br>
+          <strong>The MLC</strong> (free) — U.S. streaming mechanicals.<br>
+          <strong>SoundExchange</strong> (free) — digital-radio royalties for the recording.<br>
+          Songtrust ($100 + commission) is optional publishing admin for later.</p>
+        </div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Physical</span></div>
+      <div class="pt-sum">Cassettes ($200–500/100) are cheap and on-brand.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body"><p>Cassettes sell for $8–12 at the merch table and suit the aesthetic. Vinyl is ~$1,500 for 100 (~$11–15 each; 250 is the sweet spot) — a real investment but a signed record sells for $25–35. Then <strong>turn the release into a show</strong>.</p></div>
+      </details>
+    </div></div>
+  </section>
+
+  <hr class="r">
+
+  <!-- 07 -->
+  <section class="ch rv" id="job">
+    <div class="ch-h"><span class="i">07</span><h2>Day job &amp; <em>discipline</em></h2></div>
+    <div class="ch-sub">// the boring chapter that keeps the other seven alive</div>
+
+    <div class="bignote">
+      <div class="t">/ you already have this</div>
+      <p>Hotel work is set up — treat it as the floor under the music. Confirm benefits/hours with them; protect sleep and one day off so gigs stay fun. Union houses (<a class="go" href="https://hotelworkers.org/" target="_blank" rel="noreferrer">HTC ↗</a>) are the gold standard if you ever switch shops.</p>
+    </div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">The shift</span></div>
+      <div class="pt-sum">Quiet shifts = music admin on the clock (emails, posts).</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body"><p>Night audit / dead desk hours are useful. Cost is sleep — guard days off. Teaching or catering only if you want extra lines, not because you must stack five hustles.</p></div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">The craft</span></div>
+      <div class="pt-sum">Write a little <span class="hot">most days</span>. Finish songs — finishing is the skill.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body"><p>15–30 min on a schedule beats waiting for inspiration. Guard your best energy window (morning people: mornings).</p></div>
+      </details>
+    </div></div>
+
+    <div class="pt"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">The business</span></div>
+      <div class="pt-sum">One short promo block a week. Sleep + one day off are non-negotiable.</div>
+      <details class="more"><summary><span class="pm">+</span><span class="lbl-shut">the detail</span><span class="lbl-open">less</span></summary>
+        <div class="more-body"><p>Office hour (booking/pitches), occasional film session, simple money log. Job buys depth on music — not a fifth side-hustle.</p></div>
+      </details>
+    </div></div>
+  </section>
+
+  <hr class="r">
+
+  <!-- 08 -->
+  <section class="ch rv" id="plan">
+    <div class="ch-h"><span class="i">08</span><h2>A gentle <em>path</em></h2></div>
+    <div class="ch-sub">// a calm order if you want one — not a deadline, not a test</div>
+
+    <div class="bignote" style="margin-bottom:1.2rem">
+      <div class="t">/ how to read this</div>
+      <p><strong>Friendly order, not a test.</strong> Stretch any step. Skip what doesn&rsquo;t fit. One good night beats a forced perfect week.</p>
+    </div>
+
+    <ol class="steps">
+      <li><span class="when">Land</span><b>A room that feels okay</b> — Listings Project Wednesdays. OMNY. Confirm hotel health cover. Guitar insurance only if you need it.</li>
+      <li><span class="when">Already rolling</span><b>Keep the hotel floor steady</b> — rent quieter, music freer. Add a student only if you want.</li>
+      <li><span class="when">Company</span><b>Walk rooms as a fan</b> — Jalopy, Pete&rsquo;s, Lucinda&rsquo;s, Sunny&rsquo;s. Watch first; ask for nothing yet.</li>
+      <li><span class="when">Weather</span><b>Street, lightly</b> — tip QR + free-song QR if you like. Film when you remember. No quota.</li>
+      <li><span class="when">A night</span><b>Open mic you already like</b> — easy, good, memorable. Familiar faces &gt; streaks.</li>
+      <li><span class="when">Online</span><b>Small funnel</b> — clips when you have them, one list, one song link. One honest post/week counts.</li>
+      <li><span class="when">Songs ready</span><b>Track a couple</b> — BMI + MLC + SoundExchange once (free). Release when the take is true.</li>
+      <li><span class="when">A single lands</span><b>Share with people who know you</b> — friends, optional radio, something at the door. No big rollout required.</li>
+    </ol>
+
+    <div class="pt" style="margin-top:1.2rem"><div class="pt-in">
+      <div class="pt-top"><span class="pt-tag">Optional Sunday</span></div>
+      <div class="pt-sum">15 minutes if useful — never homework.</div>
+      <div class="more-body" style="padding-top:.5rem">
+        <p style="color:var(--muted);font-size:.92rem">One room, one corner, one clip, money in. Miss a week? Nothing breaks.</p>
+      </div>
+    </div></div>
+
+    <div class="bignote">
+      <div class="t">/ remember</div>
+      <p><strong>Play for people. Let them find you again. Give them a reason to smile.</strong> Same rooms and corners, at your pace, until faces know the name.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="end rv">
+  <p class="sign">Songs are better in person. Play when you&rsquo;re ready.</p>
+  <p>For Robbie · last checked Jul 2026. Numbers and nights move — re-check when you land. Heart of it doesn&rsquo;t. Not a test.</p>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+(function(){
+  var drawer=document.getElementById('drawer'),scrim=document.getElementById('scrim'),
+      openBtn=document.getElementById('openNav'),closeBtn=document.getElementById('closeNav'),
+      links=document.getElementById('navLinks'),totop=document.getElementById('totop'),progress=document.getElementById('progress');
+  function open(){drawer.classList.add('open');scrim.classList.add('open');document.body.style.overflow='hidden';}
+  function close(){drawer.classList.remove('open');scrim.classList.remove('open');document.body.style.overflow='';}
+  openBtn.addEventListener('click',open);closeBtn.addEventListener('click',close);scrim.addEventListener('click',close);
+  links.addEventListener('click',function(e){if(e.target.closest('a'))close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  function onScroll(){var h=document.documentElement,st=h.scrollTop,sh=h.scrollHeight-h.clientHeight;progress.style.width=(sh>0?st/sh*100:0)+'%';totop.classList.toggle('show',st>600);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  totop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+  var navA=[].slice.call(links.querySelectorAll('a')),secs=navA.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  var spy=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var id='#'+en.target.id;navA.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')===id);});}});},{rootMargin:'-40% 0px -55% 0px',threshold:0});
+  secs.forEach(function(s){if(s)spy.observe(s);});
+  var rv=document.querySelectorAll('.rv');
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){rv.forEach(function(el){el.classList.add('in');});}
+  else{var ro=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');ro.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:0.04});rv.forEach(function(el){ro.observe(el);});}
+})();
+</script>
+<script src="../tools/chrome.js" defer></script>
+</body>
+</html>

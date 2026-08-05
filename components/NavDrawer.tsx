@@ -77,7 +77,7 @@ export function NavDrawer({ open, onClose, links, activeSection }: NavDrawerProp
                   <a
                     href={`#${link.id}`}
                     onClick={onClose}
-                    className={`block rounded-xl px-8 py-3 font-display text-2xl uppercase tracking-wide transition ${
+                    className={`block rounded-xl px-8 py-3 font-serif text-2xl font-medium transition ${
                       activeSection === link.id
                         ? 'text-[var(--accent)]'
                         : 'text-[var(--muted)] hover:text-[var(--fg)]'

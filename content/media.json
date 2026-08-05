@@ -1,9 +1,9 @@
 {
   "videos": [
     {
-      "id": "tiny-desk-style",
+      "id": "live-session",
       "type": "youtube",
-      "title": "Live Session: Paper Lantern",
+      "title": "Live Session: Kitchen Table Waltz",
       "url": "https://www.youtube.com/watch?v=jfKfPfyJRdk",
       "poster": "/video/hero-poster.jpg"
     },
@@ -19,28 +19,28 @@
     {
       "id": "photo-1",
       "src": "/images/profile.jpg",
-      "alt": "Artist portrait close-up",
+      "alt": "Robbie Donaldson portrait",
       "width": 1200,
       "height": 1200
     },
     {
       "id": "photo-2",
       "src": "/images/profile-2.jpg",
-      "alt": "Artist holding a mirror ball",
+      "alt": "Robbie Donaldson portrait, alternate",
       "width": 1200,
       "height": 1200
     },
     {
       "id": "photo-3",
       "src": "/images/profile-3.jpg",
-      "alt": "Artist outdoor editorial portrait",
+      "alt": "Robbie Donaldson outdoor portrait",
       "width": 1200,
       "height": 1200
     },
     {
       "id": "photo-4",
       "src": "/images/photo-4.svg",
-      "alt": "Crowd moment from a small theatre show",
+      "alt": "Crowd moment from a small room show",
       "width": 1200,
       "height": 1200
     }

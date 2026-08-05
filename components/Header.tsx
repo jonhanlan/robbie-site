@@ -1,83 +1,63 @@
-
 'use client'
 
 import { useEffect, useState } from 'react'
-import { NavDrawer, type NavLinkItem } from '@/components/NavDrawer'
 
-const links: NavLinkItem[] = [
-  { id: 'home', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'music', label: 'Music' },
-  { id: 'live', label: 'Shows' },
-  { id: 'contact', label: 'Contact' },
+const links = [
+  { id: 'songs', label: 'Songs' },
+  { id: 'about', label: 'Story' },
+  { id: 'live', label: 'Live' },
+  { id: 'book', label: 'Book' },
 ]
 
 export function Header({ artistName }: { artistName: string }) {
-  const [open, setOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
+  const [active, setActive] = useState('home')
+  const [scrolled, setScrolled] = useState(false)
 
-  // Section observer
   useEffect(() => {
-    const sections = links.map((link) => document.getElementById(link.id)).filter((el): el is HTMLElement => Boolean(el))
-    if (sections.length === 0) return
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActiveSection(entry.target.id)
-        }
-      },
-      { rootMargin: '-42% 0px -42% 0px', threshold: [0.2, 0.5, 0.8] },
+  useEffect(() => {
+    const secs = links.map((l) => document.getElementById(l.id)).filter((e): e is HTMLElement => Boolean(e))
+    if (!secs.length) return
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 },
     )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
+    secs.forEach((s) => io.observe(s))
+    return () => io.disconnect()
   }, [])
 
   return (
-    <header className="fixed inset-x-0 top-3 z-50 px-3 transition-all duration-300 md:px-5">
-      <div className="header-glass mx-auto h-14 max-w-7xl rounded-2xl">
-        <div className="header-fade flex h-full items-center justify-between px-4 md:px-6">
+    <header
+      className="fixed inset-x-0 top-0 z-50 transition-colors duration-300"
+      style={scrolled ? { background: 'rgba(12,10,8,.82)', backdropFilter: 'blur(16px) saturate(1.3)', borderBottom: '2px solid var(--line2)' } : { borderBottom: '2px solid transparent' }}
+    >
+      <div className="shell flex h-14 items-center justify-between">
         <button
           type="button"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="header-btn rounded-full px-3 py-2 font-display text-lg uppercase tracking-wide text-[var(--fg)]"
+          className="font-display text-lg font-extrabold uppercase tracking-tight text-[var(--fg)]"
         >
-          {artistName}
+          {artistName.split(' ')[0]}
+          <span className="text-[var(--accent)]">.</span>
         </button>
-
-        <button
-          type="button"
-          className="header-btn flex flex-col items-center justify-center gap-1.5 rounded-full p-2 md:hidden"
-          onClick={() => setOpen(true)}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label="Open menu"
-        >
-          <span className="block h-px w-5 bg-[var(--fg)]" />
-          <span className="block h-px w-5 bg-[var(--fg)]" />
-          <span className="block h-px w-3.5 bg-[var(--fg)]" />
-        </button>
-
-        <nav aria-label="Section navigation" className="hidden items-center gap-1 md:flex">
-          {links.filter((l) => l.id !== 'home').map((link) => (
+        <nav className="flex items-center gap-4 sm:gap-6" aria-label="Sections">
+          {links.map((l) => (
             <a
-              key={link.id}
-              href={`#${link.id}`}
-              className={`header-btn rounded-full px-3 py-2 text-sm transition ${
-                activeSection === link.id
-                  ? 'bg-white/12 text-[var(--fg)]'
-                  : 'text-[var(--muted)] hover:text-[var(--fg)]'
-              }`}
+              key={l.id}
+              href={`#${l.id}`}
+              className="label-dim transition-colors"
+              style={active === l.id ? { color: 'var(--accent)' } : undefined}
             >
-              {link.label}
+              {l.label}
             </a>
           ))}
         </nav>
-        </div>
       </div>
-
-      <NavDrawer open={open} onClose={() => setOpen(false)} links={links} activeSection={activeSection} />
     </header>
   )
 }

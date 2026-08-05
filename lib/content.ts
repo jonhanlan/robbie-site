@@ -1,7 +1,7 @@
 import 'server-only'
 import fs from 'node:fs'
 import path from 'node:path'
-import type { ArtistContent, MediaContent, MediaPhoto, MediaVideo, Show, Track } from '@/lib/types'
+import type { ArtistContent, MediaContent, MediaPhoto, MediaVideo, Show, StreetContent, StreetSpot, TipJarLink, Track } from '@/lib/types'
 
 const CONTENT_DIR = path.join(process.cwd(), 'content')
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || ''
@@ -43,24 +43,28 @@ export function getArtistContent(): ArtistContent {
 
   if (!isRecord(payload)) {
     return {
-      name: 'Robbie Lune',
-      wordmarkText: 'Robbie Lune',
-      tagline: 'Intimate folk-pop songs for quiet rooms and long drives.',
+      name: 'Robbie Donaldson',
+      wordmarkText: 'Robbie Donaldson',
+      tagline: 'True stories, three chords, New York City.',
+      location: 'New York City',
       canonicalUrl: 'https://example.com',
       bookingEmail: 'booking@example.com',
       newsletterUrl: '',
       socials: {},
       bio: [],
       pressQuotes: [],
+      bookingFacts: [],
+      pressPhotos: [],
     }
   }
 
   const socialsPayload = isRecord(payload.socials) ? payload.socials : {}
 
   return {
-    name: asString(payload.name, 'Robbie Lune'),
-    wordmarkText: asString(payload.wordmarkText, asString(payload.name, 'Robbie Lune')),
+    name: asString(payload.name, 'Robbie Donaldson'),
+    wordmarkText: asString(payload.wordmarkText, asString(payload.name, 'Robbie Donaldson')),
     tagline: asString(payload.tagline),
+    location: asString(payload.location, 'New York City'),
     canonicalUrl: asString(payload.canonicalUrl, 'https://example.com'),
     bookingEmail: asString(payload.bookingEmail, 'booking@example.com'),
     newsletterUrl: asString(payload.newsletterUrl),
@@ -79,6 +83,46 @@ export function getArtistContent(): ArtistContent {
           .map((quote) => ({ quote: asString(quote.quote), source: asString(quote.source) }))
           .filter((quote) => quote.quote && quote.source)
       : [],
+    bookingFacts: asStringArray(payload.bookingFacts),
+    pressPhotos: asStringArray(payload.pressPhotos).map(prefixAssetPath),
+  }
+}
+
+export function getStreetContent(): StreetContent {
+  const payload = readJsonFile('street.json')
+
+  if (!isRecord(payload)) {
+    return { intro: '', spots: [], tipJar: { note: '', links: [] } }
+  }
+
+  const spots: StreetSpot[] = Array.isArray(payload.spots)
+    ? payload.spots
+        .filter(isRecord)
+        .map((spot) => ({
+          id: asString(spot.id),
+          place: asString(spot.place),
+          when: asString(spot.when),
+          note: asString(spot.note),
+        }))
+        .filter((spot) => spot.id && spot.place && spot.when)
+    : []
+
+  const tipJarPayload = isRecord(payload.tipJar) ? payload.tipJar : {}
+  const links: TipJarLink[] = Array.isArray(tipJarPayload.links)
+    ? tipJarPayload.links
+        .filter(isRecord)
+        .map((link) => ({ label: asString(link.label), url: asString(link.url) }))
+        .filter((link) => link.label && link.url)
+    : []
+
+  return {
+    intro: asString(payload.intro),
+    spots,
+    tipJar: {
+      note: asString(tipJarPayload.note),
+      links,
+      footnote: asString(tipJarPayload.footnote),
+    },
   }
 }
 

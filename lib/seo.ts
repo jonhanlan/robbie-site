@@ -16,7 +16,11 @@ export function buildMusicGroupJsonLd(artist: ArtistContent) {
     '@type': 'MusicGroup',
     name: artist.name,
     url: artist.canonicalUrl,
-    genre: 'Folk Pop',
+    genre: 'Country Folk',
+    foundingLocation: {
+      '@type': 'Place',
+      name: 'New York City',
+    },
     sameAs: Object.values(artist.socials).filter(Boolean),
   }
 }

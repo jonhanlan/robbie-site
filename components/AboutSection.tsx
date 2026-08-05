@@ -1,126 +1,39 @@
-'use client'
-
-import { useState, useRef, useEffect } from 'react'
-import { createPortal } from 'react-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { Section, itemVariants } from '@/components/Section'
 import type { ArtistContent } from '@/lib/types'
+import { Reveal } from '@/components/Reveal'
 
 export function AboutSection({ artist }: { artist: ArtistContent }) {
-  const [videoOpen, setVideoOpen] = useState(false)
-  const modalVideoRef = useRef<HTMLVideoElement>(null)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => { setMounted(true) }, [])
-
-  function openVideo() {
-    setVideoOpen(true)
-  }
-
-  function closeVideo() {
-    setVideoOpen(false)
-    if (modalVideoRef.current) {
-      modalVideoRef.current.pause()
-    }
-  }
-
   return (
-    <Section id="about">
-      <motion.div variants={itemVariants}>
-        <h2 className="title-block">About</h2>
-      </motion.div>
+    <section id="about" className="sec">
+      <div className="shell">
+        <div className="sec-head">
+          <span className="idx">02</span>
+          <h2 className="sec-title">The <em>story</em></h2>
+        </div>
 
-      <div className="mt-8 grid gap-10 md:grid-cols-[1fr_0.8fr] md:gap-14">
-        {/* Bio */}
-        <motion.div className="space-y-4" variants={itemVariants}>
-          {artist.bio.map((paragraph, i) => (
-            <p key={i} className="text-base leading-relaxed text-[var(--muted)]">
-              {paragraph}
-            </p>
-          ))}
-          {artist.pressQuotes[0] && (
-            <blockquote className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--card)]/50 px-6 py-5">
-              <p className="text-xl font-medium italic leading-relaxed text-[var(--fg)]">
-                &ldquo;{artist.pressQuotes[0].quote}&rdquo;
+        <div className="grid gap-8 md:grid-cols-[1.5fr_1fr] md:gap-14">
+          <Reveal className="space-y-5">
+            {artist.bio.map((para, i) => (
+              <p key={i} className={i === 0 ? 'text-[1.25rem] leading-relaxed text-[var(--fg)]' : 'leading-relaxed text-[var(--muted)]'}>
+                {para}
               </p>
-              <cite className="mt-3 block text-sm not-italic text-[var(--accent)]">
-                — {artist.pressQuotes[0].source}
-              </cite>
-            </blockquote>
-          )}
-        </motion.div>
+            ))}
+          </Reveal>
 
-        {/* Video */}
-        <motion.div variants={itemVariants}>
-          <button
-            type="button"
-            onClick={openVideo}
-            className="group relative block w-full overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)]"
-          >
-            <video
-              src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/video/placeholder-video.mp4`}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="aspect-[3/4] w-full object-cover"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[var(--accent)] text-[#1f130d] shadow-lg transition-all duration-300 group-hover:scale-115 group-hover:shadow-[0_8px_30px_rgba(223,150,100,0.35)]">
-                <svg width="22" height="22" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M6 3.5L16 10L6 16.5V3.5Z" />
-                </svg>
-              </div>
+          <Reveal delay={100} className="self-start">
+            <div className="border-2 border-[var(--line2)] p-6" style={{ boxShadow: '6px 6px 0 rgba(0,0,0,.5)' }}>
+              <p className="label-dim mb-4">The facts</p>
+              <ul className="space-y-3">
+                {artist.bookingFacts.map((f) => (
+                  <li key={f} className="flex gap-2.5 text-sm leading-relaxed text-[var(--fg)]">
+                    <span className="mono mt-0.5 shrink-0 text-[var(--accent)]">/</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </button>
-        </motion.div>
+          </Reveal>
+        </div>
       </div>
-
-      {/* Video Modal — portaled to body to escape Section's stacking context */}
-      {mounted && createPortal(
-        <AnimatePresence>
-          {videoOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-xl"
-              onClick={closeVideo}
-            >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] as const }}
-                className="relative w-full max-w-4xl overflow-hidden rounded-2xl bg-black shadow-2xl"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* Close button */}
-                <button
-                  type="button"
-                  onClick={closeVideo}
-                  className="absolute right-3 top-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white transition hover:bg-black/80"
-                  aria-label="Close video"
-                >
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                    <path d="M4 4L14 14M14 4L4 14" />
-                  </svg>
-                </button>
-                <video
-                  ref={modalVideoRef}
-                  src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/video/placeholder-video.mp4`}
-                  autoPlay
-                  controls
-                  playsInline
-                  className="aspect-video w-full"
-                />
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>,
-        document.body
-      )}
-    </Section>
+    </section>
   )
 }

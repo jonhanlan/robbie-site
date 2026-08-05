@@ -1,130 +1,94 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Section, itemVariants } from '@/components/Section'
 import type { ArtistContent } from '@/lib/types'
 
 const socialLabels: Record<string, string> = {
-  instagram: 'Instagram',
-  tiktok: 'TikTok',
-  youtube: 'YouTube',
-  spotify: 'Spotify',
-  appleMusic: 'Apple Music',
-  bandcamp: 'Bandcamp',
+  instagram: 'Instagram', tiktok: 'TikTok', youtube: 'YouTube', spotify: 'Spotify', appleMusic: 'Apple Music', bandcamp: 'Bandcamp',
 }
 
 export function ContactSection({ artist }: { artist: ArtistContent }) {
-  const [status, setStatus] = useState<'idle' | 'success'>('idle')
+  const [sent, setSent] = useState(false)
 
-  function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-    const form = event.currentTarget
-    const formData = new FormData(form)
-
-    const name = String(formData.get('name') || '')
-    const email = String(formData.get('email') || '')
-    const message = String(formData.get('message') || '')
-
-    const subject = encodeURIComponent(`Inquiry from ${name}`)
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    const form = e.currentTarget
+    const fd = new FormData(form)
+    const name = String(fd.get('name') || '')
+    const email = String(fd.get('email') || '')
+    const message = String(fd.get('message') || '')
+    const subject = encodeURIComponent(`Booking — ${name}`)
     const body = encodeURIComponent(`From: ${name} (${email})\n\n${message}`)
     window.location.href = `mailto:${artist.bookingEmail}?subject=${subject}&body=${body}`
-
-    setStatus('success')
+    setSent(true)
     form.reset()
   }
 
   return (
-    <Section id="contact">
-      <div className="mx-auto max-w-4xl">
-        <div className="grid gap-12 md:grid-cols-[1fr_1.2fr] md:gap-16">
-          {/* Left — info */}
-          <motion.div variants={itemVariants}>
-            <h2 className="font-display text-4xl uppercase md:text-5xl">Get in Touch</h2>
-            <p className="mt-4 text-sm leading-relaxed text-[var(--muted)]">
-              For bookings, press inquiries, or just to say hello.
-            </p>
+    <section id="book" className="sec" style={{ paddingBottom: '7rem' }}>
+      <div className="shell">
+        <div className="sec-head">
+          <span className="idx">04</span>
+          <h2 className="sec-title">Book <em>him</em></h2>
+        </div>
 
-            <a
-              href={`mailto:${artist.bookingEmail}`}
-              className="mt-6 block text-sm text-[var(--accent)] transition hover:underline"
-            >
+        <div className="grid gap-9 md:grid-cols-[1fr_1.1fr] md:gap-14">
+          <div>
+            <p className="text-[1.15rem] leading-relaxed text-[var(--fg)]">
+              Listening bar, backyard wedding, Tuesday residency, a stranger&rsquo;s porch — if there&rsquo;s a room and a reason, he&rsquo;ll bring the songs.
+            </p>
+            <a href={`mailto:${artist.bookingEmail}`} className="serif-accent mt-6 inline-block text-[1.3rem] text-[var(--accent)] hover:underline">
               {artist.bookingEmail}
             </a>
 
-            <div className="mt-6 flex flex-wrap gap-2">
-              {Object.entries(artist.socials).map(([key, value]) =>
-                value ? (
-                  <a
-                    key={key}
-                    href={value}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-[var(--border)] px-3 py-1.5 text-xs text-[var(--muted)] transition hover:border-[var(--accent)]/50 hover:text-[var(--fg)]"
-                  >
-                    {socialLabels[key] || key}
+            {artist.pressPhotos.length > 0 && (
+              <div className="mt-8">
+                <p className="label-dim mb-3">Press shots</p>
+                <div className="flex gap-2.5">
+                  {artist.pressPhotos.map((p, i) => (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <a key={p} href={p} download className="frame block h-16 w-16" aria-label={`Download press photo ${i + 1}`}>
+                      <img src={p} alt="" className="h-full w-full object-cover duotone" />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              {Object.entries(artist.socials).map(([k, url]) =>
+                url ? (
+                  <a key={k} href={url} target="_blank" rel="noreferrer" className="label-dim hover:!text-[var(--accent)]">
+                    {socialLabels[k] || k}
                   </a>
                 ) : null,
               )}
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right — form */}
-          <motion.div variants={itemVariants}>
-            <form onSubmit={onSubmit} className="rounded-2xl border border-[var(--border)] bg-[var(--card)]/60 p-7 md:p-8">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <label className="block">
-                  <span className="text-[11px] uppercase tracking-[0.12em] text-[var(--muted)]">Name</span>
-                  <input
-                    required
-                    name="name"
-                    className="mt-1.5 w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2.5 text-sm text-[var(--fg)] outline-none transition focus:border-[var(--accent)]"
-                    autoComplete="name"
-                  />
-                </label>
-
-                <label className="block">
-                  <span className="text-[11px] uppercase tracking-[0.12em] text-[var(--muted)]">Email</span>
-                  <input
-                    required
-                    type="email"
-                    name="email"
-                    className="mt-1.5 w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2.5 text-sm text-[var(--fg)] outline-none transition focus:border-[var(--accent)]"
-                    autoComplete="email"
-                  />
-                </label>
-              </div>
-
-              <label className="mt-5 hidden" aria-hidden="true">
-                Website
-                <input tabIndex={-1} autoComplete="off" name="website" />
+          <form onSubmit={onSubmit} className="border-2 border-[var(--line2)] p-6 md:p-8" style={{ boxShadow: '8px 8px 0 rgba(0,0,0,.5)' }}>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="block">
+                <span className="field-label">Name</span>
+                <input required name="name" autoComplete="name" className="field" />
               </label>
-
-              <label className="mt-5 block">
-                <span className="text-[11px] uppercase tracking-[0.12em] text-[var(--muted)]">Message</span>
-                <textarea
-                  required
-                  name="message"
-                  rows={4}
-                  className="mt-1.5 w-full rounded-lg border border-[var(--border)] bg-[var(--bg)] px-3 py-2.5 text-sm text-[var(--fg)] outline-none transition focus:border-[var(--accent)]"
-                />
+              <label className="block">
+                <span className="field-label">Email</span>
+                <input required type="email" name="email" autoComplete="email" className="field" />
               </label>
-
-              <button
-                type="submit"
-                className="pill-btn mt-5 w-full !bg-[var(--accent)] !text-[#1f130d]"
-              >
-                Send Message
-              </button>
-
-              {status === 'success' && (
-                <p className="mt-3 text-center text-sm text-green-400">Opening your email client&hellip;</p>
-              )}
-            </form>
-          </motion.div>
+            </div>
+            <label className="mt-5 hidden" aria-hidden="true">
+              Website<input tabIndex={-1} autoComplete="off" name="website" />
+            </label>
+            <label className="mt-5 block">
+              <span className="field-label">What are you dreaming up?</span>
+              <textarea required name="message" rows={4} placeholder="the room, the date, the occasion" className="field" />
+            </label>
+            <button type="submit" className="btn btn-hot mt-5 w-full justify-center">Send it ↗</button>
+            {sent && <p className="label mt-3">✓ opening your mail app</p>}
+          </form>
         </div>
-
       </div>
-    </Section>
+    </section>
   )
 }

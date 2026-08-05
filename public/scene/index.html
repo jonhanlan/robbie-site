@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scene map · Robbie tools</title>
+<link rel="stylesheet" href="vendor/leaflet.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Fraunces:ital,wght@1,500..600&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0c0a08;--panel:#14100b;--ink:#ece3d1;--dim:#a89a83;--faint:#7c6f5c;
+    --line:rgba(247,239,221,.09);--accent:#ef7f36;
+    --c-open:#ef7f36;--c-country:#e0562f;--c-folk:#d8a24a;--c-busk:#6f9fd0;--c-comm:#b483d8;--c-studio:#5bb89a;
+    --disp:'Bricolage Grotesque','Arial Black',sans-serif;--mono:'Space Mono',monospace;--serif:'Fraunces',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+  #app{position:fixed;inset:0}
+  #map{position:absolute;inset:0;background:var(--bg)}
+  .leaflet-container{background:var(--bg);font-family:inherit}
+  .leaflet-control-attribution{background:rgba(12,10,8,.7)!important;color:var(--faint)!important;font-size:9px!important}
+  .leaflet-control-attribution a{color:var(--dim)!important}
+
+  /* zoom */
+  .leaflet-control-zoom{border:none!important;box-shadow:0 8px 24px rgba(0,0,0,.5)!important;border-radius:10px!important;overflow:hidden;margin-top:14px!important;margin-left:14px!important}
+  .leaflet-control-zoom a{background:rgba(20,16,11,.94)!important;backdrop-filter:blur(14px);color:var(--ink)!important;border:1px solid var(--line)!important;width:34px;height:34px;line-height:32px;font-size:18px}
+  .leaflet-control-zoom a:hover{background:rgba(239,127,54,.16)!important;color:#fff!important}
+
+  /* legacy topbar kept for Places button hook; hidden by chrome on map pages */
+  .topbar{display:none}
+  .places-btn{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+  /* panel */
+  .panel{position:absolute;top:12px;left:14px;z-index:550;width:290px;max-height:calc(100dvh - 72px);overflow-y:auto;overscroll-behavior:contain;
+    background:rgba(20,16,11,.95);backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:14px;
+    padding:12px 9px 12px 12px;box-shadow:0 14px 40px rgba(0,0,0,.55)}
+  .panel::-webkit-scrollbar{width:9px}
+  .panel::-webkit-scrollbar-thumb{background:rgba(247,239,221,.13);border-radius:9px;border:2px solid transparent;background-clip:padding-box}
+  .panel h3{margin:0 4px 4px 2px;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);display:flex;justify-content:space-between;align-items:center}
+  .panel h3 .close-x{display:none;align-items:center;justify-content:center;width:32px;height:32px;background:transparent;border:1px solid var(--line);border-radius:8px;cursor:pointer;color:var(--dim)}
+  .panel h3 .close-x svg{width:15px;height:15px}
+  .panel .intro{margin:0 4px 9px 2px;font-size:11px;color:var(--faint);line-height:1.45}
+
+  .search{display:flex;align-items:center;gap:7px;margin:0 3px 9px 2px;padding:7px 9px;background:rgba(247,239,221,.05);border:1px solid var(--line);border-radius:9px}
+  .search:focus-within{border-color:var(--accent)}
+  .search svg{width:13px;height:13px;color:var(--faint);flex:none}
+  .search input{flex:1;min-width:0;background:none;border:none;outline:none;color:var(--ink);font:inherit;font-size:12px;font-family:var(--mono)}
+  .search input::placeholder{color:var(--faint)}
+  .search .clr{color:var(--faint);cursor:pointer;display:none;line-height:0}
+  .search.has .clr{display:block}
+
+  .cat{margin:2px 0}
+  .cat-head{display:grid;grid-template-columns:minmax(0,1fr) 36px;gap:4px;align-items:center}
+  .row{display:flex;align-items:center;gap:9px;width:100%;padding:7px 8px;background:transparent;border:1px solid transparent;border-radius:9px;cursor:pointer;color:var(--ink);font:inherit;font-size:12.5px;text-align:left;transition:background .16s,border-color .16s,opacity .16s}
+  .row:hover{background:rgba(247,239,221,.05)}
+  .row .dot{width:11px;height:11px;border-radius:50%;flex:none;transition:all .16s}
+  .row .lbl{flex:1;font-family:var(--disp);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:-.01em;line-height:1.15}
+  .row .cnt{color:var(--faint);font-size:11px;font-family:var(--mono);min-width:16px;text-align:right}
+  .row .chev{width:16px;height:16px;flex:none;color:var(--faint);display:flex;align-items:center;justify-content:center;transition:transform .22s cubic-bezier(.22,1,.32,1)}
+  .row .chev svg{width:13px;height:13px}
+  .cat.open .row .chev{transform:rotate(180deg)}
+  .row.on .dot{box-shadow:0 0 9px currentColor}
+  .row.on{background:rgba(247,239,221,.045);border-color:var(--line)}
+  .row.off{opacity:.5}
+  .row.off .lbl{text-decoration:line-through;text-decoration-color:var(--faint);color:var(--dim)}
+  .row.off .dot{background:transparent!important;border:1.5px solid var(--faint);box-shadow:none}
+  .visibility{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid transparent;border-radius:9px;background:transparent;color:var(--dim);cursor:pointer}
+  .visibility:hover{background:rgba(247,239,221,.05);border-color:var(--line);color:var(--ink)}
+  .visibility.off{opacity:.48}
+  .visibility svg{width:15px;height:15px}
+
+  .sub{max-height:0;overflow:hidden;transition:max-height .28s cubic-bezier(.22,1,.32,1);margin:0 2px 0 7px;border-left:1px solid var(--line);padding-left:3px}
+  .cat.open .sub{max-height:2400px;overflow-y:auto}
+  .item{display:flex;align-items:center;gap:8px;padding:8px;margin:2px 4px 2px 0;border:1px solid transparent;border-radius:8px;cursor:pointer;transition:opacity .18s,background .18s,border-color .18s}
+  .item .idot{width:6px;height:6px;border-radius:50%;flex:none;opacity:.9}
+  .item .iname{flex:1;font-size:12px;color:var(--ink);line-height:1.2;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .item .score{font-family:var(--mono);font-size:9px;color:var(--accent);flex:none;font-variant-numeric:tabular-nums}
+  .item .state{display:inline-flex;align-items:center;justify-content:center;min-width:17px;height:17px;padding:0 4px;border:1px solid rgba(239,127,54,.4);border-radius:5px;background:rgba(239,127,54,.08);font-family:var(--mono);font-size:8px;color:var(--accent);text-transform:uppercase}
+  .item .ib{font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:var(--faint);flex:none;text-transform:uppercase}
+  .item:hover,.item.active{background:rgba(239,127,54,.12);border-color:rgba(239,127,54,.46)}
+  .sub:hover .item{opacity:.42}.sub:hover .item:hover,.sub:hover .item.active{opacity:1}
+
+  .panel-foot{position:sticky;bottom:-12px;margin:10px -9px -12px -12px;padding:10px 12px 12px;background:linear-gradient(180deg,rgba(20,16,11,0),rgba(20,16,11,.98) 24%);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+  .panel-foot span{font-family:var(--mono);font-size:9px;letter-spacing:.05em;color:var(--faint);text-transform:uppercase}
+  .panel-foot .foot-actions{display:flex;flex-wrap:wrap;gap:6px}
+  .sort-row,.cluster-row{display:flex;flex-wrap:wrap;gap:5px;margin:0 2px 9px}
+  .chip{min-height:30px;padding:4px 9px;border:1px solid rgba(247,239,221,.14);border-radius:999px;background:transparent;color:var(--dim);font-family:var(--mono);font-size:9px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+  .chip.on{border-color:var(--accent);background:rgba(239,127,54,.12);color:var(--ink)}
+  .item.closed .iname{color:var(--faint);text-decoration:line-through;text-decoration-color:var(--faint)}
+  .item.closed .score{color:var(--faint)}
+  .small-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:7px 9px;border:1.5px solid var(--accent);border-radius:8px;background:rgba(239,127,54,.1);color:var(--ink);font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:background .18s,border-color .18s}
+  .small-btn:hover{background:rgba(239,127,54,.2);border-color:#ff9955}
+  .small-btn.ghost{border-color:rgba(247,239,221,.2);background:transparent}
+  .small-btn svg{width:13px;height:13px}
+
+  /* marker dot */
+  .pin{border-radius:50%;border:2px solid rgba(12,10,8,.85);box-shadow:0 2px 6px rgba(0,0,0,.5)}
+
+  /* popup */
+  .leaflet-popup-content-wrapper{background:var(--panel);color:var(--ink);border:2px solid var(--accent);border-radius:12px;box-shadow:0 14px 40px rgba(0,0,0,.6)}
+  .leaflet-popup-tip{background:var(--panel);border:2px solid var(--accent)}
+  .leaflet-popup-content{margin:13px 15px;font-size:13px;line-height:1.55;font-family:var(--sans);width:250px!important}
+  a.leaflet-popup-close-button{color:var(--faint)!important;font-size:20px!important;padding:6px 7px 0 0!important}
+  .pop-cat{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;display:inline-flex;align-items:center;gap:5px;margin-bottom:5px}
+  .pop-cat .pc-dot{width:8px;height:8px;border-radius:50%}
+  .pop-name{font-family:var(--disp);font-weight:800;font-size:1.15rem;text-transform:uppercase;letter-spacing:-.02em;line-height:1.05;margin-bottom:2px}
+  .pop-area{font-family:var(--mono);font-size:10px;letter-spacing:.03em;color:var(--dim);text-transform:uppercase;margin-bottom:7px}
+  .pop-note{color:#d9cfbe;font-size:12.5px;margin-bottom:9px}
+  .pop-when{font-family:var(--mono);font-size:11px;color:var(--accent);margin-bottom:9px}
+  .pop-fit{display:flex;align-items:center;gap:7px;margin:7px 0 8px;padding:7px 8px;border:1px solid rgba(239,127,54,.35);border-radius:7px;background:rgba(239,127,54,.08)}
+  .pop-fit strong{font-family:var(--disp);font-size:1rem;color:var(--accent)}
+  .pop-fit span{font-size:10px;color:var(--dim);line-height:1.25}
+  .pop-memory{font-family:var(--mono);font-size:9.5px;color:var(--dim);margin:-2px 0 9px;text-transform:uppercase;letter-spacing:.04em}
+  .pop-links{display:flex;flex-wrap:wrap;gap:6px}
+  .pop-links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);text-decoration:none;
+    border:1.5px solid var(--line);padding:5px 8px;border-radius:6px;transition:border-color .16s,background .16s}
+  .pop-links a:hover{border-color:var(--accent);background:rgba(239,127,54,.12)}
+  .pop-links a.map{border-color:var(--accent);background:rgba(239,127,54,.12)}
+  .pop-links button{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);border:1.5px solid var(--accent);padding:5px 8px;border-radius:6px;background:rgba(239,127,54,.12);cursor:pointer}
+
+  /* place planner */
+  .action-scrim{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.72)}
+  .action-scrim.open{display:flex}
+  .action-card{width:min(100%,460px);max-height:min(88dvh,720px);overflow:auto;background:var(--panel);border:1px solid rgba(247,239,221,.16);border-radius:16px;box-shadow:0 24px 70px rgba(0,0,0,.72)}
+  .action-head{position:sticky;top:0;z-index:2;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:15px 16px 12px;background:rgba(20,16,11,.97);border-bottom:1px solid var(--line)}
+  .action-head .eyebrow{font-family:var(--mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+  .action-head h2{margin:2px 0 0;font-family:var(--disp);font-size:1.35rem;line-height:1;text-transform:uppercase;letter-spacing:-.02em}
+  .icon-btn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;flex:none;border:1px solid var(--line);border-radius:9px;background:transparent;color:var(--dim);cursor:pointer}
+  .icon-btn:hover{color:var(--ink);border-color:var(--accent)}
+  .icon-btn svg{width:16px;height:16px}
+  .action-body{padding:15px 16px 17px}
+  .field{display:block;margin:0 0 14px}
+  .field>span,.group-label{display:block;margin-bottom:6px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  .field input,.field textarea,.field select{width:100%;min-height:44px;border:1px solid rgba(247,239,221,.16);border-radius:9px;background:#0c0a08;color:var(--ink);padding:10px 11px;font:16px/1.4 var(--sans);outline:none}
+  .field textarea{min-height:92px;resize:vertical}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--accent)}
+  .priority{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px}
+  .priority button{min-height:42px;border:1px solid rgba(247,239,221,.16);border-radius:8px;background:transparent;color:var(--dim);font:600 12px var(--sans);cursor:pointer}
+  .priority button.active{background:rgba(239,127,54,.14);border-color:var(--accent);color:var(--ink)}
+  .check-row{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:44px;margin-bottom:14px;padding:8px 10px;border:1px solid rgba(247,239,221,.12);border-radius:9px;color:var(--ink)}
+  .check-row input{width:20px;height:20px;accent-color:var(--accent)}
+  .action-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+  .action-buttons .small-btn{min-height:44px;text-decoration:none;text-align:center}
+  .action-note{margin:0 0 12px;color:var(--faint);font-size:11px;line-height:1.45}
+  .hidden{display:none!important}
+
+  @media(max-width:720px){
+    #map{transition:bottom .32s cubic-bezier(.22,1,.32,1)}
+    #app.sheet-open #map{bottom:min(52dvh,430px)}
+    .panel{top:auto;bottom:0;left:0;right:0;width:100%;max-height:min(52dvh,430px);padding:13px 9px max(12px,env(safe-area-inset-bottom)) 12px;border-radius:16px 16px 0 0;transform:translateY(102%);transition:transform .32s cubic-bezier(.22,1,.32,1)}
+    .panel.open{transform:translateY(0)}
+    .panel h3 .close-x{display:inline-flex}
+    .leaflet-control-zoom{display:none!important}
+    .panel-foot{bottom:calc(-1 * max(12px,env(safe-area-inset-bottom)));padding-bottom:max(12px,env(safe-area-inset-bottom))}
+    .action-scrim{align-items:flex-end;padding:0}
+    .action-card{width:100%;max-height:88dvh;border-radius:16px 16px 0 0;padding-bottom:env(safe-area-inset-bottom)}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<link rel="stylesheet" href="../tools/chrome.css">
+</head>
+<body>
+<div id="app">
+  <div id="map"></div>
+  <div class="topbar">
+    <div class="title">
+      <b>Robbie's <em>scene</em></b>
+      <span>NYC country-folk · when you feel like going</span>
+    </div>
+    <button class="places-btn" id="placesBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Places</button>
+  </div>
+
+  <div class="panel" id="panel">
+    <h3><span>Places</span><button class="close-x" id="closeX" aria-label="Close places"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></h3>
+    <p class="intro"><strong>Where</strong> to go (Guide is how/why). Scores = Jon&rsquo;s taste for you, not a city ranking. Notes optional. Confirm nights — they drift. Not homework. · Jul 2026</p>
+    <div class="search" id="searchBox">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+      <input id="search" type="text" placeholder="search a room, park, station…" autocomplete="off" spellcheck="false">
+      <span class="clr" id="clr">✕</span>
+    </div>
+    <div class="sort-row" id="sortRow" aria-label="Sort places">
+      <button type="button" class="chip on" data-sort="fit">Best fit</button>
+      <button type="button" class="chip" data-sort="next">Maybe next</button>
+    </div>
+    <div class="cluster-row" id="clusterRow" aria-label="Area loops">
+      <button type="button" class="chip on" data-cluster="all">All</button>
+      <button type="button" class="chip" data-cluster="redhook">Red Hook loop</button>
+      <button type="button" class="chip" data-cluster="ev">East Village</button>
+      <button type="button" class="chip" data-cluster="williamsburg">Williamsburg</button>
+      <button type="button" class="chip" data-cluster="closed">Closed / skip</button>
+    </div>
+    <div id="legend"></div>
+    <div class="panel-foot">
+      <span id="footLabel">Best fit first · Jul 2026</span>
+      <div class="foot-actions">
+        <button class="small-btn ghost" id="copyListBtn" type="button">Copy list</button>
+        <button class="small-btn" id="exportBtn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 21h14"/></svg> Calendar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="action-scrim" id="actionScrim" aria-hidden="true">
+  <section class="action-card" role="dialog" aria-modal="true" aria-labelledby="actionTitle">
+    <div class="action-head">
+      <div><div class="eyebrow" id="actionEyebrow">Plan a visit</div><h2 id="actionTitle">Place</h2></div>
+      <button class="icon-btn" id="actionClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    </div>
+    <div class="action-body" id="placeActions">
+      <div class="group-label">Priority</div>
+      <div class="priority" id="priorityButtons">
+        <button type="button" data-priority="high">High</button>
+        <button type="button" data-priority="maybe">Maybe</button>
+        <button type="button" data-priority="low">Low</button>
+      </div>
+      <label class="check-row"><span>I&rsquo;ve been</span><input type="checkbox" id="visited"></label>
+      <label class="field"><span>How it went (optional)</span>
+        <select id="outcome">
+          <option value="">—</option>
+          <option value="watched">Watched only</option>
+          <option value="signed">Signed up / played</option>
+          <option value="met">Met someone useful</option>
+          <option value="yes">Encouraging yes</option>
+          <option value="later">Not yet / try later</option>
+          <option value="no">Not a fit</option>
+        </select>
+      </label>
+      <label class="field"><span>When (if you want a reminder)</span><input type="datetime-local" id="visitAt"></label>
+      <label class="field"><span>Notes</span><textarea id="placeNotes" placeholder="Who you met, who books it, what the room felt like…"></textarea></label>
+      <p class="action-note">Saved only on this phone/laptop. Calendar is optional — skip if you just want a note.</p>
+      <div class="action-buttons">
+        <a class="small-btn" id="actionMaps" target="_blank" rel="noreferrer">Open map</a>
+        <button class="small-btn" type="button" id="googleOne">Google Cal</button>
+        <a class="small-btn" id="icalOne" href="#" download="robbie-scene-visit.ics">Download iCal</a>
+        <button class="small-btn" type="button" id="savePlace">Save</button>
+      </div>
+    </div>
+    <div class="action-body hidden" id="exportActions">
+      <label class="field"><span>Which list</span><select id="exportScope"></select></label>
+      <label class="field"><span>Put the scouting list on</span><input type="date" id="exportDate"></label>
+      <p class="action-note">Optional calendar block — not fake gigs, just a soft scouting list with map links. Or use Copy list on the panel for Notes app.</p>
+      <div class="action-buttons">
+        <button class="small-btn" type="button" id="googleGroup">Google Cal</button>
+        <a class="small-btn" id="icalGroup" href="#" download="robbie-scene-scout.ics">Download iCal</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script src="vendor/leaflet.js"></script>
+<script>
+const CATS = {
+  open:    {label:'Open mics & jams', color:'#ef7f36', blurb:'where you get known'},
+  country: {label:'Country & honky-tonk', color:'#e0562f', blurb:'the paying circuit'},
+  folk:    {label:'Folk / listening rooms', color:'#d8a24a', blurb:'step-up stages'},
+  busk:    {label:'Busking pitches', color:'#6f9fd0', blurb:'rent + your funnel'},
+  comm:    {label:'Radio · press · fests', color:'#b483d8', blurb:'get heard'},
+  studio:  {label:'Record & rehearse', color:'#5bb89a', blurb:'make the songs'},
+}
+const ORDER = ['open','country','folk','busk','comm','studio']
+
+// b = borough tag. Pins are best-effort; each popup links to real Google Maps by name.
+const P = [
+  // ---- OPEN MICS & JAMS ----
+  {n:'Jalopy Theatre', cat:'open', b:'BK', area:'Red Hook', lat:40.6795, lng:-74.0099, when:'Wed open mic 6pm · Roots n\' Ruckus', note:'The folk/old-time hub — theatre, tavern, music school. A realistic first NYC booking.', url:'https://jalopytheatre.org/open-mic'},
+  {n:"Pete's Candy Store", cat:'open', b:'BK', area:'Williamsburg', lat:40.7169, lng:-73.9440, when:'Sun open mic, sign-up 4pm · acoustic', note:'25 years running, a springboard to real bookings. Email links (no attachments) to book.', url:'https://www.petescandystore.com/booking'},
+  {n:'The Bitter End', cat:'open', b:'MAN', area:'Greenwich Village', lat:40.7286, lng:-74.0006, when:'Mon open jam · Sat afternoon acoustic', note:"NYC's oldest club (1961). Also home of the New York Songwriters Circle (first Mondays).", url:'https://bitterend.com/'},
+  {n:"Sunny's Bar", cat:'open', b:'BK', area:'Red Hook', lat:40.6760, lng:-74.0165, when:'Sat 9pm bluegrass jam', note:'Participatory back-room jam. Come to be seen and meet the roots-scene players.', url:'https://www.sunnysredhook.com/calendar/'},
+  {n:"Mona's", cat:'open', b:'MAN', area:'East Village', lat:40.7256, lng:-73.9793, when:'Mon night bluegrass/old-time session', note:'Unamplified — bring your instrument. The established NYC old-country hang.', url:'https://www.ricksnell.org/monasbluegrass'},
+  {n:"Paddy Reilly's", cat:'open', b:'MAN', area:'Kips Bay', lat:40.7407, lng:-73.9772, when:'Tue open mic, sign-up 6pm', note:'Long-running Irish-pub open mic — friendly to acoustic singer-songwriters.', url:''},
+  {n:'Postcrypt Coffeehouse', cat:'open', b:'MAN', area:'Morningside / Columbia', lat:40.8069, lng:-73.9626, when:'Fri/Sat, academic year', note:'Free all-acoustic 35-seat room. Alumni: Jeff Buckley, Ani DiFranco. Prestige unpaid set.', url:'https://www.columbia.edu/cu/postcrypt/coffeehouse/about.html'},
+  {n:'Pine Box Rock Shop', cat:'open', b:'BK', area:'Bushwick', lat:40.7058, lng:-73.9335, when:'Weekly open mic', note:'Voted best open mic in Brooklyn — set in a converted casket factory, dead centre of the Bushwick creative corridor.', url:'https://www.pineboxrockshop.com/'},
+  {n:'The Local Bar', cat:'open', b:'QNS', area:'Astoria', lat:40.7615, lng:-73.9250, when:'"Saturday Songwriters" · sign-up 3:30pm', note:'Run by the Astoria Music Collective — your Queens foothold, a real songwriter-first room.', url:''},
+
+  // ---- COUNTRY / HONKY-TONK ----
+  {n:'Skinny Dennis', cat:'country', b:'BK', area:'Williamsburg', lat:40.7146, lng:-73.9560, when:'Live country nightly · no cover', note:'Books via skinnydennisbooking@gmail.com. Monthly "Originals Only" showcase open to debuts.', url:'mailto:skinnydennisbooking@gmail.com'},
+  {n:"Lucinda's", cat:'country', b:'MAN', area:'East Village', lat:40.7270, lng:-73.9835, when:'Sun songwriter round · Tue bluegrass · last-Thu queer country party', note:"Lucinda Williams' honky-tonk (2025). Arguably the single best new room for your exact profile — the East Village Cxntry Club night is a cool in.", url:'https://www.lucindasnyc.com/'},
+  {n:'Desert 5 Spot', cat:'country', b:'BK', area:'Williamsburg', lat:40.7216, lng:-73.9585, when:'Live country · Wed cowboy karaoke', note:'LA-import honky-tonk on the William Vale roof. Live bands Wed–Sun.', url:'https://www.desertfivespot.com/ny'},
+  {n:'The Waylon', cat:'country', b:'MAN', area:"Hell's Kitchen", lat:40.7642, lng:-73.9910, when:'Live country Tue–Sat · no cover', note:'Dedicated country bar with nightly live music. Tips + small-fee circuit.', url:'https://www.thewaylon.com/live-music'},
+  {n:'Common Country', cat:'country', b:'MAN', area:'Kips Bay', lat:40.7442, lng:-73.9788, when:'Bar + performance venue', note:"The city's first hybrid country bar + real stage — 3,400 sq ft of urban-cowboy. A proper booking target, not just a bar gig.", url:''},
+  {n:'Daisy Dukes Honky Tonk', cat:'country', b:'MAN', area:'Financial District', lat:40.7075, lng:-74.0105, when:'Live music a few nights/wk', note:'FiDi honky-tonk riding the country wave. Downtown-office crowd — different draw from Brooklyn.', url:''},
+  {n:'The Drift', cat:'country', b:'BK', area:'Greenpoint', lat:40.7300, lng:-73.9540, when:'Honky Tonk Sundays', note:'Recurring country night in Greenpoint — part of the 2026 honky-tonk wave.', url:''},
+  {n:'Honky Tonkin\' in Queens', cat:'country', b:'QNS', area:'Ridgewood · Gottscheer Hall', lat:40.7040, lng:-73.9058, when:'Monthly country dance party', note:'Books real touring acts (Charley Crockett, Sunny Sweeney). Sells out. A scene hub to attend / aspire to.', url:'https://gottscheerhall.com/'},
+
+  // ---- FOLK / LISTENING ROOMS ----
+  {n:'Bleecker Bell', cat:'folk', b:'MAN', area:'Greenwich Village', lat:40.7280, lng:-73.9995, when:'Announced fall 2026 — verify', note:'NEW ~200-cap folk/Americana (Cafe Wha? / Village Presents). Opening months can be a window — confirm it actually opened before chasing.', url:''},
+  {n:'Mercury Lounge', cat:'folk', b:'MAN', area:'Lower East Side', lat:40.7222, lng:-73.9878, when:'~90 shows booked', note:'A step-up room, not an entry room — build a draw first. info@mercuryloungenyc.com.', url:'https://mercuryeastpresents.com/mercurylounge/'},
+  {n:'Barbès', cat:'folk', b:'BK', area:'Park Slope', lat:40.6710, lng:-73.9855, when:'World / folk / jazz · ~60 cap', note:'Intimate, curated back room. Good fit for a quiet acoustic set.', url:'https://www.barbesbrooklyn.com/'},
+  {n:'Berlin', cat:'folk', b:'MAN', area:'East Village', lat:40.7243, lng:-73.9812, when:'~33 shows booked', note:'Basement room under 2A. Leans indie/rock — genre-adjacent, lower priority.', url:'https://berlin.nyc/calendar/'},
+  {n:'Cafe Wha?', cat:'folk', b:'MAN', area:'Greenwich Village', lat:40.7300, lng:-74.0007, when:'House-band covers (not a booking target)', note:'Historic (Dylan, Hendrix played here) but runs a covers house band — visit, don\'t pitch.', url:'https://www.cafewha.com/'},
+  {n:'Rockwood Music Hall', cat:'folk', b:'MAN', area:'Lower East Side', lat:40.7215, lng:-73.9880, when:'CLOSED Nov 2024', note:'The old singer-songwriter ladder — permanently closed. Kept only as a warning so outdated guides don\'t send you here.', url:'', closed:true},
+
+  // ---- BUSKING PITCHES ----
+  {n:'Washington Square Park', cat:'busk', b:'MAN', area:'Greenwich Village', lat:40.7308, lng:-73.9973, when:'Weekend afternoons · stay acoustic', note:'Iconic pitch — but play acoustic and AWAY from the fountain (crackdown since 2024).', url:''},
+  {n:'Central Park — Literary Walk', cat:'busk', b:'MAN', area:'The Mall', lat:40.7710, lng:-73.9718, when:'Sun mornings · no amp', note:'The sanctioned park pitch (top of the Mall). Quiet zones like Bethesda ban even acoustic.', url:''},
+  {n:'The High Line', cat:'busk', b:'MAN', area:'Chelsea', lat:40.7480, lng:-74.0048, when:'Weekend daytime', note:'Dwell-time tourist crowds that stop and form. Strong pitch in good weather.', url:''},
+  {n:'Union Sq station', cat:'busk', b:'MAN', area:'14th St mezzanine', lat:40.7359, lng:-73.9911, when:'Commute 5–7 · lunch 11–1', note:'High-volume mezzanine — amps allowed here (not on platforms). MTA Music priority spot.', url:''},
+  {n:'Herald Sq / 34th St', cat:'busk', b:'MAN', area:'Midtown', lat:40.7497, lng:-73.9880, when:'Lunch + commute', note:'Massive commuter + tourist flow. Reliable underground earner, especially in winter.', url:''},
+  {n:'Bedford Ave (L)', cat:'busk', b:'BK', area:'Williamsburg', lat:40.7171, lng:-73.9568, when:'Evenings · late-night', note:'Young, receptive crowd — busker Ken Arii swears by it after 10pm. Your neighbourhood pitch.', url:''},
+  {n:'Grand Central', cat:'busk', b:'MAN', area:'Midtown East', lat:40.7527, lng:-73.9772, when:'Rush hours', note:'Premium MTA Music banner location. You can busk non-reserved spots without membership.', url:''},
+
+  // ---- RADIO / PRESS / FESTIVALS ----
+  {n:'WFUV 90.7 — "NY Slice"', cat:'comm', b:'BX', area:'Fordham', lat:40.8619, lng:-73.8850, when:'Direct submissions open', note:'The city\'s tastemaker station for your genre. Email one original + bio + links to nyslice@wfuv.org.', url:'mailto:nyslice@wfuv.org'},
+  {n:'Brooklyn Folk Festival', cat:'comm', b:'BK', area:'Brooklyn Hts · St. Ann Church', lat:40.6952, lng:-73.9935, when:'6–8 Nov 2026', note:'Jalopy\'s festival — 30+ bands, jams, the banjo toss. Volunteer / jam your way in.', url:'https://www.brooklynfolkfest.com/'},
+  {n:'Big City Folk', cat:'comm', b:'MAN', area:'Greeley Square Park', lat:40.7484, lng:-73.9880, when:'Mon eves, May–Sep', note:'Free outdoor songwriter series (host Niall Connolly). A recognised on-ramp to the community.', url:''},
+  {n:'Porch Stomp', cat:'comm', b:'MAN', area:'Governors Island', lat:40.6895, lng:-74.0165, when:'Annual old-time / folk fest + jams', note:'Free DIY old-time & folk festival on Governors Island — dozens of stages, open jams. Just show up with the guitar and play.', url:'https://www.porchstomp.com/'},
+  {n:'WFMU / Monty Hall', cat:'comm', b:'JC', area:'Jersey City', lat:40.7175, lng:-74.0435, when:'Freeform radio + venue', note:'Legendary freeform station with its own live room. A real Jersey-side foothold — verify current booking.', url:'https://wfmu.org/'},
+
+  // ---- RECORD & REHEARSE ----
+  {n:'Pirate Studios — Bushwick', cat:'studio', b:'BK', area:'Bushwick', lat:40.7050, lng:-73.9250, when:'From ~$11.60/hr · 24/7', note:'Self-service door-code rooms for full-volume runs or co-writes. Solo folk rarely needs one early.', url:'https://pirate.com/en/rehearsal-studios/new-york/'},
+  {n:'Pirate Studios — Gowanus', cat:'studio', b:'BK', area:'Gowanus', lat:40.6740, lng:-73.9890, when:'From ~$11.60/hr · 24/7', note:'Same self-service rooms, closer to south Brooklyn.', url:'https://pirate.com/en/rehearsal-studios/new-york/'},
+  {n:'Funkadelic Studios', cat:'studio', b:'MAN', area:'Midtown · 209 W 40th', lat:40.7538, lng:-73.9895, when:'Solo rooms $15–20/hr', note:'Central hourly rehearsal, 11am–11pm daily. Handy for a pre-gig run in Manhattan.', url:'https://www.funkadelicstudios.com/rates'},
+  {n:'Rivington Music', cat:'studio', b:'MAN', area:'Lower East Side', lat:40.7195, lng:-73.9840, when:'Rooms from ~$15/hr', note:'LES hourly rooms — convenient to the East Village country circuit.', url:'https://rivingtonmusic.com/'},
+  {n:'White Eagle Hall', cat:'folk', b:'JC', area:'Jersey City', lat:40.7205, lng:-74.0490, when:'Mid-size roots room', note:'Restored theatre that books Americana/roots touring acts — the Jersey-side step-up venue.', url:'https://www.whiteeaglehalljc.com/'},
+]
+
+const FIT = {
+  'Jalopy Theatre':5, "Pete's Candy Store":4.9, 'The Bitter End':4.3, "Sunny's Bar":4.8, "Mona's":4.7,
+  "Paddy Reilly's":3.8, 'Postcrypt Coffeehouse':4.1, 'Pine Box Rock Shop':4.5, 'The Local Bar':4.2,
+  'Skinny Dennis':4.9, "Lucinda's":5, 'Desert 5 Spot':3.9, 'The Waylon':4.1, 'Common Country':4.6,
+  'Daisy Dukes Honky Tonk':3.6, 'The Drift':4, "Honky Tonkin' in Queens":4.4,
+  'Bleecker Bell':4.4, 'Mercury Lounge':3.5, 'Barbès':4.3, 'Berlin':3.2, 'Cafe Wha?':2, 'Rockwood Music Hall':0.5,
+  'Washington Square Park':4.2, 'Central Park — Literary Walk':4.6, 'The High Line':4.4, 'Union Sq station':4,
+  'Herald Sq / 34th St':3.8, 'Bedford Ave (L)':4.3, 'Grand Central':3.7,
+  'WFUV 90.7 — "NY Slice"':5, 'Brooklyn Folk Festival':4.9, 'Big City Folk':4.6, 'Porch Stomp':5,
+  'WFMU / Monty Hall':4.1, 'Pirate Studios — Bushwick':3.4, 'Pirate Studios — Gowanus':3.1,
+  'Funkadelic Studios':3, 'Rivington Music':3.2, 'White Eagle Hall':3.7,
+}
+const FIT_NOTE = {
+  'Jalopy Theatre':'Best first home base: roots crowd, open mic, school, and realistic bookings.',
+  "Lucinda's":'Best genre match: a current country room with songwriter and bluegrass nights.',
+  'Skinny Dennis':'Strong paying-circuit target once he has a tight set and a little local draw.',
+  "Pete's Candy Store":'Excellent repeat room: acoustic-friendly and known to turn open-mic regulars into bookings.',
+  "Sunny's Bar":'High-value community night: roots players, real relationships, low-pressure entry.',
+  'Porch Stomp':'Show up with the guitar and meet the folk community in one concentrated day.',
+  'WFUV 90.7 — "NY Slice"':'The clearest media target for his sound once the next single is ready.',
+  'Brooklyn Folk Festival':'Aspirational stage, but volunteering and jams make it a useful relationship target now.',
+  'Rockwood Music Hall':'Closed. Kept here only as an out-of-date warning.',
+  'Bleecker Bell':'Promising new folk room — confirm open before investing energy.',
+}
+P.forEach((p,i) => { p.fit = FIT[p.n] || 3.5; p._i = i })
+
+const STORAGE_KEY = 'robbie-scene-place-state-v1'
+let placeState = {}
+try { placeState = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}') || {} } catch (_) { placeState = {} }
+const placeMemory = (p) => placeState[p.n] || {}
+const saveMemory = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(placeState))
+const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]))
+
+/* ---------- map ---------- */
+const map = L.map('map', {zoomControl:false, attributionControl:true, minZoom:10, maxZoom:18})
+  .setView([40.725, -73.965], 12)
+L.control.zoom({position:'topright'}).addTo(map)
+L.control.attribution({prefix:false}).addAttribution('© OpenStreetMap · © CARTO')
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {subdomains:'abcd', maxZoom:19}).addTo(map)
+
+const BORO = {MAN:'Manhattan', BK:'Brooklyn', QNS:'Queens', BX:'The Bronx', SI:'Staten Island', JC:'Jersey City'}
+const gmap = (p) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.n + ' ' + (BORO[p.b]||'') + ' NYC')}`
+
+// build markers
+const layers = {}; ORDER.forEach(k => layers[k] = L.layerGroup().addTo(map))
+const markers = {}
+let selectedIndex = null
+
+function memoryLabel(p) {
+  const s = placeMemory(p), bits = []
+  if (s.priority) bits.push(`Priority: ${s.priority}`)
+  if (s.visited) bits.push('Been')
+  if (s.outcome) bits.push(s.outcome)
+  if (s.visitAt) bits.push('Reminder set')
+  if (s.notes) bits.push('Note saved')
+  return bits.join(' · ')
+}
+
+const CLUSTERS = {
+  all: () => true,
+  redhook: (p) => /Red Hook|Jalopy|Sunny/.test(p.area + p.n),
+  ev: (p) => /East Village|Lucinda|Mona|Berlin/.test(p.area + p.n),
+  williamsburg: (p) => /Williamsburg|Pete|Skinny|Desert|Bedford/.test(p.area + p.n),
+  closed: (p) => !!p.closed,
+}
+let sortMode = 'fit'
+let clusterMode = 'all'
+
+function popupHTML(p) {
+  const c = p.closed ? '#6a6358' : CATS[p.cat].color
+  const links = p.closed ? [] : [`<a class="map" href="${gmap(p)}" target="_blank" rel="noreferrer">Open in Maps</a>`]
+  if (!p.closed && p.url) {
+    const isMail = p.url.startsWith('mailto:')
+    links.push(`<a href="${esc(p.url)}" target="_blank" rel="noreferrer">${isMail ? 'Email' : 'Site'}</a>`)
+  }
+  if (!p.closed) links.push(`<button type="button" class="plan-place" data-place="${p._i}">Save a note</button>`)
+  const memory = memoryLabel(p)
+  const fitLabel = p.closed ? 'Skip — closed' : `${p.fit.toFixed(1)} / 5 · Jon's fit for you`
+  return `<div class="pop-cat" style="color:${c}"><span class="pc-dot" style="background:${c}"></span>${p.closed ? 'Closed / skip' : CATS[p.cat].label}</div>`
+    + `<div class="pop-name">${esc(p.n)}</div>`
+    + `<div class="pop-area">${esc(BORO[p.b]||'')}${p.area ? ' · ' + esc(p.area) : ''}</div>`
+    + `<div class="pop-fit"><strong>${p.closed ? '—' : p.fit.toFixed(1)}</strong><span>${esc(fitLabel + (FIT_NOTE[p.n] ? ' · ' + FIT_NOTE[p.n] : ''))}</span></div>`
+    + `<div class="pop-note">${esc(p.note)}</div>`
+    + (p.when ? `<div class="pop-when">${esc(p.when)}</div>` : '')
+    + (memory ? `<div class="pop-memory">${esc(memory)}</div>` : '')
+    + (links.length ? `<div class="pop-links">${links.join('')}</div>` : '')
+}
+
+function setMarkerState(i, mode) {
+  const p = P[i], m = markers[i]
+  if (!m) return
+  const active = mode === 'active', hover = mode === 'hover'
+  m.setRadius(active ? 11 : hover ? 9 : 7)
+  m.setStyle({
+    color:active ? '#f7efdd' : 'rgba(12,10,8,.85)',
+    weight:active ? 3 : 2,
+    fillColor:CATS[p.cat].color,
+    fillOpacity:1,
+  })
+  if (active || hover) m.bringToFront()
+}
+
+function selectPlace(p, fly) {
+  if (selectedIndex !== null && selectedIndex !== p._i) setMarkerState(selectedIndex, 'idle')
+  selectedIndex = p._i
+  setMarkerState(p._i, 'active')
+  document.querySelectorAll('.item').forEach(el => el.classList.toggle('active', Number(el.dataset.place) === p._i))
+  if (fly) map.flyTo([p.lat,p.lng],15,{duration:.6})
+  setTimeout(() => markers[p._i].openPopup(), fly ? 480 : 0)
+}
+
+P.forEach((p, i) => {
+  const c = p.closed ? '#5a5348' : CATS[p.cat].color
+  const m = L.circleMarker([p.lat, p.lng], {
+    radius: p.closed ? 5 : 7,
+    color: p.closed ? 'rgba(12,10,8,.5)' : 'rgba(12,10,8,.85)',
+    weight:2,
+    fillColor:c,
+    fillOpacity: p.closed ? 0.35 : 1,
+    className:'pin',
+  })
+  m.bindPopup(popupHTML(p), {maxWidth:270})
+  m.on('click', () => selectPlace(p, false))
+  m.on('mouseover', () => { if (selectedIndex !== p._i) setMarkerState(p._i, 'hover') })
+  m.on('mouseout', () => { if (selectedIndex !== p._i) setMarkerState(p._i, 'idle') })
+  if (!p.closed) m.addTo(layers[p.cat])
+  markers[i] = m
+})
+
+function nextScore(p) {
+  if (p.closed) return -100
+  const s = placeMemory(p)
+  let score = p.fit
+  if (s.priority === 'high') score += 3
+  else if (s.priority === 'maybe') score += 1.5
+  else if (s.priority === 'low') score -= 0.5
+  if (s.visited) score -= 2
+  if (s.outcome === 'later') score += 0.8
+  if (s.outcome === 'no') score -= 4
+  if (s.visitAt && new Date(s.visitAt) > new Date()) score += 1.2
+  return score
+}
+function placeSort(a, b) {
+  if (sortMode === 'next') return nextScore(b) - nextScore(a) || b.fit - a.fit || a.n.localeCompare(b.n)
+  return b.fit - a.fit || a.n.localeCompare(b.n)
+}
+function inCluster(p) {
+  const fn = CLUSTERS[clusterMode] || CLUSTERS.all
+  return fn(p)
+}
+function filteredPlaces(filter) {
+  const f = (filter || '').trim().toLowerCase()
+  return P.filter(p => {
+    if (!inCluster(p)) return false
+    if (clusterMode !== 'closed' && p.closed) return false
+    if (!f) return true
+    return p.n.toLowerCase().includes(f) || (p.area||'').toLowerCase().includes(f) || (BORO[p.b]||'').toLowerCase().includes(f)
+  }).sort(placeSort)
+}
+
+/* ---------- legend ---------- */
+const legend = document.getElementById('legend')
+const state = {} // cat -> visible bool
+ORDER.forEach(k => state[k] = true)
+
+function build(filter) {
+  legend.innerHTML = ''
+  const pool = filteredPlaces(filter)
+  const f = (filter || '').trim().toLowerCase()
+  const foot = document.getElementById('footLabel')
+  if (foot) foot.textContent = (sortMode === 'next' ? 'Maybe next · ' : 'Best fit · ') + 'Jul 2026'
+
+  function appendItems(sub, items) {
+    items.forEach(p => {
+      const it = document.createElement('div')
+      it.className = 'item' + (selectedIndex === p._i ? ' active' : '') + (p.closed ? ' closed' : '')
+      it.dataset.place = p._i
+      const mem = placeMemory(p)
+      const stateMark = mem.outcome ? mem.outcome.slice(0,3) : mem.visited ? 'been' : mem.priority ? mem.priority.slice(0,1) : ''
+      const score = p.closed ? '—' : p.fit.toFixed(1)
+      const dot = p.closed ? '#6a6358' : CATS[p.cat].color
+      it.innerHTML = `<span class="idot" style="background:${dot}"></span><span class="iname">${p.n}</span>${stateMark?`<span class="state">${stateMark}</span>`:''}<span class="score">${score}</span><span class="ib">${p.b}</span>`
+      it.addEventListener('click', () => {
+        if (!p.closed && !state[p.cat]) { state[p.cat]=true; map.addLayer(layers[p.cat]); build(document.getElementById('search').value) }
+        selectPlace(p, true)
+        if (window.matchMedia('(max-width:720px)').matches) closePanel()
+      })
+      it.addEventListener('mouseenter', () => { if (selectedIndex !== p._i) setMarkerState(p._i, 'hover') })
+      it.addEventListener('mouseleave', () => { if (selectedIndex !== p._i) setMarkerState(p._i, 'idle') })
+      sub.appendChild(it)
+    })
+  }
+
+  if (clusterMode === 'closed') {
+    const items = pool.filter(p => p.closed)
+    if (!items.length) return
+    const cat = document.createElement('div')
+    cat.className = 'cat open'
+    cat.innerHTML = `<div class="cat-head"><button type="button" class="row on" aria-expanded="true">
+        <span class="dot" style="background:#6a6358;color:#6a6358"></span>
+        <span class="lbl">Closed / skip</span>
+        <span class="cnt">${items.length}</span>
+        <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button><button type="button" class="visibility" aria-hidden="true" tabindex="-1" style="opacity:.3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+      <div class="sub"></div>`
+    appendItems(cat.querySelector('.sub'), items)
+    legend.appendChild(cat)
+    return
+  }
+
+  ORDER.forEach(k => {
+    const items = pool.filter(p => p.cat === k && !p.closed)
+    if (items.length === 0) return
+    const cat = document.createElement('div')
+    cat.className = 'cat' + (f || clusterMode !== 'all' || sortMode === 'next' ? ' open' : '')
+    const on = state[k]
+    cat.innerHTML =
+      `<div class="cat-head"><button type="button" class="row ${on?'on':'off'}" aria-expanded="${cat.classList.contains('open')}">
+        <span class="dot" style="background:${on?CATS[k].color:'transparent'};color:${CATS[k].color}"></span>
+        <span class="lbl">${CATS[k].label}</span>
+        <span class="cnt">${items.length}</span>
+        <span class="chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></span>
+      </button><button type="button" class="visibility ${on?'':'off'}" aria-label="${on?'Hide':'Show'} ${CATS[k].label}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
+      <div class="sub"></div>`
+    const row = cat.querySelector('.row')
+    const visibility = cat.querySelector('.visibility')
+    const sub = cat.querySelector('.sub')
+    row.addEventListener('click', () => {
+      cat.classList.toggle('open')
+      row.setAttribute('aria-expanded', cat.classList.contains('open'))
+    })
+    visibility.addEventListener('click', () => {
+      state[k] = !state[k]
+      if (state[k]) map.addLayer(layers[k]); else map.removeLayer(layers[k])
+      row.classList.toggle('on', state[k]); row.classList.toggle('off', !state[k])
+      row.querySelector('.dot').style.background = state[k] ? CATS[k].color : 'transparent'
+      visibility.classList.toggle('off', !state[k])
+      visibility.setAttribute('aria-label', `${state[k]?'Hide':'Show'} ${CATS[k].label}`)
+    })
+    appendItems(sub, items)
+    legend.appendChild(cat)
+  })
+}
+
+/* ---------- search + filters ---------- */
+const search = document.getElementById('search')
+const searchBox = document.getElementById('searchBox')
+const clr = document.getElementById('clr')
+build()
+search.addEventListener('input', () => {
+  searchBox.classList.toggle('has', !!search.value)
+  build(search.value)
+})
+clr.addEventListener('click', () => { search.value=''; searchBox.classList.remove('has'); build(); search.focus() })
+document.getElementById('sortRow').addEventListener('click', e => {
+  const btn = e.target.closest('[data-sort]')
+  if (!btn) return
+  sortMode = btn.dataset.sort
+  document.querySelectorAll('#sortRow .chip').forEach(c => c.classList.toggle('on', c === btn))
+  build(search.value)
+})
+document.getElementById('clusterRow').addEventListener('click', e => {
+  const btn = e.target.closest('[data-cluster]')
+  if (!btn) return
+  clusterMode = btn.dataset.cluster
+  document.querySelectorAll('#clusterRow .chip').forEach(c => c.classList.toggle('on', c === btn))
+  P.forEach(p => {
+    if (!p.closed) return
+    const m = markers[p._i]
+    if (clusterMode === 'closed') { if (!map.hasLayer(m)) m.addTo(map) }
+    else if (map.hasLayer(m)) map.removeLayer(m)
+  })
+  build(search.value)
+})
+
+/* ---------- planner + calendar ---------- */
+const actionScrim = document.getElementById('actionScrim')
+const placeActions = document.getElementById('placeActions')
+const exportActions = document.getElementById('exportActions')
+const actionTitle = document.getElementById('actionTitle')
+const actionEyebrow = document.getElementById('actionEyebrow')
+const priorityButtons = [...document.querySelectorAll('#priorityButtons button')]
+const visited = document.getElementById('visited')
+const outcome = document.getElementById('outcome')
+const visitAt = document.getElementById('visitAt')
+const placeNotes = document.getElementById('placeNotes')
+const actionMaps = document.getElementById('actionMaps')
+let activePlace = null
+let pendingPriority = ''
+
+function openAction(mode, p) {
+  actionScrim.classList.add('open')
+  actionScrim.setAttribute('aria-hidden','false')
+  document.body.style.overflow = 'hidden'
+  placeActions.classList.toggle('hidden', mode !== 'place')
+  exportActions.classList.toggle('hidden', mode !== 'export')
+  if (mode === 'place') {
+    activePlace = p
+    const s = placeMemory(p)
+    actionEyebrow.textContent = p.closed ? 'Closed / skip' : `${p.fit.toFixed(1)} / 5 · Jon's fit for you`
+    actionTitle.textContent = p.n
+    pendingPriority = s.priority || ''
+    priorityButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.priority === pendingPriority))
+    visited.checked = !!s.visited
+    outcome.value = s.outcome || ''
+    visitAt.value = s.visitAt || ''
+    placeNotes.value = s.notes || ''
+    actionMaps.href = gmap(p)
+    visitAt.required = false
+  } else {
+    activePlace = null
+    actionEyebrow.textContent = 'Optional calendar'
+    actionTitle.textContent = 'Soft scouting list'
+    visitAt.required = false
+    populateExportScopes()
+  }
+  setTimeout(() => document.getElementById('actionClose').focus(), 0)
+}
+
+function closeAction() {
+  actionScrim.classList.remove('open')
+  actionScrim.setAttribute('aria-hidden','true')
+  document.body.style.overflow = ''
+}
+
+function persistActive() {
+  if (!activePlace) return
+  placeState[activePlace.n] = {
+    priority:pendingPriority,
+    visited:visited.checked,
+    outcome:outcome.value || '',
+    visitAt:visitAt.value,
+    notes:placeNotes.value.trim(),
+  }
+  saveMemory()
+  markers[activePlace._i].setPopupContent(popupHTML(activePlace))
+  build(search.value)
+}
+
+function calendarStamp(date) {
+  return date.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}Z$/,'Z')
+}
+function icsEscape(v) {
+  return String(v).replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;')
+}
+const calendarHref = (body) => `data:text/calendar;charset=utf-8,${encodeURIComponent(body)}`
+function requireVisitDate() {
+  if (visitAt.value) return true
+  visitAt.focus(); visitAt.reportValidity(); return false
+}
+function timedEvent(p) {
+  const start = new Date(visitAt.value), end = new Date(start.getTime() + 90*60*1000)
+  const details = [p.when, p.note, placeNotes.value.trim(), gmap(p)].filter(Boolean).join('\n\n')
+  return {start,end,title:`Scout: ${p.n}`,details,location:`${p.n}, ${BORO[p.b] || 'NYC'}`}
+}
+function googleTimed(p) {
+  if (!requireVisitDate()) return
+  persistActive()
+  const e = timedEvent(p)
+  const qs = new URLSearchParams({action:'TEMPLATE',text:e.title,dates:`${calendarStamp(e.start)}/${calendarStamp(e.end)}`,details:e.details,location:e.location})
+  window.open(`https://calendar.google.com/calendar/render?${qs}`, '_blank', 'noopener')
+}
+function icalTimed(p, link, clickEvent) {
+  if (!requireVisitDate()) { clickEvent.preventDefault(); return }
+  persistActive()
+  const e = timedEvent(p), now = calendarStamp(new Date())
+  link.download = `robbie-${p.n.toLowerCase().replace(/[^a-z0-9]+/g,'-')}.ics`
+  link.href = calendarHref(`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Robbie Scene//EN\r\nBEGIN:VEVENT\r\nUID:${Date.now()}@robbie-scene\r\nDTSTAMP:${now}\r\nDTSTART:${calendarStamp(e.start)}\r\nDTEND:${calendarStamp(e.end)}\r\nSUMMARY:${icsEscape(e.title)}\r\nLOCATION:${icsEscape(e.location)}\r\nDESCRIPTION:${icsEscape(e.details)}\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n`)
+}
+
+function populateExportScopes() {
+  const select = document.getElementById('exportScope')
+  if (select.options.length) return
+  select.add(new Option(`All ${P.length} places`, 'all'))
+  ORDER.forEach(k => select.add(new Option(`${CATS[k].label} (${P.filter(p=>p.cat===k).length})`, k)))
+}
+function exportPlaces() {
+  const scope = document.getElementById('exportScope').value
+  return P.filter(p => !p.closed && (scope === 'all' || p.cat === scope)).sort(placeSort)
+}
+function listText() {
+  return filteredPlaces(search.value).filter(p => !p.closed || clusterMode === 'closed').map((p,i) => {
+    const mem = placeMemory(p)
+    const bits = [`${i+1}. ${p.n}`, p.closed ? 'CLOSED' : `${p.fit.toFixed(1)}/5`, p.when || '', mem.priority ? `priority:${mem.priority}` : '', mem.outcome || '', gmap(p)]
+    return bits.filter(Boolean).join(' — ')
+  }).join('\n')
+}
+document.getElementById('copyListBtn').addEventListener('click', async () => {
+  const text = listText() || 'Nothing in this filter yet.'
+  try {
+    await navigator.clipboard.writeText(text)
+    const btn = document.getElementById('copyListBtn')
+    const prev = btn.textContent
+    btn.textContent = 'Copied'
+    setTimeout(() => { btn.textContent = prev }, 1400)
+  } catch (_) {
+    window.prompt('Copy this list:', text)
+  }
+})
+function requireExportDate() {
+  const input = document.getElementById('exportDate')
+  input.required = true
+  if (input.value) return input.value
+  input.focus(); input.reportValidity(); return ''
+}
+function nextDay(dateValue) {
+  const d = new Date(`${dateValue}T12:00:00`); d.setDate(d.getDate()+1)
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`
+}
+function groupEvent() {
+  const date = requireExportDate(); if (!date) return null
+  const items = exportPlaces(), scope = document.getElementById('exportScope').value
+  const label = scope === 'all' ? 'Full scene' : CATS[scope].label
+  const details = items.map((p,i)=>`${i+1}. ${p.n} — ${p.fit.toFixed(1)}/5\n${gmap(p)}`).join('\n\n')
+  return {date,end:nextDay(date),title:`Robbie scene scout: ${label}`,details}
+}
+function googleGroup() {
+  const e = groupEvent(); if (!e) return
+  const dates = `${e.date.replace(/-/g,'')}/${e.end.replace(/-/g,'')}`
+  const qs = new URLSearchParams({action:'TEMPLATE',text:e.title,dates,details:e.details,location:'New York City'})
+  window.open(`https://calendar.google.com/calendar/render?${qs}`, '_blank', 'noopener')
+}
+function icalGroup(link, clickEvent) {
+  const e = groupEvent(); if (!e) { clickEvent.preventDefault(); return }
+  link.href = calendarHref(`BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//Robbie Scene//EN\r\nBEGIN:VEVENT\r\nUID:${Date.now()}@robbie-scene\r\nDTSTAMP:${calendarStamp(new Date())}\r\nDTSTART;VALUE=DATE:${e.date.replace(/-/g,'')}\r\nDTEND;VALUE=DATE:${e.end.replace(/-/g,'')}\r\nSUMMARY:${icsEscape(e.title)}\r\nLOCATION:New York City\r\nDESCRIPTION:${icsEscape(e.details)}\r\nEND:VEVENT\r\nEND:VCALENDAR\r\n`)
+}
+
+priorityButtons.forEach(btn => btn.addEventListener('click', () => {
+  pendingPriority = pendingPriority === btn.dataset.priority ? '' : btn.dataset.priority
+  priorityButtons.forEach(other => other.classList.toggle('active', other.dataset.priority === pendingPriority))
+}))
+document.getElementById('savePlace').addEventListener('click', () => { persistActive(); closeAction() })
+document.getElementById('googleOne').addEventListener('click', () => {
+  if (!activePlace) return
+  if (!visitAt.value) { visitAt.focus(); visitAt.reportValidity(); return }
+  googleTimed(activePlace)
+})
+document.getElementById('icalOne').addEventListener('click', e => {
+  if (!activePlace) { e.preventDefault(); return }
+  if (!visitAt.value) { e.preventDefault(); visitAt.focus(); visitAt.reportValidity(); return }
+  icalTimed(activePlace, e.currentTarget, e)
+})
+document.getElementById('googleGroup').addEventListener('click', googleGroup)
+document.getElementById('icalGroup').addEventListener('click', e => icalGroup(e.currentTarget, e))
+document.getElementById('exportBtn').addEventListener('click', () => openAction('export'))
+document.getElementById('actionClose').addEventListener('click', closeAction)
+actionScrim.addEventListener('click', e => { if (e.target === actionScrim) closeAction() })
+document.getElementById('map').addEventListener('click', e => {
+  const btn = e.target.closest('.plan-place')
+  if (btn) openAction('place', P[Number(btn.dataset.place)])
+})
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && actionScrim.classList.contains('open')) closeAction() })
+
+/* ---------- mobile places sheet ---------- */
+const app = document.getElementById('app')
+const panel = document.getElementById('panel')
+function syncMapSize(){ setTimeout(() => map.invalidateSize({pan:false}), 340) }
+function openPanel(){ panel.classList.add('open'); app.classList.add('sheet-open'); syncMapSize() }
+function closePanel(){ panel.classList.remove('open'); app.classList.remove('sheet-open'); syncMapSize() }
+document.getElementById('placesBtn').addEventListener('click', () => panel.classList.contains('open') ? closePanel() : openPanel())
+document.getElementById('closeX').addEventListener('click', closePanel)
+</script>
+<script src="../tools/chrome.js" defer></script>
+</body>
+</html>

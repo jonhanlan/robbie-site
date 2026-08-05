@@ -1,31 +1,34 @@
 {
-  "name": "Robbie Lune",
-  "wordmarkText": "Robbie Lune",
-  "tagline": "Intimate folk-pop songs for quiet rooms and long drives.",
+  "name": "Robbie Donaldson",
+  "wordmarkText": "Robbie Donaldson",
+  "tagline": "True stories, three chords, New York City.",
+  "location": "New York City",
   "canonicalUrl": "https://example.com",
-  "bookingEmail": "booking@robbielune.com",
-  "newsletterUrl": "https://example.com/newsletter",
+  "bookingEmail": "booking@robbiedonaldson.com",
+  "newsletterUrl": "",
   "socials": {
-    "instagram": "https://instagram.com/robbielune",
-    "tiktok": "https://tiktok.com/@robbielune",
-    "youtube": "https://youtube.com/@robbielune",
+    "instagram": "https://instagram.com/robbiedonaldson",
+    "tiktok": "https://tiktok.com/@robbiedonaldson",
+    "youtube": "https://youtube.com/@robbiedonaldson",
     "spotify": "https://open.spotify.com",
     "appleMusic": "https://music.apple.com",
-    "bandcamp": "https://robbielune.bandcamp.com"
+    "bandcamp": "https://robbiedonaldson.bandcamp.com"
   },
   "bio": [
-    "Robbie Lune writes soft-edged folk-pop songs that sit between diary entries and late-night road playlists. Her voice stays close and conversational, while layered guitars and tape-like textures keep the production warm.",
-    "Raised between small-town community halls and city rehearsal spaces, Robbie built her live set to feel personal no matter the room size. Acoustic intimacy is always the anchor, even when the arrangements open up.",
-    "The current chapter focuses on stripped-back live sessions, a run of regional headline dates, and a new EP built around stories of home, distance, and return."
+    "Robbie Donaldson writes country folk the old way: true stories, three chords, and whatever the room gives back. The songs sit somewhere between a letter home and a last call.",
+    "He grew up on classic country records and learned early that a song only counts if it holds up in a quiet room with one guitar. No tricks, no backing tracks. Just the song.",
+    "In 2026 he packed everything into a couple of cases and moved to New York City. These days you'll find him in small rooms and on street corners across the five boroughs, playing for anyone who slows down long enough to listen, and putting together his first EP."
   ],
-  "pressQuotes": [
-    {
-      "quote": "A voice that feels handwritten.",
-      "source": "Northern Sessions"
-    },
-    {
-      "quote": "Warm, cinematic folk-pop with real emotional detail.",
-      "source": "Paper Lantern"
-    }
+  "pressQuotes": [],
+  "bookingFacts": [
+    "Solo acoustic act: guitar, harmonica and a long memory for requests",
+    "Sets from 45 minutes to three hours",
+    "Originals plus a deep book of classic country covers",
+    "Based in Brooklyn, travels anywhere the songs are wanted"
+  ],
+  "pressPhotos": [
+    "/images/profile.jpg",
+    "/images/profile-2.jpg",
+    "/images/profile-3.jpg"
   ]
 }

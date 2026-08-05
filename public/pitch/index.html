@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Release ideas · Robbie tools</title>
+<meta name="description" content="Jon's coming to New York. A photoshoot, the single's artwork, a music video shot around the city, the release look, and merch people keep. Two artists, one world.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,500..600;1,9..144,500..600&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../tools/shell.css">
+<link rel="stylesheet" href="../tools/chrome.css">
+<style>
+  :root{--maxw:680px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  a{color:var(--accent)}
+  main{max-width:var(--maxw);margin:0 auto;padding:0 1.2rem}
+  h1,h2,h3{font-family:var(--disp);font-weight:800;letter-spacing:-.03em;line-height:.9;text-wrap:balance}
+
+  .kick{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:.55rem}
+  .kick .dot{width:.5rem;height:.5rem;border-radius:999px;background:var(--accent)}
+
+  .cover{padding:3.2rem 0 1.6rem;border-bottom:2px solid var(--line2)}
+  .cover h1{font-size:clamp(2.6rem,11vw,4.4rem);text-transform:uppercase;margin-top:1rem;line-height:.86}
+  .cover h1 em{font-family:var(--serif);font-style:italic;font-weight:600;text-transform:none;color:var(--accent)}
+  .cover .lede{margin-top:1.1rem;font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--fg);line-height:1.4;max-width:30ch}
+  .from{margin-top:1.3rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;color:var(--faint)}
+  .from b{color:var(--accent)}
+
+  .intro{padding:2rem 0 .5rem;font-size:1.08rem;color:#e2d8c6}
+  .intro p{margin:.8rem 0}
+  .intro strong{color:var(--fg)}
+
+  /* numbered blocks */
+  .block{padding:2rem 0 .4rem;border-top:1px solid var(--line2)}
+  .block-h{display:flex;gap:.9rem;align-items:baseline;margin-bottom:.85rem}
+  .block-h .no{font-family:var(--mono);font-size:.85rem;color:var(--accent);flex:none}
+  .block-h h2{font-size:clamp(1.7rem,6vw,2.4rem);text-transform:uppercase}
+  .block-h h2 em{font-family:var(--serif);font-style:italic;font-weight:600;text-transform:none;color:var(--accent)}
+  .block .one{font-family:var(--disp);font-weight:700;font-size:1.15rem;color:var(--fg);margin:0 0 .8rem}
+  .block p{color:#d9cfbe;margin:.6rem 0}
+  .block ul{list-style:none;margin:.6rem 0}
+  .block li{position:relative;padding-left:1.3rem;margin:.4rem 0;color:#d9cfbe}
+  .block li::before{content:'';position:absolute;left:.1rem;top:.62em;width:.4rem;height:.4rem;background:var(--accent);border-radius:999px;opacity:.8}
+
+  /* SOFT callout (the alt style — no hard shadow, full tint, mono kicker) */
+  .note{margin:1.2rem 0;border:1px solid rgba(239,127,54,.32);background:linear-gradient(180deg,rgba(239,127,54,.09),rgba(239,127,54,.03));border-radius:14px;padding:1.1rem 1.15rem}
+  .note .nk{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.45rem}
+  .note p{margin:.3rem 0;color:#e6dcc9;font-size:.95rem}
+  .note .big{font-family:var(--disp);font-weight:800;color:var(--accent);font-size:1.6rem;line-height:1;font-variant-numeric:tabular-nums}
+
+  .we{display:grid;gap:.7rem;grid-template-columns:1fr 1fr;margin:1rem 0}
+  @media(max-width:480px){.we{grid-template-columns:1fr}}
+  .we div{border:1px solid var(--line2);border-radius:12px;padding:.9rem 1rem;background:linear-gradient(180deg,var(--card2),var(--card))}
+  .we .w{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:.3rem}
+  .we .n{font-family:var(--disp);font-weight:700;font-size:1.05rem}
+  .we p{font-size:.86rem;color:var(--muted);margin-top:.25rem}
+
+  .next{margin:2rem 0 0;border-top:2px solid var(--line2);padding-top:1.6rem}
+  .next .kick{margin-bottom:1.15rem}
+  .next ol{list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:.55rem}
+  .next li{counter-increment:s;position:relative;padding-left:2.3rem;color:#e2d8c6}
+  .next li::before{content:counter(s);position:absolute;left:0;top:0;width:1.5rem;height:1.5rem;background:var(--accent);color:#1a0f06;font-family:var(--mono);font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center;border-radius:4px}
+  .next b{font-family:var(--disp);font-weight:700;color:var(--fg)}
+
+  footer{max-width:var(--maxw);margin:2rem auto 0;padding:1.8rem 1.2rem 0;border-top:1px solid var(--line2);position:relative;z-index:1}
+  footer .sign{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--fg)}
+  footer p{color:var(--muted);font-size:.85rem;margin-top:.5rem}
+
+  .rv{opacity:0;transform:translateY(14px);transition:opacity .6s var(--spring),transform .6s var(--spring)}
+  .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body class="tk-shell">
+<main>
+  <div class="cover rv">
+    <div class="kick"><span class="dot"></span> Optional · artist to artist</div>
+    <h1>Robbie —<br>let's make it <em>look</em> as good as it sounds</h1>
+    <p class="lede">If a song ever wants a full world, I&rsquo;d love to help. No clock.</p>
+    <p class="from">FROM <b>JON</b> · painter / director · makes people <em>see</em> the song</p>
+  </div>
+
+  <div class="intro rv">
+    <p>Songs are the hard part — yours hold up. The picture around them is what stops the scroll. That&rsquo;s my half <em>if you want it</em>: one single, photos, cover, video, keepable object.</p>
+    <p>One trip when it suits us. Yes, later, or never — all fine.</p>
+  </div>
+
+  <!-- 1 -->
+  <div class="block rv">
+    <div class="block-h"><span class="no">01</span><h2>The <em>photoshoot</em></h2></div>
+    <div class="one">A day around the city, shot on film.</div>
+    <p>We spend a day hitting the real New York — your busking corners, a rooftop, a 2am subway platform, a greasy-spoon window. I shoot it warm and grainy, the way the record sounds.</p>
+    <p>You walk away with a set of press shots that make you look like the artist you are, plus the cover frame for the single.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="block rv">
+    <div class="block-h"><span class="no">02</span><h2>The <em>artwork</em></h2></div>
+    <div class="one">A hand-made cover. Not a template.</div>
+    <p>I paint / design the single's cover myself — a piece that could hang on a wall, not a filter on a photo. That's the image that follows the song everywhere: streaming, the poster, the merch, the shirt.</p>
+  </div>
+
+  <!-- 3 -->
+  <div class="block rv">
+    <div class="block-h"><span class="no">03</span><h2>The <em>music video</em></h2></div>
+    <div class="one">I direct it, shoot it, and cut it. Around NYC.</div>
+    <p>This is the big one. A real video for the single — I handle it end to end so it costs you nothing but a few days and your face.</p>
+    <ul>
+      <li>The city as the lonesome character: ferries, fire escapes, empty diners, the last train.</li>
+      <li>One long performance take woven through the locations — you and the guitar, no lip-sync gloss.</li>
+      <li>Shot run-and-gun and analog, so it looks handmade and expensive at the same time.</li>
+    </ul>
+    <div class="note">
+      <div class="nk">/ why it matters</div>
+      <p>A single with a real video is the difference between "a guy posted a song" and "there's an artist in New York you need to hear." It's the one asset that works on every platform at once — and it doubles as a month of short-form clips.</p>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="block rv">
+    <div class="block-h"><span class="no">04</span><h2>The <em>release look</em></h2></div>
+    <div class="one">One world — the site, the type, the colour, all of it.</div>
+    <p>I build the whole visual identity around the record so it feels like one thing: the website, the cover, the video, the posters, the socials all speak the same language. You already have the start of it — I take it the rest of the way for the release.</p>
+  </div>
+
+  <!-- 5 -->
+  <div class="block rv">
+    <div class="block-h"><span class="no">05</span><h2>The <em>wow object</em></h2></div>
+    <div class="one">Something people keep — not a throwaway card. NFC picks are cool but pricey at scale; we pick one hero later.</div>
+    <p>Ideas on the table (mix and match when we&rsquo;re ready — none of this is locked):</p>
+    <ul>
+      <li><strong>Printed lyric / photo card</strong> — thick stock, your cover on the front, QR to the song on the back. Cheap, beautiful, pocketable.</li>
+      <li><strong>Playable pick with art</strong> — real pick, name + QR on a tiny sleeve or stamped case. Feels like a gift, not promo.</li>
+      <li><strong>3D-printed object</strong> — once Jon&rsquo;s printer is up: a small guitar-head silhouette, mini amp, or token with your mark; matte black / bone, QR card tucked under. Handmade, limited, not mass-NFC.</li>
+      <li><strong>Case-lid storefront</strong> — one laminated board for the street: big QR (listen), Venmo, &ldquo;playing here a while.&rdquo; The object can be the whole pitch, not only the handout.</li>
+      <li><strong>Optional NFC later</strong> — stick a cheap chip on the best object only if it still feels magic after the art is right. Not the default, not a hundred of them on day one.</li>
+    </ul>
+    <div class="note">
+      <div class="nk">/ the point</div>
+      <p>Strangers should leave with <strong>something they don&rsquo;t trash</strong> and a way back to the song. Form follows that — pick, card, print, token — we choose after we see the single&rsquo;s face.</p>
+    </div>
+  </div>
+
+  <div class="block rv">
+    <div class="block-h"><span class="no">—</span><h2>What &ldquo;done&rdquo; <em>looks</em> like</h2></div>
+    <div class="one">A clear picture so yes is easy — no ownership paperwork needed yet.</div>
+    <ul>
+      <li>A set of warm press stills from the day (roughly a dozen keepers)</li>
+      <li>One hand-made cover that follows the song everywhere</li>
+      <li>One full music video + a handful of vertical cuts for short-form</li>
+      <li>Site / type / colour speaking the same language as the record</li>
+      <li>One small keepable object people actually pocket (quantity TBD, not a hundred NFC picks)</li>
+    </ul>
+  </div>
+
+  <!-- what we each bring -->
+  <div class="block rv">
+    <div class="block-h"><span class="no">—</span><h2>Two artists, <em>one world</em></h2></div>
+    <div class="we">
+      <div><div class="w">You bring</div><div class="n">The songs + the room</div><p>The writing, the voice, the corners, the crowd. The truth of it.</p></div>
+      <div><div class="w">I bring</div><div class="n">The eye + the hands</div><p>Photos, cover, video, the whole look — and I make people see it.</p></div>
+    </div>
+    <p>No invoice between us — this is a collab, not a commission. We split nothing but the win: you get an artist-grade single rollout, I get to make something real in a city I love shooting.</p>
+  </div>
+
+  <!-- next -->
+  <div class="next rv">
+    <div class="kick"><span class="dot"></span> If it ever feels right</div>
+    <ol>
+      <li><b>Name a song</b> when one of them feels like &ldquo;the one&rdquo; — a rough take is plenty. Or wait. Both fine.</li>
+      <li><b>Suggest a window</b> when you&rsquo;re around and rested. I&rsquo;ll work around your gigs, not the other way round.</li>
+      <li><b>I show up with the camera</b> for a couple of easy days, then I cut while you keep playing. No pressure to perform a campaign — just make the thing beautiful.</li>
+    </ol>
+  </div>
+</main>
+
+<footer class="rv">
+  <p class="sign">Whenever you&rsquo;re ready — or not. The songs already work.</p>
+  <p>— Jon</p>
+</footer>
+
+<script>
+  var rv=document.querySelectorAll('.rv');
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){rv.forEach(function(e){e.classList.add('in')});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:0.05});rv.forEach(function(e){io.observe(e)});}
+</script>
+<script src="../tools/chrome.js" defer></script>
+</body>
+</html>
