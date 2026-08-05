@@ -1,0 +1,76 @@
+{
+  "scrollDemoTravel": {
+    "version": 1,
+    "route": "/scroll-demo",
+    "component": "TravelScrub",
+    "objectId": "travel",
+    "storageKey": "scroll-demo-travel",
+    "title": "Scrub this shape through the screen",
+    "track": [
+      {
+        "id": "dot",
+        "state": "a",
+        "label": "Dot",
+        "shape": {
+          "kind": "circle",
+          "radius": 90
+        }
+      },
+      {
+        "id": "blob",
+        "state": "b",
+        "label": "Blob",
+        "shape": {
+          "kind": "circle",
+          "radius": 350
+        }
+      },
+      {
+        "id": "spikes",
+        "state": "c",
+        "label": "Spikes",
+        "shape": {
+          "kind": "star",
+          "outerRadius": 380,
+          "innerRadius": 110,
+          "points": 11
+        }
+      }
+    ],
+    "scrub": {
+      "source": "element",
+      "easing": "smoothstep",
+      "smoothing": 0.18
+    },
+    "fill": {
+      "from": "#a855f7",
+      "to": "#22d3ee"
+    },
+    "viewBox": [
+      720,
+      960
+    ],
+    "geometry": {
+      "center": [
+        360,
+        480
+      ],
+      "pointDecimals": 3
+    },
+    "layer": {
+      "id": "travel-mask",
+      "name": "Scroll demo element-travel mask",
+      "resolution": 72,
+      "smoothing": 0.58
+    },
+    "motion": {
+      "reducedMotion": "first-frame"
+    },
+    "settings": {
+      "boil": "active-only"
+    },
+    "meta": {
+      "parityTarget": "Replace the element-position TravelScrub block on /scroll-demo with an authored runtime export."
+    }
+  }
+}

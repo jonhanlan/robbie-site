@@ -1,0 +1,123 @@
+{
+  "scrollDemoCombined": {
+    "version": 0,
+    "route": "/scroll-demo",
+    "component": "PinnedRaw",
+    "objectId": "combined",
+    "storageKey": "scroll-demo-combined",
+    "title": "Scroll demo combined layered controller",
+    "sourceIds": {
+      "startId": "combo-start",
+      "endId": "combo-end"
+    },
+    "track": [
+      {
+        "id": "blob",
+        "state": "a",
+        "label": "Blob",
+        "shape": {
+          "kind": "circle",
+          "radius": 340
+        }
+      },
+      {
+        "id": "pillar",
+        "state": "b",
+        "label": "Pillar",
+        "shape": {
+          "kind": "ellipse",
+          "rx": 145,
+          "ry": 455
+        }
+      }
+    ],
+    "overlays": [
+      {
+        "id": "hover-spikes",
+        "state": "hov",
+        "label": "Hover Spikes",
+        "from": "*",
+        "to": "hov",
+        "trigger": "hover-on",
+        "easing": "easeOutExpo",
+        "durationMs": 380,
+        "style": "smooth",
+        "shape": {
+          "kind": "star",
+          "outerRadius": 380,
+          "innerRadius": 112,
+          "points": 11
+        }
+      },
+      {
+        "id": "click-wide",
+        "state": "clk",
+        "label": "Click Wide",
+        "from": "*",
+        "to": "clk",
+        "trigger": "click",
+        "easing": "easeOutBack",
+        "durationMs": 520,
+        "holdMs": 80,
+        "style": "smooth",
+        "shape": {
+          "kind": "ellipse",
+          "rx": 460,
+          "ry": 164
+        }
+      }
+    ],
+    "scrub": {
+      "source": "section",
+      "easing": "smoothstep",
+      "smoothing": 0.18
+    },
+    "fill": {
+      "from": "#a855f7",
+      "to": "#22d3ee"
+    },
+    "viewBox": [
+      720,
+      960
+    ],
+    "geometry": {
+      "center": [
+        360,
+        480
+      ],
+      "pointDecimals": 3
+    },
+    "layer": {
+      "id": "combined-shape",
+      "name": "Combined layered scrub shape",
+      "resolution": 72,
+      "smoothing": 0.5
+    },
+    "motion": {
+      "reducedMotion": "first-frame"
+    },
+    "settings": {
+      "boil": "active-only"
+    },
+    "render": {
+      "edge": {
+        "edgeWeight": 0.18,
+        "wobble": 0.22,
+        "breakup": 0.45,
+        "grain": 0.4,
+        "boilAmount": 1
+      },
+      "shade": {
+        "shadowIntensity": 0.34,
+        "highlightIntensity": 0.14,
+        "markStyle": "halftone",
+        "contourAlign": 0.78,
+        "textureScale": 0.95,
+        "fieldSoftness": 0.8
+      }
+    },
+    "meta": {
+      "parityTarget": "jonhanlan /scroll-demo combined morph-machine"
+    }
+  }
+}

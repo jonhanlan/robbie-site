@@ -1,0 +1,788 @@
+{
+  "schema": "morph-runtime-export-manifest/v0",
+  "version": 0,
+  "generatedAt": "2026-06-29T00:00:00.000Z",
+  "defaultStorageKey": "signature",
+  "entries": [
+    {
+      "storageKey": "procedural-scene",
+      "path": "packages/morph/exports/runtime/procedural-scene.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "procedural-scene",
+      "sceneKind": "animate",
+      "title": "Procedural scene specimen",
+      "tags": [
+        "morph-lab",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg-cache",
+      "quality": "high",
+      "byteLength": 23285,
+      "generatedIds": [
+        "runtime-compile",
+        "field-cache"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "svg-cache",
+        "procedural-marks",
+        "field-cache"
+      ],
+      "controllers": [
+        "hover:trigger"
+      ],
+      "fieldCacheLayerCount": 3,
+      "cachedProgresses": [
+        0,
+        0.5,
+        1
+      ]
+    },
+    {
+      "storageKey": "signature",
+      "path": "packages/morph/exports/runtime/signature.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "signature",
+      "sceneKind": "sign",
+      "title": "Jon Hanlan signature",
+      "tags": [
+        "morph-lab",
+        "signature",
+        "pressure-ribbon",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 24709,
+      "generatedIds": [
+        "signature-ribbon-adapter",
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "pointer-press",
+        "focus",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger",
+        "press:trigger",
+        "focus:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": [],
+      "default": true
+    },
+    {
+      "storageKey": "scroll-demo-hero",
+      "path": "packages/morph/exports/runtime/scroll-demo-hero.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "scroll-demo-hero",
+      "sceneKind": "animate",
+      "title": "Scrub pinned to this section",
+      "tags": [
+        "morph-lab",
+        "scroll-demo",
+        "scroll-scrub",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 24562,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "scroll-scrub",
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        "scroll-progress:slider"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "scroll-demo-page",
+      "path": "packages/morph/exports/runtime/scroll-demo-page.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "scroll-demo-page",
+      "sceneKind": "animate",
+      "title": "Scrub whole-page progress",
+      "tags": [
+        "morph-lab",
+        "scroll-demo",
+        "scroll-scrub",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 7870,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "scroll-scrub",
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        "scroll-progress:slider"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "scroll-demo-travel",
+      "path": "packages/morph/exports/runtime/scroll-demo-travel.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "scroll-demo-travel",
+      "sceneKind": "animate",
+      "title": "Scrub this shape through the screen",
+      "tags": [
+        "morph-lab",
+        "scroll-demo",
+        "scroll-scrub",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 12827,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "scroll-scrub",
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        "scroll-progress:slider"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "scroll-demo-cue-in-view",
+      "path": "packages/morph/exports/runtime/scroll-demo-cue-in-view.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "scroll-demo-cue-in-view",
+      "sceneKind": "animate",
+      "title": "Cue scrolls into view",
+      "tags": [
+        "morph-lab",
+        "scroll-demo",
+        "scroll-cue",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 10966,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        "in-view:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "scroll-demo-scroll-past",
+      "path": "packages/morph/exports/runtime/scroll-demo-scroll-past.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "scroll-demo-scroll-past",
+      "sceneKind": "animate",
+      "title": "Cue scroll passes a height",
+      "tags": [
+        "morph-lab",
+        "scroll-demo",
+        "scroll-cue",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 14145,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        "scroll-past:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "scroll-demo-combined",
+      "path": "packages/morph/exports/runtime/scroll-demo-combined.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "scroll-demo-combined",
+      "sceneKind": "animate",
+      "title": "Scroll demo combined layered controller",
+      "tags": [
+        "morph-lab",
+        "scroll-demo",
+        "scroll-scrub",
+        "layered-gesture",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 15521,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "scroll-scrub",
+        "additive-overlays",
+        "pointer-hover",
+        "pointer-press",
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        "scroll-progress:slider",
+        "hover:trigger",
+        "click:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "scratch-ornament",
+      "path": "packages/morph/exports/runtime/scratch-ornament.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "scratch-ornament",
+      "sceneKind": "animate",
+      "title": "Scratch ornament specimen",
+      "tags": [
+        "morph-lab",
+        "scratch",
+        "ornament",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 4014,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "stipple-ornament",
+      "path": "packages/morph/exports/runtime/stipple-ornament.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "stipple-ornament",
+      "sceneKind": "animate",
+      "title": "Stipple ornament specimen",
+      "tags": [
+        "morph-lab",
+        "stipple",
+        "ornament",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 3986,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "flow-ornament",
+      "path": "packages/morph/exports/runtime/flow-ornament.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "flow-ornament",
+      "sceneKind": "animate",
+      "title": "Flow ornament specimen",
+      "tags": [
+        "morph-lab",
+        "flow",
+        "ornament",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 3956,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "grain-ornament",
+      "path": "packages/morph/exports/runtime/grain-ornament.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "grain-ornament",
+      "sceneKind": "animate",
+      "title": "Grain ornament specimen",
+      "tags": [
+        "morph-lab",
+        "grain",
+        "ornament",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 3974,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "dry-ornament",
+      "path": "packages/morph/exports/runtime/dry-ornament.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "dry-ornament",
+      "sceneKind": "animate",
+      "title": "Dry ornament specimen",
+      "tags": [
+        "morph-lab",
+        "dry",
+        "ornament",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 3968,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "mark-set-ornament",
+      "path": "packages/morph/exports/runtime/mark-set-ornament.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "mark-set-ornament",
+      "sceneKind": "animate",
+      "title": "Mark set ornament specimen",
+      "tags": [
+        "morph-lab",
+        "mark-set",
+        "ornament",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 4132,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "relit-mark-set-ornament",
+      "path": "packages/morph/exports/runtime/relit-mark-set-ornament.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "relit-mark-set-ornament",
+      "sceneKind": "animate",
+      "title": "Relit mark set ornament specimen",
+      "tags": [
+        "morph-lab",
+        "mark-set",
+        "lighting",
+        "shade-pipeline",
+        "ornament",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 7264,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "profile-mask",
+      "path": "packages/morph/exports/runtime/profile-mask.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "profile-mask",
+      "sceneKind": "mask",
+      "title": "Profile mask",
+      "tags": [
+        "morph-lab",
+        "site-player",
+        "profile-mask",
+        "image-fill"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "medium",
+      "byteLength": 38096,
+      "generatedIds": [
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "image-fill",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger",
+        "click:trigger",
+        "idle:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "signature-ribbon-baseline",
+      "path": "packages/morph/exports/runtime/signature-ribbon-baseline.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "signature-ribbon-baseline",
+      "sceneKind": "sign",
+      "title": "Jon Hanlan signature ribbon baseline",
+      "tags": [
+        "morph-lab",
+        "signature",
+        "ribbon-baseline",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 24759,
+      "generatedIds": [
+        "signature-ribbon-baseline-adapter",
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "pointer-press",
+        "focus",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger",
+        "press:trigger",
+        "focus:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "signature-closed-outline",
+      "path": "packages/morph/exports/runtime/signature-closed-outline.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "signature-closed-outline",
+      "sceneKind": "sign",
+      "title": "Jon Hanlan signature closed-outline baseline",
+      "tags": [
+        "morph-lab",
+        "signature",
+        "closed-outline",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 18234,
+      "generatedIds": [
+        "signature-closed-outline-adapter",
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "pointer-press",
+        "focus",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger",
+        "press:trigger",
+        "focus:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "flower-ornament",
+      "path": "packages/morph/exports/runtime/flower-ornament.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "flower-ornament",
+      "sceneKind": "animate",
+      "title": "Flower ornament authoring proof",
+      "tags": [
+        "morph-lab",
+        "flower",
+        "ornament",
+        "authoring-proof",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 30119,
+      "generatedIds": [
+        "flower-ornament-source-compiler",
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    },
+    {
+      "storageKey": "signature-path-morph-proof",
+      "path": "packages/morph/exports/runtime/signature-path-morph-proof.json",
+      "schema": "morph-runtime/v0",
+      "version": 0,
+      "sceneId": "signature-path-morph-proof",
+      "sceneKind": "sign",
+      "title": "Jon Hanlan signature path morph proof",
+      "tags": [
+        "morph-lab",
+        "signature",
+        "path-morph-proof",
+        "site-player",
+        "svg-runtime"
+      ],
+      "exportedAt": "2026-06-29T00:00:00.000Z",
+      "latestGeneratedAt": "2026-06-29T00:00:00.000Z",
+      "renderTier": "svg",
+      "quality": "high",
+      "byteLength": 15470,
+      "generatedIds": [
+        "signature-path-morph-proof-adapter",
+        "runtime-compile"
+      ],
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "pointer-press",
+        "focus",
+        "procedural-marks"
+      ],
+      "controllers": [
+        "hover:trigger",
+        "press:trigger",
+        "focus:trigger"
+      ],
+      "fieldCacheLayerCount": 0,
+      "cachedProgresses": []
+    }
+  ]
+}

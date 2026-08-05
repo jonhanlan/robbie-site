@@ -1,0 +1,72 @@
+{
+  "scrollDemoCueInView": {
+    "version": 1,
+    "route": "/scroll-demo",
+    "component": "CueStage",
+    "objectId": "cue-in-view",
+    "storageKey": "scroll-demo-cue-in-view",
+    "title": "Cue scrolls into view",
+    "entry": "rest",
+    "states": [
+      {
+        "id": "dot",
+        "state": "rest",
+        "label": "Rest",
+        "shape": {
+          "kind": "circle",
+          "radius": 90
+        }
+      },
+      {
+        "id": "spikes",
+        "state": "shown",
+        "label": "Shown",
+        "shape": {
+          "kind": "star",
+          "outerRadius": 380,
+          "innerRadius": 110,
+          "points": 11
+        }
+      }
+    ],
+    "trigger": {
+      "id": "in-view",
+      "label": "In View",
+      "from": "*",
+      "to": "shown",
+      "easing": "easeOutBack",
+      "durationMs": 850,
+      "style": "smooth"
+    },
+    "fill": {
+      "from": "#fde047",
+      "to": "#fb7185"
+    },
+    "viewBox": [
+      720,
+      960
+    ],
+    "geometry": {
+      "center": [
+        360,
+        480
+      ],
+      "pointDecimals": 3
+    },
+    "layer": {
+      "id": "cue-in-view-mask",
+      "name": "Scroll demo in-view cue mask",
+      "resolution": 72,
+      "smoothing": 0.58
+    },
+    "motion": {
+      "reducedMotion": "first-frame"
+    },
+    "settings": {
+      "boil": "active-only"
+    },
+    "meta": {
+      "parityTarget": "Replace the in-view CueStage block on /scroll-demo with an authored runtime export."
+    }
+  }
+}

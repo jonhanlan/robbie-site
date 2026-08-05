@@ -1,0 +1,74 @@
+{
+  "scrollDemoScrollPast": {
+    "version": 1,
+    "route": "/scroll-demo",
+    "component": "ScrollPastStage",
+    "objectId": "scroll-past",
+    "storageKey": "scroll-demo-scroll-past",
+    "title": "Cue scroll passes a height",
+    "entry": "rest",
+    "states": [
+      {
+        "id": "squircle",
+        "state": "rest",
+        "label": "Rest",
+        "shape": {
+          "kind": "superShape",
+          "radius": 330,
+          "power": 8
+        }
+      },
+      {
+        "id": "cog",
+        "state": "popped",
+        "label": "Popped",
+        "shape": {
+          "kind": "star",
+          "outerRadius": 340,
+          "innerRadius": 250,
+          "points": 16
+        }
+      }
+    ],
+    "trigger": {
+      "id": "scroll-past",
+      "label": "Scroll Past",
+      "from": "*",
+      "to": "popped",
+      "easing": "easeOutExpo",
+      "durationMs": 650,
+      "style": "scrappy",
+      "atScrollPx": 240
+    },
+    "fill": {
+      "from": "#c6ec19",
+      "to": "#2dd4bf"
+    },
+    "viewBox": [
+      720,
+      960
+    ],
+    "geometry": {
+      "center": [
+        360,
+        480
+      ],
+      "pointDecimals": 3
+    },
+    "layer": {
+      "id": "scroll-past-mask",
+      "name": "Scroll demo scroll-past cue mask",
+      "resolution": 72,
+      "smoothing": 0.58
+    },
+    "motion": {
+      "reducedMotion": "first-frame"
+    },
+    "settings": {
+      "boil": "active-only"
+    },
+    "meta": {
+      "parityTarget": "Replace the scroll-past ScrollPastStage block on /scroll-demo with an authored runtime export."
+    }
+  }
+}

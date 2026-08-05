@@ -1,0 +1,90 @@
+{
+  "m3RepetitionWitness": {
+    "schema": "morph-plan5-m3-repetition-witness-source/v0",
+    "version": 0,
+    "namedPiece": "Tessellated Garland Repetition Witness",
+    "authoringMode": "current-tool-explicit-placement",
+    "gatePurpose": "Record a named current-tool piece where explicit manual-style placement, not state/timeline/rig expressiveness, is the bottleneck.",
+    "nonClaims": [
+      "not-jon-physical-authoring-session",
+      "no-graph-schema",
+      "no-graph-compiler",
+      "no-native-node-editor",
+      "no-runtime-graph-evaluation"
+    ],
+    "viewBox": [320, 240],
+    "motif": {
+      "id": "leaf-mark-v0",
+      "kind": "closed",
+      "points": [
+        { "x": 0, "y": -7 },
+        { "x": 9, "y": -3 },
+        { "x": 13, "y": 4 },
+        { "x": 4, "y": 10 },
+        { "x": -8, "y": 7 },
+        { "x": -13, "y": 0 }
+      ]
+    },
+    "instances": [
+      { "id": "leaf-01", "x": 35, "y": 151, "scale": 0.86, "rotate": -42, "fill": "#5d8f6b" },
+      { "id": "leaf-02", "x": 43, "y": 136, "scale": 0.92, "rotate": -35, "fill": "#6a9b71" },
+      { "id": "leaf-03", "x": 52, "y": 124, "scale": 0.78, "rotate": -28, "fill": "#7ca66e" },
+      { "id": "leaf-04", "x": 62, "y": 114, "scale": 1.02, "rotate": -20, "fill": "#8cb270" },
+      { "id": "leaf-05", "x": 74, "y": 107, "scale": 0.9, "rotate": -12, "fill": "#9fba73" },
+      { "id": "leaf-06", "x": 87, "y": 102, "scale": 1.08, "rotate": -5, "fill": "#b3bd76" },
+      { "id": "leaf-07", "x": 101, "y": 99, "scale": 0.82, "rotate": 3, "fill": "#c5b978" },
+      { "id": "leaf-08", "x": 115, "y": 98, "scale": 0.96, "rotate": 10, "fill": "#d2ac75" },
+      { "id": "leaf-09", "x": 129, "y": 99, "scale": 1.1, "rotate": 16, "fill": "#d89b6f" },
+      { "id": "leaf-10", "x": 143, "y": 102, "scale": 0.88, "rotate": 23, "fill": "#d88a72" },
+      { "id": "leaf-11", "x": 156, "y": 107, "scale": 1.0, "rotate": 29, "fill": "#ce7d83" },
+      { "id": "leaf-12", "x": 168, "y": 114, "scale": 0.84, "rotate": 35, "fill": "#bd7694" },
+      { "id": "leaf-13", "x": 179, "y": 123, "scale": 0.98, "rotate": 42, "fill": "#a873a3" },
+      { "id": "leaf-14", "x": 189, "y": 134, "scale": 1.06, "rotate": 50, "fill": "#9276ad" },
+      { "id": "leaf-15", "x": 198, "y": 147, "scale": 0.8, "rotate": 58, "fill": "#7c7fb0" },
+      { "id": "leaf-16", "x": 206, "y": 161, "scale": 0.94, "rotate": 66, "fill": "#6d8eac" },
+      { "id": "leaf-17", "x": 215, "y": 161, "scale": 0.91, "rotate": 114, "fill": "#649ba0" },
+      { "id": "leaf-18", "x": 224, "y": 147, "scale": 1.04, "rotate": 122, "fill": "#61a28d" },
+      { "id": "leaf-19", "x": 233, "y": 134, "scale": 0.82, "rotate": 130, "fill": "#68a77b" },
+      { "id": "leaf-20", "x": 243, "y": 123, "scale": 0.97, "rotate": 138, "fill": "#78aa70" },
+      { "id": "leaf-21", "x": 254, "y": 114, "scale": 1.07, "rotate": 145, "fill": "#8bab6a" },
+      { "id": "leaf-22", "x": 266, "y": 107, "scale": 0.89, "rotate": 151, "fill": "#a0a868" },
+      { "id": "leaf-23", "x": 279, "y": 102, "scale": 1.01, "rotate": 157, "fill": "#b5a168" },
+      { "id": "leaf-24", "x": 293, "y": 99, "scale": 0.85, "rotate": 164, "fill": "#c4946b" },
+      { "id": "leaf-25", "x": 286, "y": 178, "scale": 0.92, "rotate": 202, "fill": "#c18475" },
+      { "id": "leaf-26", "x": 270, "y": 187, "scale": 1.05, "rotate": 211, "fill": "#b87884" },
+      { "id": "leaf-27", "x": 252, "y": 193, "scale": 0.83, "rotate": 220, "fill": "#a87393" },
+      { "id": "leaf-28", "x": 233, "y": 197, "scale": 0.99, "rotate": 230, "fill": "#91769d" },
+      { "id": "leaf-29", "x": 213, "y": 199, "scale": 1.08, "rotate": 239, "fill": "#787fa0" },
+      { "id": "leaf-30", "x": 193, "y": 197, "scale": 0.87, "rotate": 249, "fill": "#658b9a" },
+      { "id": "leaf-31", "x": 174, "y": 193, "scale": 0.96, "rotate": 258, "fill": "#5d947f" },
+      { "id": "leaf-32", "x": 156, "y": 187, "scale": 0.9, "rotate": 268, "fill": "#5f9a6d" }
+    ],
+    "variationBurden": {
+      "scales": [
+        {
+          "id": "small",
+          "targetScaleMultiplier": 0.72,
+          "repeatedEdits": 32,
+          "changedFields": ["scale", "x", "y"],
+          "reason": "Every mark has to be resized and re-spaced to keep the garland density even."
+        },
+        {
+          "id": "medium",
+          "targetScaleMultiplier": 1,
+          "repeatedEdits": 32,
+          "changedFields": ["scale", "rotate", "fill"],
+          "reason": "The base composition already requires one explicit placement, rotation, scale, and color choice per mark."
+        },
+        {
+          "id": "large",
+          "targetScaleMultiplier": 1.28,
+          "repeatedEdits": 32,
+          "changedFields": ["scale", "x", "y", "rotate"],
+          "reason": "Larger marks collide unless each placement is adjusted again instead of driven by a spacing rule."
+        }
+      ],
+      "totalRepeatedVariationEdits": 96,
+      "graphHypothesis": "A tiny authoring-time graph with motif-instance, scatter/arc-position, scale-field, and palette-field nodes should preserve this output while replacing the repeated placement and variation edits."
+    }
+  }
+}

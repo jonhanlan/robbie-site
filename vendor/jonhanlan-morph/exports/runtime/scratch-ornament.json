@@ -1,0 +1,393 @@
+{
+  "schema": "morph-runtime/v0",
+  "version": 0,
+  "exportedAt": "2026-06-29T00:00:00.000Z",
+  "manifest": {
+    "title": "Scratch ornament specimen",
+    "tags": [
+      "morph-lab",
+      "scratch",
+      "ornament",
+      "site-player",
+      "svg-runtime"
+    ]
+  },
+  "capabilities": {
+    "required": [
+      "svg",
+      "state-motion"
+    ],
+    "optional": [
+      "pointer-hover",
+      "procedural-marks"
+    ]
+  },
+  "renderTier": "svg",
+  "quality": "high",
+  "fallbacks": {
+    "reducedMotion": "first-frame"
+  },
+  "settings": {
+    "boil": "active-only"
+  },
+  "controllers": [
+    {
+      "id": "hover",
+      "type": "trigger",
+      "label": "Hover",
+      "channel": "pointer"
+    }
+  ],
+  "scene": {
+    "id": "scratch-ornament",
+    "kind": "animate",
+    "viewBox": [
+      320,
+      240
+    ],
+    "layers": [
+      {
+        "id": "scratch-glyph",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 42,
+              "y": 103
+            },
+            {
+              "x": 80,
+              "y": 51
+            },
+            {
+              "x": 167,
+              "y": 34
+            },
+            {
+              "x": 247,
+              "y": 60
+            },
+            {
+              "x": 282,
+              "y": 125
+            },
+            {
+              "x": 232,
+              "y": 187
+            },
+            {
+              "x": 140,
+              "y": 203
+            },
+            {
+              "x": 62,
+              "y": 171
+            }
+          ]
+        },
+        "resolution": 76,
+        "smoothing": 0.68,
+        "edge": {
+          "intensity": 4.8,
+          "wobble": 0.14,
+          "tooth": 0.5,
+          "breakup": 0.38,
+          "shortMarks": 0.04,
+          "rake": 0.05,
+          "flecks": 0.1,
+          "speckles": 0.08,
+          "grain": 0.08,
+          "fineFibers": 0.06,
+          "erosion": 0.16,
+          "clustering": 0.28,
+          "detailScale": 0.72,
+          "outerEdge": 0.82,
+          "innerEdge": 0.5,
+          "cornerBite": 0.24,
+          "inkBleed": 0.08,
+          "edgeWeight": 0.18,
+          "dryBrush": 0.18,
+          "fiberAngle": -28,
+          "fiberFlow": 0.32,
+          "clusterScale": 0.95,
+          "boilAmount": 0,
+          "jitterFps": 0
+        },
+        "fill": {
+          "fill": "#1f7f8c",
+          "grain": 0
+        },
+        "inner": {
+          "innerShadow": {
+            "angle": 132,
+            "offset": 0.28,
+            "intensity": 0.78,
+            "style": "scratch",
+            "spread": 0.9,
+            "edgeBias": 1.2,
+            "textureScale": 0.64,
+            "jitter": 0.08,
+            "contourAlign": 0.92,
+            "coverage": 0.92,
+            "rim": 0.34,
+            "fieldDepth": 1.16,
+            "fieldOffset": 0.02,
+            "fieldSoftness": 0.44,
+            "fieldContrast": 0.3,
+            "densityEdge": 0.82,
+            "densityFalloff": 0.34,
+            "sizeFalloff": 0.28,
+            "lengthFalloff": 0.42,
+            "cornerSmoothing": 0.56,
+            "hardStop": false
+          }
+        },
+        "passes": {
+          "highlight": false,
+          "grain": false,
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 36,
+                "y": 108
+              },
+              {
+                "x": 87,
+                "y": 43
+              },
+              {
+                "x": 174,
+                "y": 29
+              },
+              {
+                "x": 255,
+                "y": 67
+              },
+              {
+                "x": 274,
+                "y": 137
+              },
+              {
+                "x": 222,
+                "y": 192
+              },
+              {
+                "x": 130,
+                "y": 197
+              },
+              {
+                "x": 68,
+                "y": 164
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "scratch-rivet",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 121,
+              "y": 83
+            },
+            {
+              "x": 148,
+              "y": 70
+            },
+            {
+              "x": 174,
+              "y": 82
+            },
+            {
+              "x": 182,
+              "y": 110
+            },
+            {
+              "x": 163,
+              "y": 135
+            },
+            {
+              "x": 134,
+              "y": 134
+            },
+            {
+              "x": 116,
+              "y": 112
+            }
+          ]
+        },
+        "resolution": 34,
+        "smoothing": 0.62,
+        "edge": {
+          "intensity": 3,
+          "wobble": 0.1,
+          "tooth": 0.38,
+          "breakup": 0.24,
+          "shortMarks": 0.02,
+          "rake": 0.03,
+          "flecks": 0.06,
+          "speckles": 0.04,
+          "grain": 0.04,
+          "fineFibers": 0.02,
+          "erosion": 0.12,
+          "clustering": 0.2,
+          "detailScale": 0.78,
+          "outerEdge": 0.72,
+          "innerEdge": 0.42,
+          "cornerBite": 0.16,
+          "inkBleed": 0.04,
+          "edgeWeight": 0.12,
+          "dryBrush": 0.12,
+          "fiberAngle": -28,
+          "fiberFlow": 0.2,
+          "clusterScale": 0.8,
+          "boilAmount": 0,
+          "jitterFps": 0
+        },
+        "fill": {
+          "fill": "#f2d15e",
+          "opacity": 0.96,
+          "grain": 0
+        },
+        "inner": {
+          "innerShadow": {
+            "angle": 132,
+            "offset": 0.18,
+            "intensity": 0.52,
+            "style": "scratch",
+            "spread": 0.7,
+            "edgeBias": 1,
+            "textureScale": 0.58,
+            "jitter": 0.06,
+            "contourAlign": 0.88,
+            "coverage": 0.78,
+            "rim": 0.22,
+            "fieldDepth": 0.9,
+            "fieldOffset": 0.04,
+            "fieldSoftness": 0.48,
+            "fieldContrast": 0.2,
+            "densityEdge": 0.64,
+            "densityFalloff": 0.38,
+            "sizeFalloff": 0.32,
+            "lengthFalloff": 0.46,
+            "cornerSmoothing": 0.48,
+            "hardStop": false
+          }
+        },
+        "passes": {
+          "highlight": false,
+          "grain": false,
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 126,
+                "y": 78
+              },
+              {
+                "x": 151,
+                "y": 70
+              },
+              {
+                "x": 178,
+                "y": 87
+              },
+              {
+                "x": 178,
+                "y": 115
+              },
+              {
+                "x": 157,
+                "y": 137
+              },
+              {
+                "x": 132,
+                "y": 129
+              },
+              {
+                "x": 113,
+                "y": 108
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "entry": "rest",
+    "states": {
+      "rest": {},
+      "hover": {}
+    },
+    "stateGraph": {
+      "entry": "rest",
+      "states": {
+        "rest": {
+          "label": "Rest",
+          "kind": "rest"
+        },
+        "hover": {
+          "label": "Hover",
+          "kind": "hover"
+        }
+      },
+      "transitions": [
+        {
+          "from": "*",
+          "to": "hover",
+          "trigger": "hover-on",
+          "durationMs": 360,
+          "easing": "smoothstep",
+          "fps": 30,
+          "fpsDivisor": 1,
+          "interrupt": "restart"
+        },
+        {
+          "id": "hover-return",
+          "from": "hover",
+          "to": "rest",
+          "trigger": "hover-off",
+          "durationMs": 520,
+          "delayMs": 80,
+          "easing": "smoothstep",
+          "fps": 30,
+          "fpsDivisor": 1,
+          "interrupt": "restart"
+        }
+      ]
+    },
+    "motion": [
+      {
+        "trigger": "hover",
+        "to": "hover",
+        "durationMs": 360,
+        "easing": "smoothstep",
+        "fps": 30,
+        "fpsDivisor": 1,
+        "returnTo": "rest",
+        "returnDelayMs": 80,
+        "returnDurationMs": 520,
+        "interrupt": "restart"
+      }
+    ]
+  },
+  "generated": [
+    {
+      "id": "runtime-compile",
+      "kind": "baked",
+      "owner": "morph-runtime-compiler",
+      "target": "document",
+      "clearable": false,
+      "baked": true,
+      "createdAt": "2026-06-29T00:00:00.000Z"
+    }
+  ]
+}

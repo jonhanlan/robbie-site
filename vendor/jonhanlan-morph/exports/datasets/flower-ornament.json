@@ -1,0 +1,87 @@
+{
+  "flowerOrnament": {
+    "schema": "morph-flower-ornament-source/v0",
+    "version": 0,
+    "viewBox": [240, 240],
+    "motion": {
+      "hoverDurationMs": 420,
+      "hoverOffDurationMs": 520,
+      "easing": "smoothstep",
+      "fps": 18,
+      "reducedMotion": "first-frame"
+    },
+    "settings": {
+      "boil": "active-only"
+    },
+    "render": {
+      "edge": {
+        "intensity": 0.84,
+        "wobble": 0.08,
+        "tooth": 0.24,
+        "breakup": 0.12,
+        "shortMarks": 0.06,
+        "rake": 0.03,
+        "flecks": 0.05,
+        "speckles": 0.04,
+        "grain": 0.08,
+        "fineFibers": 0.08,
+        "erosion": 0.06,
+        "clustering": 0.1,
+        "detailScale": 0.68,
+        "outerEdge": 0.48,
+        "innerEdge": 0.22,
+        "cornerBite": 0.08,
+        "inkBleed": 0.05,
+        "edgeWeight": 0.26,
+        "dryBrush": 0.1,
+        "fiberAngle": -18,
+        "fiberFlow": 0.18,
+        "clusterScale": 0.76,
+        "boilAmount": 0.2,
+        "jitterFps": 12
+      },
+      "shade": {
+        "shadowIntensity": 0.38,
+        "highlightIntensity": 0.18,
+        "contactIntensity": 0.32,
+        "toneIntensity": 0.46,
+        "ambientIntensity": 0.34,
+        "castIntensity": 0.44,
+        "markStyle": "flow",
+        "contourAlign": 0.86,
+        "textureScale": 0.92,
+        "fieldSoftness": 0.62
+      }
+    },
+    "petals": [
+      { "id": "petal-n", "cx": 120, "cy": 70, "rx": 28, "ry": 52, "angle": 0, "fill": "#e97881" },
+      { "id": "petal-ne", "cx": 155, "cy": 86, "rx": 27, "ry": 50, "angle": 45, "fill": "#f09b66" },
+      { "id": "petal-se", "cx": 160, "cy": 126, "rx": 26, "ry": 49, "angle": 98, "fill": "#f2c35b" },
+      { "id": "petal-s", "cx": 120, "cy": 150, "rx": 28, "ry": 52, "angle": 180, "fill": "#d9b847" },
+      { "id": "petal-sw", "cx": 80, "cy": 126, "rx": 26, "ry": 49, "angle": 262, "fill": "#87bf70" },
+      { "id": "petal-nw", "cx": 85, "cy": 86, "rx": 27, "ry": 50, "angle": 315, "fill": "#62a6a4" }
+    ],
+    "center": {
+      "id": "flower-center",
+      "cx": 120,
+      "cy": 112,
+      "rx": 20,
+      "ry": 18,
+      "fill": "#5f4154"
+    },
+    "ribbons": [
+      {
+        "id": "stem-curl",
+        "fill": "#587a59",
+        "points": [
+          { "x": 122, "y": 126, "w": 10 },
+          { "x": 116, "y": 154, "w": 9 },
+          { "x": 128, "y": 184, "w": 8 },
+          { "x": 105, "y": 209, "w": 7 },
+          { "x": 72, "y": 198, "w": 6 },
+          { "x": 78, "y": 172, "w": 5 }
+        ]
+      }
+    ]
+  }
+}

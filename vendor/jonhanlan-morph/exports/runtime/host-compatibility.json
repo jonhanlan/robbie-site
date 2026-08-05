@@ -1,0 +1,1816 @@
+{
+  "schema": "morph-runtime-host-compatibility-manifest/v0",
+  "version": 0,
+  "generatedAt": "2026-06-29T00:00:00.000Z",
+  "reports": [
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "procedural-scene",
+      "artifactPath": "packages/morph/exports/runtime/procedural-scene.json",
+      "sceneId": "procedural-scene",
+      "sceneKind": "animate",
+      "title": "Procedural scene specimen",
+      "byteLength": 23285,
+      "renderTier": "svg-cache",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "svg-cache",
+        "procedural-marks",
+        "field-cache"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 1,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 11,
+        "closedPointCount": 11,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "fieldCache": {
+        "kind": "field-cache",
+        "policy": "exact",
+        "layers": 3,
+        "layerIds": [
+          "runtime-blob"
+        ],
+        "cachedProgresses": [
+          0,
+          0.5,
+          1
+        ],
+        "passes": [
+          "highlight",
+          "innerShadow"
+        ],
+        "sides": [
+          "inside"
+        ]
+      },
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "signature",
+      "artifactPath": "packages/morph/exports/runtime/signature.json",
+      "sceneId": "signature",
+      "sceneKind": "sign",
+      "title": "Jon Hanlan signature",
+      "byteLength": 24709,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "pointer-press",
+        "focus",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        },
+        {
+          "id": "press",
+          "type": "trigger",
+          "label": "Press",
+          "channel": "pointer"
+        },
+        {
+          "id": "focus",
+          "type": "trigger",
+          "label": "Focus",
+          "channel": "focus"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "press",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "focus-trigger",
+          "controllerId": "focus",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 5,
+        "kinds": [
+          "ribbon"
+        ],
+        "pointCount": 131,
+        "closedPointCount": 0,
+        "ribbonStrokeCount": 5,
+        "ribbonPointCount": 131,
+        "pressurePointCount": 131,
+        "minPressureWidth": 1.203,
+        "maxPressureWidth": 5.097,
+        "pressureWidthRange": 3.894
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "scroll-demo-hero",
+      "artifactPath": "packages/morph/exports/runtime/scroll-demo-hero.json",
+      "sceneId": "scroll-demo-hero",
+      "sceneKind": "animate",
+      "title": "Scrub pinned to this section",
+      "byteLength": 24562,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "scroll-scrub",
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        {
+          "id": "scroll-progress",
+          "type": "slider",
+          "label": "Scroll Progress",
+          "channel": "viewport",
+          "default": 0,
+          "min": 0,
+          "max": 1
+        }
+      ],
+      "hostAdapter": {
+        "kind": "scroll-progress",
+        "source": "section",
+        "controllerId": "scroll-progress",
+        "startId": "hero-start",
+        "endId": "hero-end"
+      },
+      "hostInputs": [
+        {
+          "kind": "scroll-progress",
+          "controllerId": "scroll-progress",
+          "source": "section",
+          "startId": "hero-start",
+          "endId": "hero-end"
+        }
+      ],
+      "geometry": {
+        "layers": 1,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 72,
+        "closedPointCount": 72,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "scroll-demo-page",
+      "artifactPath": "packages/morph/exports/runtime/scroll-demo-page.json",
+      "sceneId": "scroll-demo-page",
+      "sceneKind": "animate",
+      "title": "Scrub whole-page progress",
+      "byteLength": 7870,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "scroll-scrub",
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        {
+          "id": "scroll-progress",
+          "type": "slider",
+          "label": "Scroll Progress",
+          "channel": "viewport",
+          "default": 0,
+          "min": 0,
+          "max": 1
+        }
+      ],
+      "hostAdapter": {
+        "kind": "scroll-progress",
+        "source": "page",
+        "controllerId": "scroll-progress"
+      },
+      "hostInputs": [
+        {
+          "kind": "scroll-progress",
+          "controllerId": "scroll-progress",
+          "source": "page"
+        }
+      ],
+      "geometry": {
+        "layers": 1,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 72,
+        "closedPointCount": 72,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "scroll-demo-travel",
+      "artifactPath": "packages/morph/exports/runtime/scroll-demo-travel.json",
+      "sceneId": "scroll-demo-travel",
+      "sceneKind": "animate",
+      "title": "Scrub this shape through the screen",
+      "byteLength": 12827,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "scroll-scrub",
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        {
+          "id": "scroll-progress",
+          "type": "slider",
+          "label": "Scroll Progress",
+          "channel": "viewport",
+          "default": 0,
+          "min": 0,
+          "max": 1
+        }
+      ],
+      "hostAdapter": {
+        "kind": "scroll-progress",
+        "source": "element",
+        "controllerId": "scroll-progress"
+      },
+      "hostInputs": [
+        {
+          "kind": "scroll-progress",
+          "controllerId": "scroll-progress",
+          "source": "element"
+        }
+      ],
+      "geometry": {
+        "layers": 1,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 72,
+        "closedPointCount": 72,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "scroll-demo-cue-in-view",
+      "artifactPath": "packages/morph/exports/runtime/scroll-demo-cue-in-view.json",
+      "sceneId": "scroll-demo-cue-in-view",
+      "sceneKind": "animate",
+      "title": "Cue scrolls into view",
+      "byteLength": 10966,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        {
+          "id": "in-view",
+          "type": "trigger",
+          "label": "In View",
+          "channel": "viewport"
+        }
+      ],
+      "hostAdapter": {
+        "kind": "viewport-trigger",
+        "trigger": "in-view",
+        "controllerId": "in-view",
+        "rootMargin": "160px"
+      },
+      "hostInputs": [
+        {
+          "kind": "viewport-trigger",
+          "controllerId": "in-view",
+          "trigger": "in-view",
+          "rootMargin": "160px"
+        }
+      ],
+      "geometry": {
+        "layers": 1,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 72,
+        "closedPointCount": 72,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "scroll-demo-scroll-past",
+      "artifactPath": "packages/morph/exports/runtime/scroll-demo-scroll-past.json",
+      "sceneId": "scroll-demo-scroll-past",
+      "sceneKind": "animate",
+      "title": "Cue scroll passes a height",
+      "byteLength": 14145,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        {
+          "id": "scroll-past",
+          "type": "trigger",
+          "label": "Scroll Past",
+          "channel": "viewport"
+        }
+      ],
+      "hostAdapter": {
+        "kind": "viewport-trigger",
+        "trigger": "scroll-past",
+        "controllerId": "scroll-past",
+        "thresholdPx": 240
+      },
+      "hostInputs": [
+        {
+          "kind": "viewport-trigger",
+          "controllerId": "scroll-past",
+          "trigger": "scroll-past",
+          "thresholdPx": 240
+        }
+      ],
+      "geometry": {
+        "layers": 1,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 72,
+        "closedPointCount": 72,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "scroll-demo-combined",
+      "artifactPath": "packages/morph/exports/runtime/scroll-demo-combined.json",
+      "sceneId": "scroll-demo-combined",
+      "sceneKind": "animate",
+      "title": "Scroll demo combined layered controller",
+      "byteLength": 15521,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "scroll-scrub",
+        "additive-overlays",
+        "pointer-hover",
+        "pointer-press",
+        "procedural-marks",
+        "image-fill"
+      ],
+      "controllers": [
+        {
+          "id": "scroll-progress",
+          "type": "slider",
+          "label": "Scroll Progress",
+          "channel": "viewport",
+          "default": 0,
+          "min": 0,
+          "max": 1
+        },
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover Spikes",
+          "channel": "pointer"
+        },
+        {
+          "id": "click",
+          "type": "trigger",
+          "label": "Click Wide",
+          "channel": "pointer"
+        }
+      ],
+      "hostAdapter": {
+        "kind": "scroll-progress-with-pointer-overlays",
+        "source": "section",
+        "controllerId": "scroll-progress",
+        "startId": "combo-start",
+        "endId": "combo-end",
+        "overlays": [
+          "hover",
+          "click"
+        ]
+      },
+      "hostInputs": [
+        {
+          "kind": "scroll-progress",
+          "controllerId": "scroll-progress",
+          "source": "section",
+          "startId": "combo-start",
+          "endId": "combo-end"
+        },
+        {
+          "kind": "pointer-overlays",
+          "overlays": [
+            "hover",
+            "click"
+          ]
+        }
+      ],
+      "geometry": {
+        "layers": 1,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 72,
+        "closedPointCount": 72,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "scratch-ornament",
+      "artifactPath": "packages/morph/exports/runtime/scratch-ornament.json",
+      "sceneId": "scratch-ornament",
+      "sceneKind": "animate",
+      "title": "Scratch ornament specimen",
+      "byteLength": 4014,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 2,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 15,
+        "closedPointCount": 15,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "stipple-ornament",
+      "artifactPath": "packages/morph/exports/runtime/stipple-ornament.json",
+      "sceneId": "stipple-ornament",
+      "sceneKind": "animate",
+      "title": "Stipple ornament specimen",
+      "byteLength": 3986,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 2,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 14,
+        "closedPointCount": 14,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "flow-ornament",
+      "artifactPath": "packages/morph/exports/runtime/flow-ornament.json",
+      "sceneId": "flow-ornament",
+      "sceneKind": "animate",
+      "title": "Flow ornament specimen",
+      "byteLength": 3956,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 2,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 14,
+        "closedPointCount": 14,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "grain-ornament",
+      "artifactPath": "packages/morph/exports/runtime/grain-ornament.json",
+      "sceneId": "grain-ornament",
+      "sceneKind": "animate",
+      "title": "Grain ornament specimen",
+      "byteLength": 3974,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 2,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 14,
+        "closedPointCount": 14,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "dry-ornament",
+      "artifactPath": "packages/morph/exports/runtime/dry-ornament.json",
+      "sceneId": "dry-ornament",
+      "sceneKind": "animate",
+      "title": "Dry ornament specimen",
+      "byteLength": 3968,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 2,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 14,
+        "closedPointCount": 14,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "mark-set-ornament",
+      "artifactPath": "packages/morph/exports/runtime/mark-set-ornament.json",
+      "sceneId": "mark-set-ornament",
+      "sceneKind": "animate",
+      "title": "Mark set ornament specimen",
+      "byteLength": 4132,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 2,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 14,
+        "closedPointCount": 14,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "relit-mark-set-ornament",
+      "artifactPath": "packages/morph/exports/runtime/relit-mark-set-ornament.json",
+      "sceneId": "relit-mark-set-ornament",
+      "sceneKind": "animate",
+      "title": "Relit mark set ornament specimen",
+      "byteLength": 7264,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 2,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 14,
+        "closedPointCount": 14,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "shadePipeline": {
+        "layers": 2,
+        "passes": 7,
+        "roles": [
+          "ambient-contour",
+          "cast-shadow",
+          "core-shadow",
+          "rim-light",
+          "tone-zone"
+        ],
+        "styles": [
+          "dry",
+          "flow",
+          "grain",
+          "stipple"
+        ],
+        "markBudget": 2531,
+        "interLayerPasses": 1,
+        "passDetails": [
+          {
+            "layerId": "relit-mark-set-field",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "flow",
+            "lit": false,
+            "markBudget": 1077,
+            "cacheKeyContribution": "core-shadow:core-shadow"
+          },
+          {
+            "layerId": "relit-mark-set-field",
+            "passId": "cast-shadow",
+            "role": "cast-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 125,
+            "cacheKeyContribution": "cast-shadow:cast-shadow",
+            "fieldInputs": {
+              "sourceLayerOffset": 1,
+              "offsetX": 7,
+              "offsetY": 8
+            }
+          },
+          {
+            "layerId": "relit-mark-set-field",
+            "passId": "tone-zone",
+            "role": "tone-zone",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 302,
+            "cacheKeyContribution": "tone-zone:tone-zone"
+          },
+          {
+            "layerId": "relit-mark-set-field",
+            "passId": "ambient-contour",
+            "role": "ambient-contour",
+            "style": "grain",
+            "lit": false,
+            "markBudget": 202,
+            "cacheKeyContribution": "ambient-contour:ambient-contour"
+          },
+          {
+            "layerId": "relit-mark-set-field",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "stipple",
+            "lit": true,
+            "markBudget": 87,
+            "cacheKeyContribution": "rim-light:rim-light"
+          },
+          {
+            "layerId": "relit-mark-set-core",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "flow",
+            "lit": false,
+            "markBudget": 675,
+            "cacheKeyContribution": "core-shadow:core-shadow"
+          },
+          {
+            "layerId": "relit-mark-set-core",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "stipple",
+            "lit": true,
+            "markBudget": 63,
+            "cacheKeyContribution": "rim-light:rim-light"
+          }
+        ]
+      },
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "profile-mask",
+      "artifactPath": "packages/morph/exports/runtime/profile-mask.json",
+      "sceneId": "profile-mask",
+      "sceneKind": "mask",
+      "title": "Profile mask",
+      "byteLength": 38096,
+      "renderTier": "svg",
+      "quality": "medium",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "image-fill",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        },
+        {
+          "id": "click",
+          "type": "trigger",
+          "label": "Click",
+          "channel": "pointer"
+        },
+        {
+          "id": "idle",
+          "type": "trigger",
+          "label": "Idle",
+          "channel": "event"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "click",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "controller",
+          "controllerId": "idle",
+          "controllerType": "trigger",
+          "channel": "event"
+        }
+      ],
+      "geometry": {
+        "layers": 1,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 192,
+        "closedPointCount": 192,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [
+        {
+          "kind": "image-fill",
+          "layerId": "profile-portrait",
+          "href": "/images/profile-portrait-treated.webp",
+          "width": 720,
+          "height": 960
+        },
+        {
+          "kind": "static-fallback",
+          "href": "/images/profile-portrait-treated.webp",
+          "fallbackKind": "webp",
+          "width": 620.4959939897226,
+          "height": 827.3279919862968
+        }
+      ],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": true
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "signature-ribbon-baseline",
+      "artifactPath": "packages/morph/exports/runtime/signature-ribbon-baseline.json",
+      "sceneId": "signature-ribbon-baseline",
+      "sceneKind": "sign",
+      "title": "Jon Hanlan signature ribbon baseline",
+      "byteLength": 24759,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "pointer-press",
+        "focus",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        },
+        {
+          "id": "press",
+          "type": "trigger",
+          "label": "Press",
+          "channel": "pointer"
+        },
+        {
+          "id": "focus",
+          "type": "trigger",
+          "label": "Focus",
+          "channel": "focus"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "press",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "focus-trigger",
+          "controllerId": "focus",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 5,
+        "kinds": [
+          "ribbon"
+        ],
+        "pointCount": 131,
+        "closedPointCount": 0,
+        "ribbonStrokeCount": 5,
+        "ribbonPointCount": 131,
+        "pressurePointCount": 131,
+        "minPressureWidth": 1.203,
+        "maxPressureWidth": 5.097,
+        "pressureWidthRange": 3.894
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "signature-closed-outline",
+      "artifactPath": "packages/morph/exports/runtime/signature-closed-outline.json",
+      "sceneId": "signature-closed-outline",
+      "sceneKind": "sign",
+      "title": "Jon Hanlan signature closed-outline baseline",
+      "byteLength": 18234,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "pointer-press",
+        "focus",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        },
+        {
+          "id": "press",
+          "type": "trigger",
+          "label": "Press",
+          "channel": "pointer"
+        },
+        {
+          "id": "focus",
+          "type": "trigger",
+          "label": "Focus",
+          "channel": "focus"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "press",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "focus-trigger",
+          "controllerId": "focus",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 5,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 192,
+        "closedPointCount": 192,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "flower-ornament",
+      "artifactPath": "packages/morph/exports/runtime/flower-ornament.json",
+      "sceneId": "flower-ornament",
+      "sceneKind": "animate",
+      "title": "Flower ornament authoring proof",
+      "byteLength": 30119,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 8,
+        "kinds": [
+          "closed",
+          "ribbon"
+        ],
+        "pointCount": 156,
+        "closedPointCount": 150,
+        "ribbonStrokeCount": 1,
+        "ribbonPointCount": 6,
+        "pressurePointCount": 6,
+        "minPressureWidth": 5,
+        "maxPressureWidth": 10,
+        "pressureWidthRange": 5
+      },
+      "mediaAssets": [],
+      "shadePipeline": {
+        "layers": 8,
+        "passes": 42,
+        "roles": [
+          "ambient-contour",
+          "cast-shadow",
+          "contact-shadow",
+          "core-shadow",
+          "rim-light",
+          "tone-zone"
+        ],
+        "styles": [
+          "dry",
+          "flow",
+          "grain",
+          "hatch",
+          "stipple"
+        ],
+        "markBudget": 2577,
+        "interLayerPasses": 2,
+        "passDetails": [
+          {
+            "layerId": "stem-curl",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 94,
+            "cacheKeyContribution": "flower-core-shadow:core-shadow"
+          },
+          {
+            "layerId": "stem-curl",
+            "passId": "cast-shadow",
+            "role": "cast-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 46,
+            "cacheKeyContribution": "flower-cast-shadow:cast-shadow",
+            "fieldInputs": {
+              "sourceLayerOffset": 1,
+              "offsetX": 4,
+              "offsetY": 7
+            }
+          },
+          {
+            "layerId": "stem-curl",
+            "passId": "contact-shadow",
+            "role": "contact-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 23,
+            "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+          },
+          {
+            "layerId": "stem-curl",
+            "passId": "tone-zone",
+            "role": "tone-zone",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 59,
+            "cacheKeyContribution": "flower-tone-zone:tone-zone"
+          },
+          {
+            "layerId": "stem-curl",
+            "passId": "ambient-contour",
+            "role": "ambient-contour",
+            "style": "grain",
+            "lit": false,
+            "markBudget": 89,
+            "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+          },
+          {
+            "layerId": "stem-curl",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "hatch",
+            "lit": true,
+            "markBudget": 46,
+            "cacheKeyContribution": "flower-rim-light:rim-light"
+          },
+          {
+            "layerId": "petal-n",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "flow",
+            "lit": false,
+            "markBudget": 92,
+            "cacheKeyContribution": "flower-core-shadow:core-shadow"
+          },
+          {
+            "layerId": "petal-n",
+            "passId": "cast-shadow",
+            "role": "cast-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 46,
+            "cacheKeyContribution": "flower-cast-shadow:cast-shadow",
+            "fieldInputs": {
+              "sourceLayerOffset": 1,
+              "offsetX": 3,
+              "offsetY": 5
+            }
+          },
+          {
+            "layerId": "petal-n",
+            "passId": "contact-shadow",
+            "role": "contact-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 23,
+            "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+          },
+          {
+            "layerId": "petal-n",
+            "passId": "tone-zone",
+            "role": "tone-zone",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 58,
+            "cacheKeyContribution": "flower-tone-zone:tone-zone"
+          },
+          {
+            "layerId": "petal-n",
+            "passId": "ambient-contour",
+            "role": "ambient-contour",
+            "style": "grain",
+            "lit": false,
+            "markBudget": 89,
+            "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+          },
+          {
+            "layerId": "petal-n",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "hatch",
+            "lit": true,
+            "markBudget": 47,
+            "cacheKeyContribution": "flower-rim-light:rim-light"
+          },
+          {
+            "layerId": "petal-ne",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "flow",
+            "lit": false,
+            "markBudget": 92,
+            "cacheKeyContribution": "flower-core-shadow:core-shadow"
+          },
+          {
+            "layerId": "petal-ne",
+            "passId": "contact-shadow",
+            "role": "contact-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 23,
+            "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+          },
+          {
+            "layerId": "petal-ne",
+            "passId": "tone-zone",
+            "role": "tone-zone",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 58,
+            "cacheKeyContribution": "flower-tone-zone:tone-zone"
+          },
+          {
+            "layerId": "petal-ne",
+            "passId": "ambient-contour",
+            "role": "ambient-contour",
+            "style": "grain",
+            "lit": false,
+            "markBudget": 89,
+            "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+          },
+          {
+            "layerId": "petal-ne",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "hatch",
+            "lit": true,
+            "markBudget": 47,
+            "cacheKeyContribution": "flower-rim-light:rim-light"
+          },
+          {
+            "layerId": "petal-se",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "flow",
+            "lit": false,
+            "markBudget": 92,
+            "cacheKeyContribution": "flower-core-shadow:core-shadow"
+          },
+          {
+            "layerId": "petal-se",
+            "passId": "contact-shadow",
+            "role": "contact-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 23,
+            "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+          },
+          {
+            "layerId": "petal-se",
+            "passId": "tone-zone",
+            "role": "tone-zone",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 58,
+            "cacheKeyContribution": "flower-tone-zone:tone-zone"
+          },
+          {
+            "layerId": "petal-se",
+            "passId": "ambient-contour",
+            "role": "ambient-contour",
+            "style": "grain",
+            "lit": false,
+            "markBudget": 89,
+            "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+          },
+          {
+            "layerId": "petal-se",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "hatch",
+            "lit": true,
+            "markBudget": 47,
+            "cacheKeyContribution": "flower-rim-light:rim-light"
+          },
+          {
+            "layerId": "petal-s",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "flow",
+            "lit": false,
+            "markBudget": 92,
+            "cacheKeyContribution": "flower-core-shadow:core-shadow"
+          },
+          {
+            "layerId": "petal-s",
+            "passId": "contact-shadow",
+            "role": "contact-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 23,
+            "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+          },
+          {
+            "layerId": "petal-s",
+            "passId": "tone-zone",
+            "role": "tone-zone",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 58,
+            "cacheKeyContribution": "flower-tone-zone:tone-zone"
+          },
+          {
+            "layerId": "petal-s",
+            "passId": "ambient-contour",
+            "role": "ambient-contour",
+            "style": "grain",
+            "lit": false,
+            "markBudget": 89,
+            "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+          },
+          {
+            "layerId": "petal-s",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "hatch",
+            "lit": true,
+            "markBudget": 47,
+            "cacheKeyContribution": "flower-rim-light:rim-light"
+          },
+          {
+            "layerId": "petal-sw",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "flow",
+            "lit": false,
+            "markBudget": 92,
+            "cacheKeyContribution": "flower-core-shadow:core-shadow"
+          },
+          {
+            "layerId": "petal-sw",
+            "passId": "contact-shadow",
+            "role": "contact-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 23,
+            "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+          },
+          {
+            "layerId": "petal-sw",
+            "passId": "tone-zone",
+            "role": "tone-zone",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 58,
+            "cacheKeyContribution": "flower-tone-zone:tone-zone"
+          },
+          {
+            "layerId": "petal-sw",
+            "passId": "ambient-contour",
+            "role": "ambient-contour",
+            "style": "grain",
+            "lit": false,
+            "markBudget": 89,
+            "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+          },
+          {
+            "layerId": "petal-sw",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "hatch",
+            "lit": true,
+            "markBudget": 47,
+            "cacheKeyContribution": "flower-rim-light:rim-light"
+          },
+          {
+            "layerId": "petal-nw",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "flow",
+            "lit": false,
+            "markBudget": 92,
+            "cacheKeyContribution": "flower-core-shadow:core-shadow"
+          },
+          {
+            "layerId": "petal-nw",
+            "passId": "contact-shadow",
+            "role": "contact-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 23,
+            "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+          },
+          {
+            "layerId": "petal-nw",
+            "passId": "tone-zone",
+            "role": "tone-zone",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 58,
+            "cacheKeyContribution": "flower-tone-zone:tone-zone"
+          },
+          {
+            "layerId": "petal-nw",
+            "passId": "ambient-contour",
+            "role": "ambient-contour",
+            "style": "grain",
+            "lit": false,
+            "markBudget": 89,
+            "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+          },
+          {
+            "layerId": "petal-nw",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "hatch",
+            "lit": true,
+            "markBudget": 47,
+            "cacheKeyContribution": "flower-rim-light:rim-light"
+          },
+          {
+            "layerId": "flower-center",
+            "passId": "core-shadow",
+            "role": "core-shadow",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 97,
+            "cacheKeyContribution": "flower-core-shadow:core-shadow"
+          },
+          {
+            "layerId": "flower-center",
+            "passId": "contact-shadow",
+            "role": "contact-shadow",
+            "style": "dry",
+            "lit": false,
+            "markBudget": 23,
+            "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+          },
+          {
+            "layerId": "flower-center",
+            "passId": "tone-zone",
+            "role": "tone-zone",
+            "style": "stipple",
+            "lit": false,
+            "markBudget": 60,
+            "cacheKeyContribution": "flower-tone-zone:tone-zone"
+          },
+          {
+            "layerId": "flower-center",
+            "passId": "ambient-contour",
+            "role": "ambient-contour",
+            "style": "grain",
+            "lit": false,
+            "markBudget": 91,
+            "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+          },
+          {
+            "layerId": "flower-center",
+            "passId": "rim-light",
+            "role": "rim-light",
+            "style": "hatch",
+            "lit": true,
+            "markBudget": 49,
+            "cacheKeyContribution": "flower-rim-light:rim-light"
+          }
+        ]
+      },
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    },
+    {
+      "schema": "morph-runtime-host-compatibility/v0",
+      "version": 0,
+      "storageKey": "signature-path-morph-proof",
+      "artifactPath": "packages/morph/exports/runtime/signature-path-morph-proof.json",
+      "sceneId": "signature-path-morph-proof",
+      "sceneKind": "sign",
+      "title": "Jon Hanlan signature path morph proof",
+      "byteLength": 15470,
+      "renderTier": "svg",
+      "quality": "high",
+      "requiredCapabilities": [
+        "svg",
+        "state-motion"
+      ],
+      "optionalCapabilities": [
+        "pointer-hover",
+        "pointer-press",
+        "focus",
+        "procedural-marks"
+      ],
+      "controllers": [
+        {
+          "id": "hover",
+          "type": "trigger",
+          "label": "Hover",
+          "channel": "pointer"
+        },
+        {
+          "id": "press",
+          "type": "trigger",
+          "label": "Press",
+          "channel": "pointer"
+        },
+        {
+          "id": "focus",
+          "type": "trigger",
+          "label": "Focus",
+          "channel": "focus"
+        }
+      ],
+      "hostInputs": [
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "hover",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "pointer-trigger",
+          "controllerId": "press",
+          "controllerType": "trigger"
+        },
+        {
+          "kind": "focus-trigger",
+          "controllerId": "focus",
+          "controllerType": "trigger"
+        }
+      ],
+      "geometry": {
+        "layers": 5,
+        "kinds": [
+          "closed"
+        ],
+        "pointCount": 68,
+        "closedPointCount": 68,
+        "ribbonStrokeCount": 0,
+        "ribbonPointCount": 0,
+        "pressurePointCount": 0
+      },
+      "mediaAssets": [],
+      "player": {
+        "packageEntry": "@jonhanlan/morph/react/MorphRuntimeStateEnginePlayer",
+        "stateEngine": true,
+        "reducedMotionFallback": "first-frame",
+        "staticFallback": false
+      }
+    }
+  ]
+}

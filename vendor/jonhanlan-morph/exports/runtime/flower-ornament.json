@@ -1,0 +1,2704 @@
+{
+  "schema": "morph-runtime/v0",
+  "version": 0,
+  "exportedAt": "2026-06-29T00:00:00.000Z",
+  "manifest": {
+    "title": "Flower ornament authoring proof",
+    "tags": [
+      "morph-lab",
+      "flower",
+      "ornament",
+      "authoring-proof",
+      "site-player",
+      "svg-runtime"
+    ]
+  },
+  "capabilities": {
+    "required": [
+      "svg",
+      "state-motion"
+    ],
+    "optional": [
+      "pointer-hover",
+      "procedural-marks"
+    ]
+  },
+  "renderTier": "svg",
+  "quality": "high",
+  "fallbacks": {
+    "reducedMotion": "first-frame"
+  },
+  "settings": {
+    "boil": "active-only"
+  },
+  "controllers": [
+    {
+      "id": "hover",
+      "type": "trigger",
+      "label": "Hover",
+      "channel": "pointer"
+    }
+  ],
+  "generated": [
+    {
+      "id": "flower-ornament-source-compiler",
+      "kind": "baked",
+      "owner": "morph-flower-ornament-source-compiler",
+      "target": "scene.layers",
+      "baked": true,
+      "clearable": false,
+      "createdAt": "2026-06-29T00:00:00.000Z"
+    },
+    {
+      "id": "runtime-compile",
+      "kind": "baked",
+      "owner": "morph-runtime-compiler",
+      "target": "document",
+      "clearable": false,
+      "baked": true,
+      "createdAt": "2026-06-29T00:00:00.000Z"
+    }
+  ],
+  "scene": {
+    "id": "flower-ornament",
+    "kind": "animate",
+    "viewBox": [
+      240,
+      240
+    ],
+    "layers": [
+      {
+        "id": "stem-curl",
+        "geometry": {
+          "kind": "ribbon",
+          "strokes": [
+            [
+              {
+                "x": 122,
+                "y": 126,
+                "w": 10
+              },
+              {
+                "x": 116,
+                "y": 154,
+                "w": 9
+              },
+              {
+                "x": 128,
+                "y": 184,
+                "w": 8
+              },
+              {
+                "x": 105,
+                "y": 209,
+                "w": 7
+              },
+              {
+                "x": 72,
+                "y": 198,
+                "w": 6
+              },
+              {
+                "x": 78,
+                "y": 172,
+                "w": 5
+              }
+            ]
+          ],
+          "style": {
+            "cap": "round",
+            "join": "round",
+            "taper": {
+              "start": 0.2,
+              "end": 0.36
+            }
+          }
+        },
+        "resolution": 6,
+        "smoothing": 0.5,
+        "edge": {
+          "intensity": 0.84,
+          "wobble": 0.08,
+          "tooth": 0.24,
+          "breakup": 0.12,
+          "shortMarks": 0.06,
+          "rake": 0.03,
+          "flecks": 0.05,
+          "speckles": 0.04,
+          "grain": 0.08,
+          "fineFibers": 0.08,
+          "erosion": 0.06,
+          "clustering": 0.1,
+          "detailScale": 0.68,
+          "outerEdge": 0.48,
+          "innerEdge": 0.22,
+          "cornerBite": 0.08,
+          "inkBleed": 0.05,
+          "edgeWeight": 0.26,
+          "dryBrush": 0.1,
+          "fiberAngle": 18,
+          "fiberFlow": 0.18,
+          "clusterScale": 0.76,
+          "boilAmount": 0.2,
+          "jitterFps": 12
+        },
+        "fill": {
+          "fill": "#587a59",
+          "opacity": 0.9,
+          "grain": 0.06
+        },
+        "inner": {
+          "shadePasses": [
+            {
+              "angle": 118,
+              "offset": 16,
+              "intensity": 0.42,
+              "style": "dry",
+              "spread": 0.52,
+              "textureScale": 0.92,
+              "contourAlign": 0.86,
+              "coverage": 0.66,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.72,
+              "densityFalloff": 0.5,
+              "sizeFalloff": 0.52,
+              "id": "core-shadow",
+              "role": "core-shadow",
+              "lit": false,
+              "markBudget": 94,
+              "seedOffset": 9,
+              "cacheKeyContribution": "flower-core-shadow:core-shadow"
+            },
+            {
+              "angle": 128,
+              "offset": 11.52,
+              "intensity": 0.185,
+              "style": "dry",
+              "spread": 0.52,
+              "textureScale": 0.754,
+              "contourAlign": 0.86,
+              "coverage": 0.4884,
+              "fieldSoftness": 0.74,
+              "densityEdge": 0.44639999999999996,
+              "densityFalloff": 0.6799999999999999,
+              "sizeFalloff": 0.52,
+              "id": "cast-shadow",
+              "role": "cast-shadow",
+              "lit": false,
+              "markBudget": 46,
+              "seedOffset": 89,
+              "cacheKeyContribution": "flower-cast-shadow:cast-shadow",
+              "fieldInputs": {
+                "sourceLayerOffset": 1,
+                "offsetX": 4,
+                "offsetY": 7
+              }
+            },
+            {
+              "angle": 132,
+              "offset": 7,
+              "intensity": 0.1344,
+              "style": "dry",
+              "spread": 0.24,
+              "textureScale": 0.7360000000000001,
+              "contourAlign": 0.96,
+              "coverage": 0.28,
+              "fieldSoftness": 0.84,
+              "densityEdge": 0.38,
+              "densityFalloff": 0.78,
+              "sizeFalloff": 0.7,
+              "rim": 0.34,
+              "id": "contact-shadow",
+              "role": "contact-shadow",
+              "lit": false,
+              "markBudget": 23,
+              "seedOffset": 73,
+              "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+            },
+            {
+              "angle": 146,
+              "offset": 9,
+              "intensity": 0.1932,
+              "style": "stipple",
+              "spread": 0.42,
+              "textureScale": 0.6808000000000001,
+              "contourAlign": 0.9,
+              "coverage": 0.54,
+              "fieldSoftness": 0.78,
+              "densityEdge": 0.46,
+              "densityFalloff": 0.66,
+              "sizeFalloff": 0.6,
+              "banding": 3,
+              "id": "tone-zone",
+              "role": "tone-zone",
+              "lit": false,
+              "markBudget": 59,
+              "seedOffset": 41,
+              "cacheKeyContribution": "flower-tone-zone:tone-zone"
+            },
+            {
+              "angle": 190,
+              "offset": 5,
+              "intensity": 0.1428,
+              "style": "grain",
+              "spread": 0.3,
+              "textureScale": 0.6256,
+              "contourAlign": 0.96,
+              "coverage": 0.9,
+              "fieldSoftness": 0.9,
+              "densityEdge": 0.4,
+              "densityFalloff": 0.74,
+              "sizeFalloff": 0.68,
+              "rim": 0.22,
+              "id": "ambient-contour",
+              "role": "ambient-contour",
+              "lit": false,
+              "markBudget": 89,
+              "seedOffset": 59,
+              "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+            },
+            {
+              "angle": 296,
+              "offset": 10,
+              "intensity": 0.13999999999999999,
+              "style": "hatch",
+              "spread": 0.34,
+              "textureScale": 0.8280000000000001,
+              "contourAlign": 0.94,
+              "coverage": 0.42,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.58,
+              "densityFalloff": 0.58,
+              "sizeFalloff": 0.42,
+              "id": "rim-light",
+              "role": "rim-light",
+              "lit": true,
+              "markBudget": 46,
+              "seedOffset": 23,
+              "cacheKeyContribution": "flower-rim-light:rim-light"
+            }
+          ]
+        },
+        "passes": {
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "ribbon",
+            "strokes": [
+              [
+                {
+                  "x": 122,
+                  "y": 125.6,
+                  "w": 10.4
+                },
+                {
+                  "x": 118.182,
+                  "y": 152.835,
+                  "w": 9.27
+                },
+                {
+                  "x": 127.438,
+                  "y": 181.376,
+                  "w": 8.16
+                },
+                {
+                  "x": 102.963,
+                  "y": 205.818,
+                  "w": 7.07
+                },
+                {
+                  "x": 73.087,
+                  "y": 195.77,
+                  "w": 6
+                },
+                {
+                  "x": 79.757,
+                  "y": 171.192,
+                  "w": 4.95
+                }
+              ]
+            ],
+            "style": {
+              "cap": "round",
+              "join": "round",
+              "taper": {
+                "start": 0.2,
+                "end": 0.36
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "petal-n",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 148,
+              "y": 70
+            },
+            {
+              "x": 146.866,
+              "y": 84.65
+            },
+            {
+              "x": 143.555,
+              "y": 98.113
+            },
+            {
+              "x": 138.336,
+              "y": 109.299
+            },
+            {
+              "x": 131.632,
+              "y": 117.301
+            },
+            {
+              "x": 123.985,
+              "y": 121.471
+            },
+            {
+              "x": 116.015,
+              "y": 121.471
+            },
+            {
+              "x": 108.368,
+              "y": 117.301
+            },
+            {
+              "x": 101.664,
+              "y": 109.299
+            },
+            {
+              "x": 96.445,
+              "y": 98.113
+            },
+            {
+              "x": 93.134,
+              "y": 84.65
+            },
+            {
+              "x": 92,
+              "y": 70
+            },
+            {
+              "x": 93.134,
+              "y": 55.35
+            },
+            {
+              "x": 96.445,
+              "y": 41.887
+            },
+            {
+              "x": 101.664,
+              "y": 30.701
+            },
+            {
+              "x": 108.368,
+              "y": 22.699
+            },
+            {
+              "x": 116.015,
+              "y": 18.529
+            },
+            {
+              "x": 123.985,
+              "y": 18.529
+            },
+            {
+              "x": 131.632,
+              "y": 22.699
+            },
+            {
+              "x": 138.336,
+              "y": 30.701
+            },
+            {
+              "x": 143.555,
+              "y": 41.887
+            },
+            {
+              "x": 146.866,
+              "y": 55.35
+            }
+          ]
+        },
+        "resolution": 22,
+        "smoothing": 0.62,
+        "edge": {
+          "intensity": 0.84,
+          "wobble": 0.08,
+          "tooth": 0.24,
+          "breakup": 0.12,
+          "shortMarks": 0.06,
+          "rake": 0.03,
+          "flecks": 0.05,
+          "speckles": 0.04,
+          "grain": 0.08,
+          "fineFibers": 0.08,
+          "erosion": 0.06,
+          "clustering": 0.1,
+          "detailScale": 0.68,
+          "outerEdge": 0.48,
+          "innerEdge": 0.22,
+          "cornerBite": 0.08,
+          "inkBleed": 0.05,
+          "edgeWeight": 0.26,
+          "dryBrush": 0.1,
+          "fiberAngle": -18,
+          "fiberFlow": 0.18,
+          "clusterScale": 0.76,
+          "boilAmount": 0.2,
+          "jitterFps": 12
+        },
+        "fill": {
+          "fill": "#e97881",
+          "opacity": 0.94,
+          "grain": 0.08
+        },
+        "inner": {
+          "shadePasses": [
+            {
+              "angle": 132,
+              "offset": 16,
+              "intensity": 0.38,
+              "style": "flow",
+              "spread": 0.52,
+              "textureScale": 0.92,
+              "contourAlign": 0.86,
+              "coverage": 0.66,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.72,
+              "densityFalloff": 0.5,
+              "sizeFalloff": 0.52,
+              "id": "core-shadow",
+              "role": "core-shadow",
+              "lit": false,
+              "markBudget": 92,
+              "seedOffset": 9,
+              "cacheKeyContribution": "flower-core-shadow:core-shadow"
+            },
+            {
+              "angle": 142,
+              "offset": 11.52,
+              "intensity": 0.167,
+              "style": "dry",
+              "spread": 0.52,
+              "textureScale": 0.754,
+              "contourAlign": 0.86,
+              "coverage": 0.4884,
+              "fieldSoftness": 0.74,
+              "densityEdge": 0.44639999999999996,
+              "densityFalloff": 0.6799999999999999,
+              "sizeFalloff": 0.52,
+              "id": "cast-shadow",
+              "role": "cast-shadow",
+              "lit": false,
+              "markBudget": 46,
+              "seedOffset": 89,
+              "cacheKeyContribution": "flower-cast-shadow:cast-shadow",
+              "fieldInputs": {
+                "sourceLayerOffset": 1,
+                "offsetX": 3,
+                "offsetY": 5
+              }
+            },
+            {
+              "angle": 146,
+              "offset": 7,
+              "intensity": 0.1216,
+              "style": "dry",
+              "spread": 0.24,
+              "textureScale": 0.7360000000000001,
+              "contourAlign": 0.96,
+              "coverage": 0.28,
+              "fieldSoftness": 0.84,
+              "densityEdge": 0.38,
+              "densityFalloff": 0.78,
+              "sizeFalloff": 0.7,
+              "rim": 0.34,
+              "id": "contact-shadow",
+              "role": "contact-shadow",
+              "lit": false,
+              "markBudget": 23,
+              "seedOffset": 73,
+              "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+            },
+            {
+              "angle": 160,
+              "offset": 9,
+              "intensity": 0.1748,
+              "style": "stipple",
+              "spread": 0.42,
+              "textureScale": 0.6808000000000001,
+              "contourAlign": 0.9,
+              "coverage": 0.54,
+              "fieldSoftness": 0.78,
+              "densityEdge": 0.46,
+              "densityFalloff": 0.66,
+              "sizeFalloff": 0.6,
+              "banding": 3,
+              "id": "tone-zone",
+              "role": "tone-zone",
+              "lit": false,
+              "markBudget": 58,
+              "seedOffset": 41,
+              "cacheKeyContribution": "flower-tone-zone:tone-zone"
+            },
+            {
+              "angle": 204,
+              "offset": 5,
+              "intensity": 0.1292,
+              "style": "grain",
+              "spread": 0.3,
+              "textureScale": 0.6256,
+              "contourAlign": 0.96,
+              "coverage": 0.9,
+              "fieldSoftness": 0.9,
+              "densityEdge": 0.4,
+              "densityFalloff": 0.74,
+              "sizeFalloff": 0.68,
+              "rim": 0.22,
+              "id": "ambient-contour",
+              "role": "ambient-contour",
+              "lit": false,
+              "markBudget": 89,
+              "seedOffset": 59,
+              "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+            },
+            {
+              "angle": 308,
+              "offset": 10,
+              "intensity": 0.18,
+              "style": "hatch",
+              "spread": 0.34,
+              "textureScale": 0.8280000000000001,
+              "contourAlign": 0.94,
+              "coverage": 0.42,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.58,
+              "densityFalloff": 0.58,
+              "sizeFalloff": 0.42,
+              "id": "rim-light",
+              "role": "rim-light",
+              "lit": true,
+              "markBudget": 47,
+              "seedOffset": 23,
+              "cacheKeyContribution": "flower-rim-light:rim-light"
+            }
+          ]
+        },
+        "passes": {
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 150.713,
+                "y": 66.959
+              },
+              {
+                "x": 149.323,
+                "y": 82.767
+              },
+              {
+                "x": 145.595,
+                "y": 97.269
+              },
+              {
+                "x": 139.832,
+                "y": 109.29
+              },
+              {
+                "x": 132.502,
+                "y": 117.856
+              },
+              {
+                "x": 124.196,
+                "y": 122.273
+              },
+              {
+                "x": 115.589,
+                "y": 122.183
+              },
+              {
+                "x": 107.378,
+                "y": 117.593
+              },
+              {
+                "x": 100.229,
+                "y": 108.876
+              },
+              {
+                "x": 94.719,
+                "y": 96.736
+              },
+              {
+                "x": 91.296,
+                "y": 82.16
+              },
+              {
+                "x": 90.237,
+                "y": 66.326
+              },
+              {
+                "x": 91.627,
+                "y": 50.518
+              },
+              {
+                "x": 95.355,
+                "y": 36.016
+              },
+              {
+                "x": 101.118,
+                "y": 23.995
+              },
+              {
+                "x": 108.448,
+                "y": 15.429
+              },
+              {
+                "x": 116.754,
+                "y": 11.012
+              },
+              {
+                "x": 125.361,
+                "y": 11.102
+              },
+              {
+                "x": 133.572,
+                "y": 15.692
+              },
+              {
+                "x": 140.721,
+                "y": 24.409
+              },
+              {
+                "x": 146.231,
+                "y": 36.549
+              },
+              {
+                "x": 149.654,
+                "y": 51.125
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "petal-ne",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 174.092,
+              "y": 105.092
+            },
+            {
+              "x": 163.358,
+              "y": 114.279
+            },
+            {
+              "x": 151.947,
+              "y": 121.176
+            },
+            {
+              "x": 140.783,
+              "y": 125.222
+            },
+            {
+              "x": 130.771,
+              "y": 126.091
+            },
+            {
+              "x": 122.722,
+              "y": 123.713
+            },
+            {
+              "x": 117.287,
+              "y": 118.278
+            },
+            {
+              "x": 114.909,
+              "y": 110.229
+            },
+            {
+              "x": 115.778,
+              "y": 100.217
+            },
+            {
+              "x": 119.824,
+              "y": 89.053
+            },
+            {
+              "x": 126.721,
+              "y": 77.642
+            },
+            {
+              "x": 135.908,
+              "y": 66.908
+            },
+            {
+              "x": 146.642,
+              "y": 57.721
+            },
+            {
+              "x": 158.053,
+              "y": 50.824
+            },
+            {
+              "x": 169.217,
+              "y": 46.778
+            },
+            {
+              "x": 179.229,
+              "y": 45.909
+            },
+            {
+              "x": 187.278,
+              "y": 48.287
+            },
+            {
+              "x": 192.713,
+              "y": 53.722
+            },
+            {
+              "x": 195.091,
+              "y": 61.771
+            },
+            {
+              "x": 194.222,
+              "y": 71.783
+            },
+            {
+              "x": 190.176,
+              "y": 82.947
+            },
+            {
+              "x": 183.279,
+              "y": 94.358
+            }
+          ]
+        },
+        "resolution": 22,
+        "smoothing": 0.62,
+        "edge": {
+          "intensity": 0.84,
+          "wobble": 0.08,
+          "tooth": 0.24,
+          "breakup": 0.12,
+          "shortMarks": 0.06,
+          "rake": 0.03,
+          "flecks": 0.05,
+          "speckles": 0.04,
+          "grain": 0.08,
+          "fineFibers": 0.08,
+          "erosion": 0.06,
+          "clustering": 0.1,
+          "detailScale": 0.71,
+          "outerEdge": 0.48,
+          "innerEdge": 0.22,
+          "cornerBite": 0.08,
+          "inkBleed": 0.05,
+          "edgeWeight": 0.26,
+          "dryBrush": 0.1,
+          "fiberAngle": -15,
+          "fiberFlow": 0.18,
+          "clusterScale": 0.8,
+          "boilAmount": 0.2,
+          "jitterFps": 12
+        },
+        "fill": {
+          "fill": "#f09b66",
+          "opacity": 0.94,
+          "grain": 0.08
+        },
+        "inner": {
+          "shadePasses": [
+            {
+              "angle": 124,
+              "offset": 16,
+              "intensity": 0.38,
+              "style": "flow",
+              "spread": 0.52,
+              "textureScale": 0.92,
+              "contourAlign": 0.86,
+              "coverage": 0.66,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.72,
+              "densityFalloff": 0.5,
+              "sizeFalloff": 0.52,
+              "id": "core-shadow",
+              "role": "core-shadow",
+              "lit": false,
+              "markBudget": 92,
+              "seedOffset": 9,
+              "cacheKeyContribution": "flower-core-shadow:core-shadow"
+            },
+            {
+              "angle": 138,
+              "offset": 7,
+              "intensity": 0.1216,
+              "style": "dry",
+              "spread": 0.24,
+              "textureScale": 0.7360000000000001,
+              "contourAlign": 0.96,
+              "coverage": 0.28,
+              "fieldSoftness": 0.84,
+              "densityEdge": 0.38,
+              "densityFalloff": 0.78,
+              "sizeFalloff": 0.7,
+              "rim": 0.34,
+              "id": "contact-shadow",
+              "role": "contact-shadow",
+              "lit": false,
+              "markBudget": 23,
+              "seedOffset": 73,
+              "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+            },
+            {
+              "angle": 152,
+              "offset": 9,
+              "intensity": 0.1748,
+              "style": "stipple",
+              "spread": 0.42,
+              "textureScale": 0.6808000000000001,
+              "contourAlign": 0.9,
+              "coverage": 0.54,
+              "fieldSoftness": 0.78,
+              "densityEdge": 0.46,
+              "densityFalloff": 0.66,
+              "sizeFalloff": 0.6,
+              "banding": 3,
+              "id": "tone-zone",
+              "role": "tone-zone",
+              "lit": false,
+              "markBudget": 58,
+              "seedOffset": 41,
+              "cacheKeyContribution": "flower-tone-zone:tone-zone"
+            },
+            {
+              "angle": 196,
+              "offset": 5,
+              "intensity": 0.1292,
+              "style": "grain",
+              "spread": 0.3,
+              "textureScale": 0.6256,
+              "contourAlign": 0.96,
+              "coverage": 0.9,
+              "fieldSoftness": 0.9,
+              "densityEdge": 0.4,
+              "densityFalloff": 0.74,
+              "sizeFalloff": 0.68,
+              "rim": 0.22,
+              "id": "ambient-contour",
+              "role": "ambient-contour",
+              "lit": false,
+              "markBudget": 89,
+              "seedOffset": 59,
+              "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+            },
+            {
+              "angle": 313,
+              "offset": 10,
+              "intensity": 0.18,
+              "style": "hatch",
+              "spread": 0.34,
+              "textureScale": 0.8280000000000001,
+              "contourAlign": 0.94,
+              "coverage": 0.42,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.58,
+              "densityFalloff": 0.58,
+              "sizeFalloff": 0.42,
+              "id": "rim-light",
+              "role": "rim-light",
+              "lit": true,
+              "markBudget": 47,
+              "seedOffset": 23,
+              "cacheKeyContribution": "flower-rim-light:rim-light"
+            }
+          ]
+        },
+        "passes": {
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 178.716,
+                "y": 105.167
+              },
+              {
+                "x": 166.97,
+                "y": 114.995
+              },
+              {
+                "x": 154.517,
+                "y": 122.333
+              },
+              {
+                "x": 142.367,
+                "y": 126.583
+              },
+              {
+                "x": 131.504,
+                "y": 127.404
+              },
+              {
+                "x": 122.809,
+                "y": 124.729
+              },
+              {
+                "x": 116.983,
+                "y": 118.772
+              },
+              {
+                "x": 114.503,
+                "y": 110.019
+              },
+              {
+                "x": 115.566,
+                "y": 99.177
+              },
+              {
+                "x": 120.087,
+                "y": 87.125
+              },
+              {
+                "x": 127.701,
+                "y": 74.84
+              },
+              {
+                "x": 137.789,
+                "y": 63.316
+              },
+              {
+                "x": 149.535,
+                "y": 53.488
+              },
+              {
+                "x": 161.988,
+                "y": 46.15
+              },
+              {
+                "x": 174.138,
+                "y": 41.9
+              },
+              {
+                "x": 185,
+                "y": 41.079
+              },
+              {
+                "x": 193.696,
+                "y": 43.754
+              },
+              {
+                "x": 199.522,
+                "y": 49.711
+              },
+              {
+                "x": 202.002,
+                "y": 58.464
+              },
+              {
+                "x": 200.939,
+                "y": 69.306
+              },
+              {
+                "x": 196.418,
+                "y": 81.358
+              },
+              {
+                "x": 188.804,
+                "y": 93.643
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "petal-se",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 156.381,
+              "y": 151.747
+            },
+            {
+              "x": 142.858,
+              "y": 148.783
+            },
+            {
+              "x": 130.722,
+              "y": 143.973
+            },
+            {
+              "x": 120.959,
+              "y": 137.707
+            },
+            {
+              "x": 114.359,
+              "y": 130.492
+            },
+            {
+              "x": 111.456,
+              "y": 122.914
+            },
+            {
+              "x": 112.486,
+              "y": 115.586
+            },
+            {
+              "x": 117.365,
+              "y": 109.101
+            },
+            {
+              "x": 125.698,
+              "y": 103.985
+            },
+            {
+              "x": 136.81,
+              "y": 100.653
+            },
+            {
+              "x": 149.801,
+              "y": 99.375
+            },
+            {
+              "x": 163.619,
+              "y": 100.253
+            },
+            {
+              "x": 177.142,
+              "y": 103.217
+            },
+            {
+              "x": 189.278,
+              "y": 108.027
+            },
+            {
+              "x": 199.041,
+              "y": 114.293
+            },
+            {
+              "x": 205.641,
+              "y": 121.508
+            },
+            {
+              "x": 208.544,
+              "y": 129.086
+            },
+            {
+              "x": 207.514,
+              "y": 136.414
+            },
+            {
+              "x": 202.635,
+              "y": 142.899
+            },
+            {
+              "x": 194.302,
+              "y": 148.015
+            },
+            {
+              "x": 183.19,
+              "y": 151.347
+            },
+            {
+              "x": 170.199,
+              "y": 152.625
+            }
+          ]
+        },
+        "resolution": 22,
+        "smoothing": 0.62,
+        "edge": {
+          "intensity": 0.84,
+          "wobble": 0.08,
+          "tooth": 0.24,
+          "breakup": 0.12,
+          "shortMarks": 0.06,
+          "rake": 0.03,
+          "flecks": 0.05,
+          "speckles": 0.04,
+          "grain": 0.08,
+          "fineFibers": 0.08,
+          "erosion": 0.06,
+          "clustering": 0.1,
+          "detailScale": 0.68,
+          "outerEdge": 0.48,
+          "innerEdge": 0.22,
+          "cornerBite": 0.08,
+          "inkBleed": 0.05,
+          "edgeWeight": 0.26,
+          "dryBrush": 0.1,
+          "fiberAngle": -12,
+          "fiberFlow": 0.18,
+          "clusterScale": 0.84,
+          "boilAmount": 0.2,
+          "jitterFps": 12
+        },
+        "fill": {
+          "fill": "#f2c35b",
+          "opacity": 0.94,
+          "grain": 0.08
+        },
+        "inner": {
+          "shadePasses": [
+            {
+              "angle": 116,
+              "offset": 16,
+              "intensity": 0.38,
+              "style": "flow",
+              "spread": 0.52,
+              "textureScale": 0.92,
+              "contourAlign": 0.86,
+              "coverage": 0.66,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.72,
+              "densityFalloff": 0.5,
+              "sizeFalloff": 0.52,
+              "id": "core-shadow",
+              "role": "core-shadow",
+              "lit": false,
+              "markBudget": 92,
+              "seedOffset": 9,
+              "cacheKeyContribution": "flower-core-shadow:core-shadow"
+            },
+            {
+              "angle": 130,
+              "offset": 7,
+              "intensity": 0.1216,
+              "style": "dry",
+              "spread": 0.24,
+              "textureScale": 0.7360000000000001,
+              "contourAlign": 0.96,
+              "coverage": 0.28,
+              "fieldSoftness": 0.84,
+              "densityEdge": 0.38,
+              "densityFalloff": 0.78,
+              "sizeFalloff": 0.7,
+              "rim": 0.34,
+              "id": "contact-shadow",
+              "role": "contact-shadow",
+              "lit": false,
+              "markBudget": 23,
+              "seedOffset": 73,
+              "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+            },
+            {
+              "angle": 144,
+              "offset": 9,
+              "intensity": 0.1748,
+              "style": "stipple",
+              "spread": 0.42,
+              "textureScale": 0.6808000000000001,
+              "contourAlign": 0.9,
+              "coverage": 0.54,
+              "fieldSoftness": 0.78,
+              "densityEdge": 0.46,
+              "densityFalloff": 0.66,
+              "sizeFalloff": 0.6,
+              "banding": 3,
+              "id": "tone-zone",
+              "role": "tone-zone",
+              "lit": false,
+              "markBudget": 58,
+              "seedOffset": 41,
+              "cacheKeyContribution": "flower-tone-zone:tone-zone"
+            },
+            {
+              "angle": 188,
+              "offset": 5,
+              "intensity": 0.1292,
+              "style": "grain",
+              "spread": 0.3,
+              "textureScale": 0.6256,
+              "contourAlign": 0.96,
+              "coverage": 0.9,
+              "fieldSoftness": 0.9,
+              "densityEdge": 0.4,
+              "densityFalloff": 0.74,
+              "sizeFalloff": 0.68,
+              "rim": 0.22,
+              "id": "ambient-contour",
+              "role": "ambient-contour",
+              "lit": false,
+              "markBudget": 89,
+              "seedOffset": 59,
+              "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+            },
+            {
+              "angle": 318,
+              "offset": 10,
+              "intensity": 0.18,
+              "style": "hatch",
+              "spread": 0.34,
+              "textureScale": 0.8280000000000001,
+              "contourAlign": 0.94,
+              "coverage": 0.42,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.58,
+              "densityFalloff": 0.58,
+              "sizeFalloff": 0.42,
+              "id": "rim-light",
+              "role": "rim-light",
+              "lit": true,
+              "markBudget": 47,
+              "seedOffset": 23,
+              "cacheKeyContribution": "flower-rim-light:rim-light"
+            }
+          ]
+        },
+        "passes": {
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 159.067,
+                "y": 155.711
+              },
+              {
+                "x": 144.393,
+                "y": 152.312
+              },
+              {
+                "x": 131.252,
+                "y": 146.923
+              },
+              {
+                "x": 120.711,
+                "y": 139.98
+              },
+              {
+                "x": 113.624,
+                "y": 132.045
+              },
+              {
+                "x": 110.564,
+                "y": 123.763
+              },
+              {
+                "x": 111.779,
+                "y": 115.804
+              },
+              {
+                "x": 117.171,
+                "y": 108.812
+              },
+              {
+                "x": 126.302,
+                "y": 103.354
+              },
+              {
+                "x": 138.435,
+                "y": 99.872
+              },
+              {
+                "x": 152.584,
+                "y": 98.65
+              },
+              {
+                "x": 167.606,
+                "y": 99.783
+              },
+              {
+                "x": 182.28,
+                "y": 103.183
+              },
+              {
+                "x": 195.42,
+                "y": 108.572
+              },
+              {
+                "x": 205.961,
+                "y": 115.515
+              },
+              {
+                "x": 213.048,
+                "y": 123.45
+              },
+              {
+                "x": 216.108,
+                "y": 131.732
+              },
+              {
+                "x": 214.893,
+                "y": 139.691
+              },
+              {
+                "x": 209.502,
+                "y": 146.683
+              },
+              {
+                "x": 200.37,
+                "y": 152.141
+              },
+              {
+                "x": 188.238,
+                "y": 155.622
+              },
+              {
+                "x": 174.088,
+                "y": 156.845
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "petal-s",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 92,
+              "y": 150
+            },
+            {
+              "x": 93.134,
+              "y": 135.35
+            },
+            {
+              "x": 96.445,
+              "y": 121.887
+            },
+            {
+              "x": 101.664,
+              "y": 110.701
+            },
+            {
+              "x": 108.368,
+              "y": 102.699
+            },
+            {
+              "x": 116.015,
+              "y": 98.529
+            },
+            {
+              "x": 123.985,
+              "y": 98.529
+            },
+            {
+              "x": 131.632,
+              "y": 102.699
+            },
+            {
+              "x": 138.336,
+              "y": 110.701
+            },
+            {
+              "x": 143.555,
+              "y": 121.887
+            },
+            {
+              "x": 146.866,
+              "y": 135.35
+            },
+            {
+              "x": 148,
+              "y": 150
+            },
+            {
+              "x": 146.866,
+              "y": 164.65
+            },
+            {
+              "x": 143.555,
+              "y": 178.113
+            },
+            {
+              "x": 138.336,
+              "y": 189.299
+            },
+            {
+              "x": 131.632,
+              "y": 197.301
+            },
+            {
+              "x": 123.985,
+              "y": 201.471
+            },
+            {
+              "x": 116.015,
+              "y": 201.471
+            },
+            {
+              "x": 108.368,
+              "y": 197.301
+            },
+            {
+              "x": 101.664,
+              "y": 189.299
+            },
+            {
+              "x": 96.445,
+              "y": 178.113
+            },
+            {
+              "x": 93.134,
+              "y": 164.65
+            }
+          ]
+        },
+        "resolution": 22,
+        "smoothing": 0.62,
+        "edge": {
+          "intensity": 0.84,
+          "wobble": 0.08,
+          "tooth": 0.24,
+          "breakup": 0.12,
+          "shortMarks": 0.06,
+          "rake": 0.03,
+          "flecks": 0.05,
+          "speckles": 0.04,
+          "grain": 0.08,
+          "fineFibers": 0.08,
+          "erosion": 0.06,
+          "clustering": 0.1,
+          "detailScale": 0.71,
+          "outerEdge": 0.48,
+          "innerEdge": 0.22,
+          "cornerBite": 0.08,
+          "inkBleed": 0.05,
+          "edgeWeight": 0.26,
+          "dryBrush": 0.1,
+          "fiberAngle": -9,
+          "fiberFlow": 0.18,
+          "clusterScale": 0.76,
+          "boilAmount": 0.2,
+          "jitterFps": 12
+        },
+        "fill": {
+          "fill": "#d9b847",
+          "opacity": 0.94,
+          "grain": 0.08
+        },
+        "inner": {
+          "shadePasses": [
+            {
+              "angle": 108,
+              "offset": 16,
+              "intensity": 0.38,
+              "style": "flow",
+              "spread": 0.52,
+              "textureScale": 0.92,
+              "contourAlign": 0.86,
+              "coverage": 0.66,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.72,
+              "densityFalloff": 0.5,
+              "sizeFalloff": 0.52,
+              "id": "core-shadow",
+              "role": "core-shadow",
+              "lit": false,
+              "markBudget": 92,
+              "seedOffset": 9,
+              "cacheKeyContribution": "flower-core-shadow:core-shadow"
+            },
+            {
+              "angle": 122,
+              "offset": 7,
+              "intensity": 0.1216,
+              "style": "dry",
+              "spread": 0.24,
+              "textureScale": 0.7360000000000001,
+              "contourAlign": 0.96,
+              "coverage": 0.28,
+              "fieldSoftness": 0.84,
+              "densityEdge": 0.38,
+              "densityFalloff": 0.78,
+              "sizeFalloff": 0.7,
+              "rim": 0.34,
+              "id": "contact-shadow",
+              "role": "contact-shadow",
+              "lit": false,
+              "markBudget": 23,
+              "seedOffset": 73,
+              "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+            },
+            {
+              "angle": 136,
+              "offset": 9,
+              "intensity": 0.1748,
+              "style": "stipple",
+              "spread": 0.42,
+              "textureScale": 0.6808000000000001,
+              "contourAlign": 0.9,
+              "coverage": 0.54,
+              "fieldSoftness": 0.78,
+              "densityEdge": 0.46,
+              "densityFalloff": 0.66,
+              "sizeFalloff": 0.6,
+              "banding": 3,
+              "id": "tone-zone",
+              "role": "tone-zone",
+              "lit": false,
+              "markBudget": 58,
+              "seedOffset": 41,
+              "cacheKeyContribution": "flower-tone-zone:tone-zone"
+            },
+            {
+              "angle": 180,
+              "offset": 5,
+              "intensity": 0.1292,
+              "style": "grain",
+              "spread": 0.3,
+              "textureScale": 0.6256,
+              "contourAlign": 0.96,
+              "coverage": 0.9,
+              "fieldSoftness": 0.9,
+              "densityEdge": 0.4,
+              "densityFalloff": 0.74,
+              "sizeFalloff": 0.68,
+              "rim": 0.22,
+              "id": "ambient-contour",
+              "role": "ambient-contour",
+              "lit": false,
+              "markBudget": 89,
+              "seedOffset": 59,
+              "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+            },
+            {
+              "angle": 323,
+              "offset": 10,
+              "intensity": 0.18,
+              "style": "hatch",
+              "spread": 0.34,
+              "textureScale": 0.8280000000000001,
+              "contourAlign": 0.94,
+              "coverage": 0.42,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.58,
+              "densityFalloff": 0.58,
+              "sizeFalloff": 0.42,
+              "id": "rim-light",
+              "role": "rim-light",
+              "lit": true,
+              "markBudget": 47,
+              "seedOffset": 23,
+              "cacheKeyContribution": "flower-rim-light:rim-light"
+            }
+          ]
+        },
+        "passes": {
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 88.905,
+                "y": 153.109
+              },
+              {
+                "x": 90.344,
+                "y": 137.128
+              },
+              {
+                "x": 94.144,
+                "y": 122.473
+              },
+              {
+                "x": 99.996,
+                "y": 110.33
+              },
+              {
+                "x": 107.426,
+                "y": 101.684
+              },
+              {
+                "x": 115.834,
+                "y": 97.236
+              },
+              {
+                "x": 124.536,
+                "y": 97.346
+              },
+              {
+                "x": 132.829,
+                "y": 102.004
+              },
+              {
+                "x": 140.039,
+                "y": 110.833
+              },
+              {
+                "x": 145.584,
+                "y": 123.119
+              },
+              {
+                "x": 149.015,
+                "y": 137.865
+              },
+              {
+                "x": 150.052,
+                "y": 153.877
+              },
+              {
+                "x": 148.613,
+                "y": 169.858
+              },
+              {
+                "x": 144.813,
+                "y": 184.513
+              },
+              {
+                "x": 138.961,
+                "y": 196.655
+              },
+              {
+                "x": 131.531,
+                "y": 205.301
+              },
+              {
+                "x": 123.124,
+                "y": 209.749
+              },
+              {
+                "x": 114.421,
+                "y": 209.64
+              },
+              {
+                "x": 106.128,
+                "y": 204.982
+              },
+              {
+                "x": 98.918,
+                "y": 196.152
+              },
+              {
+                "x": 93.373,
+                "y": 183.866
+              },
+              {
+                "x": 89.942,
+                "y": 169.121
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "petal-sw",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 76.381,
+              "y": 100.253
+            },
+            {
+              "x": 90.199,
+              "y": 99.375
+            },
+            {
+              "x": 103.19,
+              "y": 100.653
+            },
+            {
+              "x": 114.302,
+              "y": 103.985
+            },
+            {
+              "x": 122.635,
+              "y": 109.101
+            },
+            {
+              "x": 127.514,
+              "y": 115.586
+            },
+            {
+              "x": 128.544,
+              "y": 122.914
+            },
+            {
+              "x": 125.641,
+              "y": 130.492
+            },
+            {
+              "x": 119.041,
+              "y": 137.707
+            },
+            {
+              "x": 109.278,
+              "y": 143.973
+            },
+            {
+              "x": 97.142,
+              "y": 148.783
+            },
+            {
+              "x": 83.619,
+              "y": 151.747
+            },
+            {
+              "x": 69.801,
+              "y": 152.625
+            },
+            {
+              "x": 56.81,
+              "y": 151.347
+            },
+            {
+              "x": 45.698,
+              "y": 148.015
+            },
+            {
+              "x": 37.365,
+              "y": 142.899
+            },
+            {
+              "x": 32.486,
+              "y": 136.414
+            },
+            {
+              "x": 31.456,
+              "y": 129.086
+            },
+            {
+              "x": 34.359,
+              "y": 121.508
+            },
+            {
+              "x": 40.959,
+              "y": 114.293
+            },
+            {
+              "x": 50.722,
+              "y": 108.027
+            },
+            {
+              "x": 62.858,
+              "y": 103.217
+            }
+          ]
+        },
+        "resolution": 22,
+        "smoothing": 0.62,
+        "edge": {
+          "intensity": 0.84,
+          "wobble": 0.08,
+          "tooth": 0.24,
+          "breakup": 0.12,
+          "shortMarks": 0.06,
+          "rake": 0.03,
+          "flecks": 0.05,
+          "speckles": 0.04,
+          "grain": 0.08,
+          "fineFibers": 0.08,
+          "erosion": 0.06,
+          "clustering": 0.1,
+          "detailScale": 0.68,
+          "outerEdge": 0.48,
+          "innerEdge": 0.22,
+          "cornerBite": 0.08,
+          "inkBleed": 0.05,
+          "edgeWeight": 0.26,
+          "dryBrush": 0.1,
+          "fiberAngle": -6,
+          "fiberFlow": 0.18,
+          "clusterScale": 0.8,
+          "boilAmount": 0.2,
+          "jitterFps": 12
+        },
+        "fill": {
+          "fill": "#87bf70",
+          "opacity": 0.94,
+          "grain": 0.08
+        },
+        "inner": {
+          "shadePasses": [
+            {
+              "angle": 100,
+              "offset": 16,
+              "intensity": 0.38,
+              "style": "flow",
+              "spread": 0.52,
+              "textureScale": 0.92,
+              "contourAlign": 0.86,
+              "coverage": 0.66,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.72,
+              "densityFalloff": 0.5,
+              "sizeFalloff": 0.52,
+              "id": "core-shadow",
+              "role": "core-shadow",
+              "lit": false,
+              "markBudget": 92,
+              "seedOffset": 9,
+              "cacheKeyContribution": "flower-core-shadow:core-shadow"
+            },
+            {
+              "angle": 114,
+              "offset": 7,
+              "intensity": 0.1216,
+              "style": "dry",
+              "spread": 0.24,
+              "textureScale": 0.7360000000000001,
+              "contourAlign": 0.96,
+              "coverage": 0.28,
+              "fieldSoftness": 0.84,
+              "densityEdge": 0.38,
+              "densityFalloff": 0.78,
+              "sizeFalloff": 0.7,
+              "rim": 0.34,
+              "id": "contact-shadow",
+              "role": "contact-shadow",
+              "lit": false,
+              "markBudget": 23,
+              "seedOffset": 73,
+              "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+            },
+            {
+              "angle": 128,
+              "offset": 9,
+              "intensity": 0.1748,
+              "style": "stipple",
+              "spread": 0.42,
+              "textureScale": 0.6808000000000001,
+              "contourAlign": 0.9,
+              "coverage": 0.54,
+              "fieldSoftness": 0.78,
+              "densityEdge": 0.46,
+              "densityFalloff": 0.66,
+              "sizeFalloff": 0.6,
+              "banding": 3,
+              "id": "tone-zone",
+              "role": "tone-zone",
+              "lit": false,
+              "markBudget": 58,
+              "seedOffset": 41,
+              "cacheKeyContribution": "flower-tone-zone:tone-zone"
+            },
+            {
+              "angle": 172,
+              "offset": 5,
+              "intensity": 0.1292,
+              "style": "grain",
+              "spread": 0.3,
+              "textureScale": 0.6256,
+              "contourAlign": 0.96,
+              "coverage": 0.9,
+              "fieldSoftness": 0.9,
+              "densityEdge": 0.4,
+              "densityFalloff": 0.74,
+              "sizeFalloff": 0.68,
+              "rim": 0.22,
+              "id": "ambient-contour",
+              "role": "ambient-contour",
+              "lit": false,
+              "markBudget": 89,
+              "seedOffset": 59,
+              "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+            },
+            {
+              "angle": 328,
+              "offset": 10,
+              "intensity": 0.18,
+              "style": "hatch",
+              "spread": 0.34,
+              "textureScale": 0.8280000000000001,
+              "contourAlign": 0.94,
+              "coverage": 0.42,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.58,
+              "densityFalloff": 0.58,
+              "sizeFalloff": 0.42,
+              "id": "rim-light",
+              "role": "rim-light",
+              "lit": true,
+              "markBudget": 47,
+              "seedOffset": 23,
+              "cacheKeyContribution": "flower-rim-light:rim-light"
+            }
+          ]
+        },
+        "passes": {
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 72.369,
+                "y": 98.492
+              },
+              {
+                "x": 87.525,
+                "y": 97.731
+              },
+              {
+                "x": 101.743,
+                "y": 99.32
+              },
+              {
+                "x": 113.872,
+                "y": 103.133
+              },
+              {
+                "x": 122.93,
+                "y": 108.861
+              },
+              {
+                "x": 128.182,
+                "y": 116.039
+              },
+              {
+                "x": 129.205,
+                "y": 124.085
+              },
+              {
+                "x": 125.913,
+                "y": 132.347
+              },
+              {
+                "x": 118.575,
+                "y": 140.158
+              },
+              {
+                "x": 107.785,
+                "y": 146.883
+              },
+              {
+                "x": 94.415,
+                "y": 151.978
+              },
+              {
+                "x": 79.552,
+                "y": 155.03
+              },
+              {
+                "x": 64.396,
+                "y": 155.791
+              },
+              {
+                "x": 50.178,
+                "y": 154.202
+              },
+              {
+                "x": 38.049,
+                "y": 150.389
+              },
+              {
+                "x": 28.991,
+                "y": 144.661
+              },
+              {
+                "x": 23.738,
+                "y": 137.483
+              },
+              {
+                "x": 22.716,
+                "y": 129.437
+              },
+              {
+                "x": 26.007,
+                "y": 121.175
+              },
+              {
+                "x": 33.345,
+                "y": 113.364
+              },
+              {
+                "x": 44.136,
+                "y": 106.639
+              },
+              {
+                "x": 57.506,
+                "y": 101.544
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "petal-nw",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 104.092,
+              "y": 66.908
+            },
+            {
+              "x": 113.279,
+              "y": 77.642
+            },
+            {
+              "x": 120.176,
+              "y": 89.053
+            },
+            {
+              "x": 124.222,
+              "y": 100.217
+            },
+            {
+              "x": 125.091,
+              "y": 110.229
+            },
+            {
+              "x": 122.713,
+              "y": 118.278
+            },
+            {
+              "x": 117.278,
+              "y": 123.713
+            },
+            {
+              "x": 109.229,
+              "y": 126.091
+            },
+            {
+              "x": 99.217,
+              "y": 125.222
+            },
+            {
+              "x": 88.053,
+              "y": 121.176
+            },
+            {
+              "x": 76.642,
+              "y": 114.279
+            },
+            {
+              "x": 65.908,
+              "y": 105.092
+            },
+            {
+              "x": 56.721,
+              "y": 94.358
+            },
+            {
+              "x": 49.824,
+              "y": 82.947
+            },
+            {
+              "x": 45.778,
+              "y": 71.783
+            },
+            {
+              "x": 44.909,
+              "y": 61.771
+            },
+            {
+              "x": 47.287,
+              "y": 53.722
+            },
+            {
+              "x": 52.722,
+              "y": 48.287
+            },
+            {
+              "x": 60.771,
+              "y": 45.909
+            },
+            {
+              "x": 70.783,
+              "y": 46.778
+            },
+            {
+              "x": 81.947,
+              "y": 50.824
+            },
+            {
+              "x": 93.358,
+              "y": 57.721
+            }
+          ]
+        },
+        "resolution": 22,
+        "smoothing": 0.62,
+        "edge": {
+          "intensity": 0.84,
+          "wobble": 0.08,
+          "tooth": 0.24,
+          "breakup": 0.12,
+          "shortMarks": 0.06,
+          "rake": 0.03,
+          "flecks": 0.05,
+          "speckles": 0.04,
+          "grain": 0.08,
+          "fineFibers": 0.08,
+          "erosion": 0.06,
+          "clustering": 0.1,
+          "detailScale": 0.71,
+          "outerEdge": 0.48,
+          "innerEdge": 0.22,
+          "cornerBite": 0.08,
+          "inkBleed": 0.05,
+          "edgeWeight": 0.26,
+          "dryBrush": 0.1,
+          "fiberAngle": -3,
+          "fiberFlow": 0.18,
+          "clusterScale": 0.84,
+          "boilAmount": 0.2,
+          "jitterFps": 12
+        },
+        "fill": {
+          "fill": "#62a6a4",
+          "opacity": 0.94,
+          "grain": 0.08
+        },
+        "inner": {
+          "shadePasses": [
+            {
+              "angle": 92,
+              "offset": 16,
+              "intensity": 0.38,
+              "style": "flow",
+              "spread": 0.52,
+              "textureScale": 0.92,
+              "contourAlign": 0.86,
+              "coverage": 0.66,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.72,
+              "densityFalloff": 0.5,
+              "sizeFalloff": 0.52,
+              "id": "core-shadow",
+              "role": "core-shadow",
+              "lit": false,
+              "markBudget": 92,
+              "seedOffset": 9,
+              "cacheKeyContribution": "flower-core-shadow:core-shadow"
+            },
+            {
+              "angle": 106,
+              "offset": 7,
+              "intensity": 0.1216,
+              "style": "dry",
+              "spread": 0.24,
+              "textureScale": 0.7360000000000001,
+              "contourAlign": 0.96,
+              "coverage": 0.28,
+              "fieldSoftness": 0.84,
+              "densityEdge": 0.38,
+              "densityFalloff": 0.78,
+              "sizeFalloff": 0.7,
+              "rim": 0.34,
+              "id": "contact-shadow",
+              "role": "contact-shadow",
+              "lit": false,
+              "markBudget": 23,
+              "seedOffset": 73,
+              "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+            },
+            {
+              "angle": 120,
+              "offset": 9,
+              "intensity": 0.1748,
+              "style": "stipple",
+              "spread": 0.42,
+              "textureScale": 0.6808000000000001,
+              "contourAlign": 0.9,
+              "coverage": 0.54,
+              "fieldSoftness": 0.78,
+              "densityEdge": 0.46,
+              "densityFalloff": 0.66,
+              "sizeFalloff": 0.6,
+              "banding": 3,
+              "id": "tone-zone",
+              "role": "tone-zone",
+              "lit": false,
+              "markBudget": 58,
+              "seedOffset": 41,
+              "cacheKeyContribution": "flower-tone-zone:tone-zone"
+            },
+            {
+              "angle": 164,
+              "offset": 5,
+              "intensity": 0.1292,
+              "style": "grain",
+              "spread": 0.3,
+              "textureScale": 0.6256,
+              "contourAlign": 0.96,
+              "coverage": 0.9,
+              "fieldSoftness": 0.9,
+              "densityEdge": 0.4,
+              "densityFalloff": 0.74,
+              "sizeFalloff": 0.68,
+              "rim": 0.22,
+              "id": "ambient-contour",
+              "role": "ambient-contour",
+              "lit": false,
+              "markBudget": 89,
+              "seedOffset": 59,
+              "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+            },
+            {
+              "angle": 333,
+              "offset": 10,
+              "intensity": 0.18,
+              "style": "hatch",
+              "spread": 0.34,
+              "textureScale": 0.8280000000000001,
+              "contourAlign": 0.94,
+              "coverage": 0.42,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.58,
+              "densityFalloff": 0.58,
+              "sizeFalloff": 0.42,
+              "id": "rim-light",
+              "role": "rim-light",
+              "lit": true,
+              "markBudget": 47,
+              "seedOffset": 23,
+              "cacheKeyContribution": "flower-rim-light:rim-light"
+            }
+          ]
+        },
+        "passes": {
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 103.195,
+                "y": 62.159
+              },
+              {
+                "x": 113.135,
+                "y": 74.107
+              },
+              {
+                "x": 120.546,
+                "y": 86.763
+              },
+              {
+                "x": 124.825,
+                "y": 99.105
+              },
+              {
+                "x": 125.627,
+                "y": 110.13
+              },
+              {
+                "x": 122.888,
+                "y": 118.947
+              },
+              {
+                "x": 116.826,
+                "y": 124.841
+              },
+              {
+                "x": 107.937,
+                "y": 127.333
+              },
+              {
+                "x": 96.938,
+                "y": 126.224
+              },
+              {
+                "x": 84.721,
+                "y": 121.602
+              },
+              {
+                "x": 72.276,
+                "y": 113.841
+              },
+              {
+                "x": 60.611,
+                "y": 103.571
+              },
+              {
+                "x": 50.671,
+                "y": 91.624
+              },
+              {
+                "x": 43.26,
+                "y": 78.967
+              },
+              {
+                "x": 38.981,
+                "y": 66.626
+              },
+              {
+                "x": 38.179,
+                "y": 55.6
+              },
+              {
+                "x": 40.919,
+                "y": 46.784
+              },
+              {
+                "x": 46.98,
+                "y": 40.889
+              },
+              {
+                "x": 55.87,
+                "y": 38.397
+              },
+              {
+                "x": 66.868,
+                "y": 39.507
+              },
+              {
+                "x": 79.085,
+                "y": 44.129
+              },
+              {
+                "x": 91.53,
+                "y": 51.89
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "flower-center",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 138.815,
+              "y": 109.356
+            },
+            {
+              "x": 138.593,
+              "y": 115.604
+            },
+            {
+              "x": 136.201,
+              "y": 121.407
+            },
+            {
+              "x": 131.825,
+              "y": 126.08
+            },
+            {
+              "x": 125.876,
+              "y": 129.075
+            },
+            {
+              "x": 118.998,
+              "y": 130.042
+            },
+            {
+              "x": 112.019,
+              "y": 128.863
+            },
+            {
+              "x": 105.857,
+              "y": 125.672
+            },
+            {
+              "x": 101.371,
+              "y": 120.835
+            },
+            {
+              "x": 99.204,
+              "y": 114.923
+            },
+            {
+              "x": 99.658,
+              "y": 108.642
+            },
+            {
+              "x": 102.637,
+              "y": 102.756
+            },
+            {
+              "x": 107.68,
+              "y": 97.99
+            },
+            {
+              "x": 114.064,
+              "y": 94.934
+            },
+            {
+              "x": 120.942,
+              "y": 93.967
+            },
+            {
+              "x": 127.486,
+              "y": 95.206
+            },
+            {
+              "x": 132.98,
+              "y": 98.492
+            },
+            {
+              "x": 136.88,
+              "y": 103.411
+            }
+          ]
+        },
+        "resolution": 18,
+        "smoothing": 0.48,
+        "edge": {
+          "intensity": 0.84,
+          "wobble": 0.08,
+          "tooth": 0.24,
+          "breakup": 0.12,
+          "shortMarks": 0.06,
+          "rake": 0.03,
+          "flecks": 0.05,
+          "speckles": 0.04,
+          "grain": 0.08,
+          "fineFibers": 0.08,
+          "erosion": 0.06,
+          "clustering": 0.1,
+          "detailScale": 0.68,
+          "outerEdge": 0.48,
+          "innerEdge": 0.22,
+          "cornerBite": 0.08,
+          "inkBleed": 0.05,
+          "edgeWeight": 0.26,
+          "dryBrush": 0.1,
+          "fiberAngle": 6,
+          "fiberFlow": 0.18,
+          "clusterScale": 0.84,
+          "boilAmount": 0.2,
+          "jitterFps": 12
+        },
+        "fill": {
+          "fill": "#5f4154",
+          "opacity": 0.98,
+          "grain": 0.12
+        },
+        "inner": {
+          "shadePasses": [
+            {
+              "angle": 145,
+              "offset": 16,
+              "intensity": 0.48,
+              "style": "stipple",
+              "spread": 0.52,
+              "textureScale": 0.92,
+              "contourAlign": 0.86,
+              "coverage": 0.66,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.72,
+              "densityFalloff": 0.5,
+              "sizeFalloff": 0.52,
+              "id": "core-shadow",
+              "role": "core-shadow",
+              "lit": false,
+              "markBudget": 97,
+              "seedOffset": 9,
+              "cacheKeyContribution": "flower-core-shadow:core-shadow"
+            },
+            {
+              "angle": 159,
+              "offset": 7,
+              "intensity": 0.1536,
+              "style": "dry",
+              "spread": 0.24,
+              "textureScale": 0.7360000000000001,
+              "contourAlign": 0.96,
+              "coverage": 0.28,
+              "fieldSoftness": 0.84,
+              "densityEdge": 0.38,
+              "densityFalloff": 0.78,
+              "sizeFalloff": 0.7,
+              "rim": 0.34,
+              "id": "contact-shadow",
+              "role": "contact-shadow",
+              "lit": false,
+              "markBudget": 23,
+              "seedOffset": 73,
+              "cacheKeyContribution": "flower-contact-shadow:contact-shadow"
+            },
+            {
+              "angle": 173,
+              "offset": 9,
+              "intensity": 0.2208,
+              "style": "stipple",
+              "spread": 0.42,
+              "textureScale": 0.6808000000000001,
+              "contourAlign": 0.9,
+              "coverage": 0.54,
+              "fieldSoftness": 0.78,
+              "densityEdge": 0.46,
+              "densityFalloff": 0.66,
+              "sizeFalloff": 0.6,
+              "banding": 3,
+              "id": "tone-zone",
+              "role": "tone-zone",
+              "lit": false,
+              "markBudget": 60,
+              "seedOffset": 41,
+              "cacheKeyContribution": "flower-tone-zone:tone-zone"
+            },
+            {
+              "angle": 217,
+              "offset": 5,
+              "intensity": 0.1632,
+              "style": "grain",
+              "spread": 0.3,
+              "textureScale": 0.6256,
+              "contourAlign": 0.96,
+              "coverage": 0.9,
+              "fieldSoftness": 0.9,
+              "densityEdge": 0.4,
+              "densityFalloff": 0.74,
+              "sizeFalloff": 0.68,
+              "rim": 0.22,
+              "id": "ambient-contour",
+              "role": "ambient-contour",
+              "lit": false,
+              "markBudget": 91,
+              "seedOffset": 59,
+              "cacheKeyContribution": "flower-ambient-contour:ambient-contour"
+            },
+            {
+              "angle": 320,
+              "offset": 10,
+              "intensity": 0.26,
+              "style": "hatch",
+              "spread": 0.34,
+              "textureScale": 0.8280000000000001,
+              "contourAlign": 0.94,
+              "coverage": 0.42,
+              "fieldSoftness": 0.62,
+              "densityEdge": 0.58,
+              "densityFalloff": 0.58,
+              "sizeFalloff": 0.42,
+              "id": "rim-light",
+              "role": "rim-light",
+              "lit": true,
+              "markBudget": 49,
+              "seedOffset": 23,
+              "cacheKeyContribution": "flower-rim-light:rim-light"
+            }
+          ]
+        },
+        "passes": {
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 139.454,
+                "y": 109.128
+              },
+              {
+                "x": 139.269,
+                "y": 115.596
+              },
+              {
+                "x": 136.836,
+                "y": 121.619
+              },
+              {
+                "x": 132.34,
+                "y": 126.487
+              },
+              {
+                "x": 126.205,
+                "y": 129.63
+              },
+              {
+                "x": 119.093,
+                "y": 130.68
+              },
+              {
+                "x": 111.862,
+                "y": 129.51
+              },
+              {
+                "x": 105.461,
+                "y": 126.252
+              },
+              {
+                "x": 100.783,
+                "y": 121.279
+              },
+              {
+                "x": 98.498,
+                "y": 115.175
+              },
+              {
+                "x": 98.922,
+                "y": 108.672
+              },
+              {
+                "x": 101.963,
+                "y": 102.558
+              },
+              {
+                "x": 107.148,
+                "y": 97.589
+              },
+              {
+                "x": 113.733,
+                "y": 94.38
+              },
+              {
+                "x": 120.845,
+                "y": 93.329
+              },
+              {
+                "x": 127.626,
+                "y": 94.565
+              },
+              {
+                "x": 133.336,
+                "y": 97.926
+              },
+              {
+                "x": 137.408,
+                "y": 102.989
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "entry": "rest",
+    "states": {
+      "rest": {},
+      "hover": {}
+    },
+    "stateGraph": {
+      "entry": "rest",
+      "states": {
+        "rest": {
+          "kind": "rest",
+          "label": "Rest"
+        },
+        "hover": {
+          "kind": "hover",
+          "label": "Bloom"
+        }
+      },
+      "transitions": [
+        {
+          "from": "*",
+          "to": "hover",
+          "trigger": "hover-on",
+          "durationMs": 420,
+          "easing": "smoothstep",
+          "fps": 18,
+          "interrupt": "restart"
+        },
+        {
+          "from": "*",
+          "to": "rest",
+          "trigger": "hover-off",
+          "durationMs": 520,
+          "easing": "smoothstep",
+          "fps": 18,
+          "interrupt": "restart"
+        }
+      ]
+    }
+  }
+}

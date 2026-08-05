@@ -1,0 +1,335 @@
+{
+  "flowOrnament": {
+    "id": "flow-ornament",
+    "kind": "animate",
+    "viewBox": [
+      320,
+      240
+    ],
+    "layers": [
+      {
+        "id": "flow-ribbon-field",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 48,
+              "y": 124
+            },
+            {
+              "x": 84,
+              "y": 61
+            },
+            {
+              "x": 151,
+              "y": 41
+            },
+            {
+              "x": 220,
+              "y": 55
+            },
+            {
+              "x": 276,
+              "y": 108
+            },
+            {
+              "x": 245,
+              "y": 174
+            },
+            {
+              "x": 174,
+              "y": 202
+            },
+            {
+              "x": 93,
+              "y": 185
+            }
+          ]
+        },
+        "resolution": 78,
+        "smoothing": 0.72,
+        "edge": {
+          "intensity": 4.4,
+          "wobble": 0.13,
+          "tooth": 0.44,
+          "breakup": 0.34,
+          "shortMarks": 0.03,
+          "rake": 0.04,
+          "flecks": 0.08,
+          "speckles": 0.06,
+          "grain": 0.06,
+          "fineFibers": 0.04,
+          "erosion": 0.15,
+          "clustering": 0.26,
+          "detailScale": 0.74,
+          "outerEdge": 0.8,
+          "innerEdge": 0.48,
+          "cornerBite": 0.22,
+          "inkBleed": 0.06,
+          "edgeWeight": 0.16,
+          "dryBrush": 0.14,
+          "fiberAngle": 8,
+          "fiberFlow": 0.26,
+          "clusterScale": 0.9,
+          "boilAmount": 0,
+          "jitterFps": 0
+        },
+        "fill": {
+          "fill": "#287c6f",
+          "grain": 0
+        },
+        "inner": {
+          "innerShadow": {
+            "angle": 18,
+            "offset": 0.26,
+            "intensity": 0.68,
+            "style": "flow",
+            "spread": 0.92,
+            "edgeBias": 1.08,
+            "textureScale": 0.6,
+            "jitter": 0.08,
+            "contourAlign": 1,
+            "coverage": 0.9,
+            "rim": 0.32,
+            "fieldDepth": 1.08,
+            "fieldOffset": 0.02,
+            "fieldSoftness": 0.46,
+            "fieldContrast": 0.24,
+            "densityEdge": 0.82,
+            "densityFalloff": 0.32,
+            "sizeFalloff": 0.28,
+            "lengthFalloff": 0.38,
+            "cornerSmoothing": 0.6,
+            "hardStop": false
+          }
+        },
+        "passes": {
+          "highlight": false,
+          "grain": false,
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 42,
+                "y": 132
+              },
+              {
+                "x": 91,
+                "y": 54
+              },
+              {
+                "x": 158,
+                "y": 37
+              },
+              {
+                "x": 229,
+                "y": 64
+              },
+              {
+                "x": 268,
+                "y": 119
+              },
+              {
+                "x": 236,
+                "y": 181
+              },
+              {
+                "x": 164,
+                "y": 198
+              },
+              {
+                "x": 99,
+                "y": 174
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "flow-keel",
+        "geometry": {
+          "kind": "closed",
+          "points": [
+            {
+              "x": 118,
+              "y": 93
+            },
+            {
+              "x": 162,
+              "y": 72
+            },
+            {
+              "x": 209,
+              "y": 96
+            },
+            {
+              "x": 199,
+              "y": 132
+            },
+            {
+              "x": 153,
+              "y": 151
+            },
+            {
+              "x": 111,
+              "y": 128
+            }
+          ]
+        },
+        "resolution": 34,
+        "smoothing": 0.6,
+        "edge": {
+          "intensity": 2.9,
+          "wobble": 0.08,
+          "tooth": 0.32,
+          "breakup": 0.2,
+          "shortMarks": 0.02,
+          "rake": 0.02,
+          "flecks": 0.04,
+          "speckles": 0.03,
+          "grain": 0.03,
+          "fineFibers": 0.02,
+          "erosion": 0.1,
+          "clustering": 0.16,
+          "detailScale": 0.82,
+          "outerEdge": 0.66,
+          "innerEdge": 0.38,
+          "cornerBite": 0.14,
+          "inkBleed": 0.03,
+          "edgeWeight": 0.1,
+          "dryBrush": 0.1,
+          "fiberAngle": 8,
+          "fiberFlow": 0.16,
+          "clusterScale": 0.72,
+          "boilAmount": 0,
+          "jitterFps": 0
+        },
+        "fill": {
+          "fill": "#f0c55a",
+          "opacity": 0.96,
+          "grain": 0
+        },
+        "inner": {
+          "innerShadow": {
+            "angle": 18,
+            "offset": 0.15,
+            "intensity": 0.48,
+            "style": "flow",
+            "spread": 0.72,
+            "edgeBias": 1,
+            "textureScale": 0.56,
+            "jitter": 0.06,
+            "contourAlign": 1,
+            "coverage": 0.74,
+            "rim": 0.18,
+            "fieldDepth": 0.86,
+            "fieldOffset": 0.04,
+            "fieldSoftness": 0.5,
+            "fieldContrast": 0.18,
+            "densityEdge": 0.62,
+            "densityFalloff": 0.38,
+            "sizeFalloff": 0.34,
+            "lengthFalloff": 0.44,
+            "cornerSmoothing": 0.48,
+            "hardStop": false
+          }
+        },
+        "passes": {
+          "highlight": false,
+          "grain": false,
+          "hatching": false
+        },
+        "states": {
+          "hover": {
+            "kind": "closed",
+            "points": [
+              {
+                "x": 113,
+                "y": 98
+              },
+              {
+                "x": 166,
+                "y": 70
+              },
+              {
+                "x": 213,
+                "y": 102
+              },
+              {
+                "x": 193,
+                "y": 136
+              },
+              {
+                "x": 148,
+                "y": 148
+              },
+              {
+                "x": 116,
+                "y": 122
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "entry": "rest",
+    "states": {
+      "rest": {},
+      "hover": {}
+    },
+    "stateGraph": {
+      "entry": "rest",
+      "states": {
+        "rest": {
+          "label": "Rest",
+          "kind": "rest"
+        },
+        "hover": {
+          "label": "Hover",
+          "kind": "hover"
+        }
+      },
+      "transitions": [
+        {
+          "from": "*",
+          "to": "hover",
+          "trigger": "hover-on",
+          "durationMs": 400,
+          "easing": "smoothstep",
+          "fps": 30,
+          "fpsDivisor": 1,
+          "interrupt": "restart"
+        },
+        {
+          "id": "hover-return",
+          "from": "hover",
+          "to": "rest",
+          "trigger": "hover-off",
+          "durationMs": 580,
+          "delayMs": 90,
+          "easing": "smoothstep",
+          "fps": 30,
+          "fpsDivisor": 1,
+          "interrupt": "restart"
+        }
+      ]
+    },
+    "motion": [
+      {
+        "trigger": "hover",
+        "to": "hover",
+        "durationMs": 400,
+        "easing": "smoothstep",
+        "fps": 30,
+        "fpsDivisor": 1,
+        "returnTo": "rest",
+        "returnDelayMs": 90,
+        "returnDurationMs": 580,
+        "interrupt": "restart"
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema": "morph-scroll-demo-host-adapters/v0",
+  "targets": {
+    "scroll-demo-hero": {
+      "kind": "scroll-progress",
+      "source": "section",
+      "controllerId": "scroll-progress",
+      "startId": "hero-start",
+      "endId": "hero-end"
+    },
+    "scroll-demo-combined": {
+      "kind": "scroll-progress-with-pointer-overlays",
+      "source": "section",
+      "controllerId": "scroll-progress",
+      "startId": "combo-start",
+      "endId": "combo-end",
+      "overlays": ["hover", "click"]
+    },
+    "scroll-demo-page": {
+      "kind": "scroll-progress",
+      "source": "page",
+      "controllerId": "scroll-progress"
+    },
+    "scroll-demo-travel": {
+      "kind": "scroll-progress",
+      "source": "element",
+      "controllerId": "scroll-progress"
+    },
+    "scroll-demo-cue-in-view": {
+      "kind": "viewport-trigger",
+      "trigger": "in-view",
+      "controllerId": "in-view",
+      "rootMargin": "160px"
+    },
+    "scroll-demo-scroll-past": {
+      "kind": "viewport-trigger",
+      "trigger": "scroll-past",
+      "controllerId": "scroll-past",
+      "thresholdPx": 240
+    }
+  }
+}

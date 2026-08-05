@@ -1,0 +1,81 @@
+{
+  "scrollDemoPage": {
+    "version": 1,
+    "route": "/scroll-demo",
+    "component": "PinnedScrub",
+    "objectId": "page",
+    "storageKey": "scroll-demo-page",
+    "title": "Scrub whole-page progress",
+    "sourceIds": {
+      "startId": "page-start",
+      "endId": "page-end"
+    },
+    "track": [
+      {
+        "id": "pillar",
+        "state": "a",
+        "label": "Pillar",
+        "shape": {
+          "kind": "ellipse",
+          "rx": 150,
+          "ry": 450
+        }
+      },
+      {
+        "id": "diamond",
+        "state": "b",
+        "label": "Diamond",
+        "shape": {
+          "kind": "superShape",
+          "radius": 340,
+          "power": 4
+        }
+      },
+      {
+        "id": "wide",
+        "state": "c",
+        "label": "Wide",
+        "shape": {
+          "kind": "ellipse",
+          "rx": 450,
+          "ry": 165
+        }
+      }
+    ],
+    "scrub": {
+      "source": "page",
+      "easing": "smoothstep",
+      "smoothing": 0.18
+    },
+    "fill": {
+      "from": "#ff8223",
+      "to": "#ff3d81"
+    },
+    "viewBox": [
+      720,
+      960
+    ],
+    "geometry": {
+      "center": [
+        360,
+        480
+      ],
+      "pointDecimals": 3
+    },
+    "layer": {
+      "id": "page-mask",
+      "name": "Scroll demo page-progress mask",
+      "resolution": 72,
+      "smoothing": 0.58
+    },
+    "motion": {
+      "reducedMotion": "first-frame"
+    },
+    "settings": {
+      "boil": "active-only"
+    },
+    "meta": {
+      "parityTarget": "Replace the whole-page progress PinnedScrub block on /scroll-demo with an authored runtime export."
+    }
+  }
+}
